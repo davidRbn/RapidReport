@@ -24,7 +24,7 @@ const auth = getAuth();
         password
         );
         const user = userCredential.user;
-        // console.log(user.uid)
+        console.log(user)
         return true
         } catch (error) {
         return {error: error.message}
