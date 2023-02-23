@@ -1,0 +1,12 @@
+.section-info-inter{
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.section-info-inter label {
+
+    margin-bottom: 5px;
+
+}

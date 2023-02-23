@@ -1,0 +1,91 @@
+.sectionInfoImage p {
+
+    font-size: 14px;
+}
+
+.separation{
+
+    border-bottom: 2px solid rgb(38, 242, 38);
+    /* margin: 20px; */
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.blocMoyenTech{
+
+    padding:10px 0 ;
+    border-bottom: 2px solid gray;
+    margin: 0;
+
+
+}
+
+.moyenTech{
+color: rgb(38, 242, 38);
+margin-top: 0;
+
+}
+.checkBoxMoyen{
+
+      margin-left: 20px;
+
+}
+
+
+
+.labelMoyenTechnique{
+
+    margin-right: 5px ;
+}
+
+
+.sectionImageBody{
+
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+flex-wrap: wrap;
+
+}
+
+
+
+
+.imageRapportBody{
+
+width: 150px;
+height: 100px;
+
+}
+
+.labelMiseEnPression{
+
+  font-size: 13px;
+
+}
+
+.inputInfoImage{
+
+width: 142px;
+
+}
+
+.sectionInfoImage{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.s-titre-des{
+    display: flex;
+    flex-direction: column;
+}
+
+.s-titre-des label{
+    margin: 15px 0;
+}
+
+.s-titre-des textarea{
+    width: 80%; 
+    height: 128px;
+}

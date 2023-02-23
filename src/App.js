@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import app from './firebase/Firebase.jsx'
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import Auth from './authentification/Auth';
+
+const db = getFirestore(app)
+
+async function getUser(db) {
+  const user = collection(db, 'Utilisateurs')
+  const getdocUser = await getDocs(user)
+  // const userList = getdocUser.docs.map(doc=>doc.data())
+  return getdocUser
+}
+console.log(getUser(db))
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+     <Auth/>
+{/* <PDFViewer><Rapport/></PDFViewer>  */}
+    </>
   );
 }
 

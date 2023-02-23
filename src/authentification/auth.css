@@ -1,0 +1,27 @@
+.sectionAuth{
+    height: 100%;
+    display: flex; /* contexte sur le parent */
+  flex-direction: column; /* direction d'affichage verticale */
+  justify-content: center; /* alignement vertical */
+  text-align: center;
+}
+
+.auth{
+    border: 1px solid black;
+    height: 400px;
+    width: 488px;
+    margin: auto;
+  
+}
+
+.form-auth{
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.submit-auth{
+    width: 100px;
+
+}
