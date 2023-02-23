@@ -7,7 +7,7 @@ const webpackConfig = require('react-scripts/config/webpack.config');
 defaults.__set__('configFactory', (webpackEnv) => {
   let config = webpackConfig(webpackEnv);
 
-  //Customize the webpack configuration here.
+  //Customize the webpack configuration here.k
   config.resolve.fallback = {
     ...config.resolve.fallback,
     process: require.resolve('process/browser'),
