@@ -95,13 +95,13 @@ const BodyRapport2 = ({dataInter,setDataInter}) => {
 
   }
 
-  const handleChangeMoyen = (indexMoyen,index,name) => {
+  const handleChangeMoyen = (indexMoyen,index,name,moyenValue) => {
 
      const newDataMoyenUtilise = dataInter.map((data,i) => {
 
            if (index === i){
               
-           const newData =  data.moyenTechnique.map((moyen,iMoyen) => indexMoyen === iMoyen ? {...moyen, [name] : !moyen.name} : {...moyen} )
+           const newData =  data.moyenTechnique.map((moyen,iMoyen) => indexMoyen === iMoyen ? {...moyen, [name] : !moyenValue} : {...moyen} )
             return {...data, moyenTechnique : newData }
 
            }else{
@@ -196,11 +196,11 @@ const BodyRapport2 = ({dataInter,setDataInter}) => {
                   <p className="moyenTech">{moyen.materielUtilise}  :</p>
                 <label className="labelMoyenTechnique">
                   
-                       <input className="checkBoxMoyen" type="checkbox"  checked={moyen.isUse} onChange={() => handleChangeMoyen(indexMoyen,index,"isUse")}/>
+                       <input className="checkBoxMoyen" type="checkbox"  checked={moyen.isUse} onChange={() => handleChangeMoyen(indexMoyen,index,"isUse",moyen.isUse)}/>
                          Utilisé
                          </label>
                           <label className="labelMoyenTechnique">
-                  <input className="checkBoxMoyen"  type="checkbox"  checked={moyen.concluant} onChange={() => handleChangeMoyen(indexMoyen,index,"concluant")}/>
+                  <input className="checkBoxMoyen"  type="checkbox"  checked={moyen.concluant} onChange={() => handleChangeMoyen(indexMoyen,index,"concluant",moyen.concluant)}/>
                Concluant
             </label>
           </div>
