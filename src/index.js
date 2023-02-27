@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {  Routes, Route, HashRouter } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import { AuthProvider } from "./authContext/AuthProvider";
 import HomeRapports from './homeRapport/HomeRapports';
 import MonRapport from './monRapport/MonRapport';
