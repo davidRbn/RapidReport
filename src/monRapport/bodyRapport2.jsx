@@ -9,7 +9,7 @@ import './bodyRapport.css'
 
 
 
-const BodyRapport2 = ({dataInter,setDataInter}) => {
+const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
 
   // const storage = getStorage();
   // const storageRef = ref(storage);
@@ -18,7 +18,8 @@ const BodyRapport2 = ({dataInter,setDataInter}) => {
 
   const handleUpload = (indexData,newImage) => {
 
-
+    setContainFile((prevState) => prevState + 1)
+   
 
     const url =   URL.createObjectURL(newImage)
 
@@ -44,7 +45,6 @@ const BodyRapport2 = ({dataInter,setDataInter}) => {
       handleUpload(index,newImage)
     }
 
-    
 
   }
 
@@ -115,9 +115,12 @@ const BodyRapport2 = ({dataInter,setDataInter}) => {
 
   }
 
-  const deletedImage = (indexData,indexImage,url,e) => {
+  const deletedImage = (indexData,url,e,image) => {
 
     e.preventDefault()
+
+    image.file instanceof File && setContainFile(prevState => prevState - 1)
+
      
     const newDataInterImage = dataInter.map((data, i) => {
       if (indexData === i) {
@@ -135,7 +138,7 @@ const BodyRapport2 = ({dataInter,setDataInter}) => {
 
 
   // dataInter.map(e => console.log(e.image))
-  console.log(dataInter)
+  // console.log(dataInter)
   // console.log(url)
 //   console.log(urlLoaded)
   // console.log(legende)
@@ -170,7 +173,7 @@ const BodyRapport2 = ({dataInter,setDataInter}) => {
             
               <div key={indexImage}>
                 <div className="sectionInfoImage">
-                  <button onClick={(e) => deletedImage(index,e)}>Supprimer</button>
+                  <button onClick={(e) => deletedImage(index,image.url,e,image)}>Supprimer</button>
                   <img className="imageRapportBody" src={image.url} alt="" />
                 </div>
               </div>
@@ -221,7 +224,8 @@ const BodyRapport2 = ({dataInter,setDataInter}) => {
           <div className="s-titre-des">
             <label className="titre-des">
               Titre :
-              <input name='titre' type="text" defaultValue={data.titre} onChange={e => handleChangeInfoInter(e.target.value, index, e.target.name)} />
+              <input disabled={data.section === 'miseEnPression' || data.section === "conclusion"? true : false} name='titre' type="text" defaultValue={data.titre} onChange={e => handleChangeInfoInter(e.target.value, index, e.target.name)} />
+              
             </label>
             <label>
               <div> Description : </div>
@@ -240,7 +244,7 @@ const BodyRapport2 = ({dataInter,setDataInter}) => {
                 
                   <div key={indexImage}>
                     <div className="sectionInfoImage">
-                  <button onClick={(e) => deletedImage(index,indexImage,image.url,e)}>Supprimer</button>
+                  <button onClick={(e) => deletedImage(index,image.url,e,image)}>Supprimer</button>
 
                       <img className="imageRapportBody" src={image.url} alt="" />
                       

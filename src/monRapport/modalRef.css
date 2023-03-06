@@ -1,0 +1,22 @@
+.blocModalRef{
+
+    position: fixed;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #E0E0E0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.blocModalRef p {
+
+    color: red;
+}
+
+.blocModalRef button{
+margin: auto;
+
+}

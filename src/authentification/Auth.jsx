@@ -13,7 +13,7 @@ const { user } = useContext(AuthContext);
     
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
-const [error, seterror] = useState("");    
+const [error, setError] = useState("");    
 const auth = getAuth();
 
     const signIn = async (email, password) => {
@@ -37,12 +37,13 @@ const auth = getAuth();
         setPassword("");
         const res = await signIn(email, password);
         console.log(res)
-        if (res.error) seterror(res.error);
+        if (res.error) setError(res.error);
        
     };
        
-    // console.log(user)
+   
 
+    
     return(
         <>
     <div className='sectionAuth'>

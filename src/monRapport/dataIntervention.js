@@ -12,7 +12,7 @@ export const dataIntervention =
 },{   
     section : 'constatations',
     titre: "Constatations",
-    description:"La mise en pression du réseau d'alimentation eau chaude et eau froide ne présente pas de baisse de pression significative.Nous avons effectué une injection de fumée dans les canalisations en passant par les toilettes de l'appartement du premier étage, à la suite de cela nous avons eu une résurgence de fumée provenant de la colonne dans les deux appartements.                   Ne pouvant localiser avec précision l'origine de la fuite, c'est pour cela nous préconisons une recherche de fuite destructive afin d'avoir un visuel sur la colonne d'évacuation",
+    description:"",
     image:[]
 
 },
@@ -117,7 +117,7 @@ export const dataIntervention =
     
     section : 'gazTraceur',
     titre: " Mise en pression avec gaz traceur ",
-    description:"Nous mettons en pression avec le gaz traceur le réseau d'alimentation d'eau et recherchons une éventuel résurgence de celui-ci dans le logement.",
+    description:"Nous mettons en pression le réseau d'alimentation d'eau avec le gaz traceur et recherchons une éventuel résurgence de celui-ci dans le logement.",
     image:[],
 },
 
@@ -127,11 +127,25 @@ export const dataIntervention =
     titre: " Mise en oeuvre caméra ",
     description:"Nous réalisons un passage caméra ....",
     image:[],
+ },
+ {
+
+    section : 'autre',
+    titre: " Autre ",
+    description:"",
+    image:[],
+ },
+ {
+
+    section : 'autre',
+    titre: " Autre ",
+    description:"",
+    image:[],
  },{
 
     section : 'conclusion',
     titre :'Conclusion',
-    description : 'Nous concluons que ...',
+    description : '',
     image : []
 
 

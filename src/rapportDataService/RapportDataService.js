@@ -16,7 +16,7 @@ const RapportDataService = {
    },
 
    deleteRapport : (id) => {
-     const rapportDoc = doc(db, "books",id);
+     const rapportDoc = doc(db, "rapportsComplexe",id);
      return deleteDoc(rapportDoc)
    }
 
@@ -30,7 +30,7 @@ const RapportDataService = {
    },
 
    getRapportUserId : (userId) => {
-    const rapportDoc = query(collection(db,"rapportsComplexe"),where("uid", "==",userId))
+    const rapportDoc = query(collection(db,"rapportsComplexe"),where("infoInter.uid", "==",userId))
     return getDocs(rapportDoc)
 
 }

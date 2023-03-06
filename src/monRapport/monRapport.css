@@ -10,3 +10,22 @@
     margin-bottom: 5px;
 
 }
+
+.buttonRegistrer{
+
+position: fixed;
+bottom: 3%;
+right: 3%;
+background-color: green;
+
+}
+
+.link-pdf{
+
+    height: 40px;
+    width: 200px;
+    padding: 5px;
+    text-align: center;
+    border: 2px solid black;
+
+}

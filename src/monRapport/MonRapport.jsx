@@ -9,6 +9,8 @@ import { dataIntervention } from "./dataIntervention";
 import BodyRapport2 from "./bodyRapport2";
 import { getStorage, ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import './monRapport.css'
+import { useLocation } from "react-router-dom";
+import ModalRef from "./ModalRef";
 
 
 
@@ -18,17 +20,21 @@ import './monRapport.css'
 
 const MonRapport = () => {
 
-    const user = useContext(AuthContext)
+    const location = useLocation()
+    const {user} = useContext(AuthContext)
     const [dataLoading,setDataLoading] = useState(false)
-    const [idRapport, setIdRapport] = useState("")
+    const [idRapport, setIdRapport] = useState(location.state.idDoc)
     const [dataSend,setDataSend] = useState(false)
+    const [docIsCreated,setDocIsCreated] = useState(location.state.docIsCreated)
     const [dataInterPdf,setDataInterPdf] = useState([])
     const storage = getStorage();
     const storageRef = ref(storage);
     const [urlFirebaseLoaded,setUrlFirebaseLoaded] = useState(false)    
+    const [containFile,setContainFile] = useState(0)
+    const [refIsNull,setRefIsNull] = useState(false)
     // const [dataInfoInter,setDataInfoInter] = useState(dataIntervention)
     const [infoInter, setInfoInter] = useState({
-        uid: user.user.uid,       
+        uid: `${user.uid}`,       
         informationIntervention : {
              client : "",
              reference: "",
@@ -56,13 +62,17 @@ const MonRapport = () => {
     let numberImage = []
     
 
-   dataInter.forEach((data, indexData) => {
-    
+   dataInter.forEach((data, indexData) => {    
+
    data.image.forEach((image,indexImage) => {
+
+
     
+    if (image.file) {
+
    const path = `${image.file.name}`;
    // console.log(storageRef)
-   const imageRef = ref(storageRef, path)
+   const imageRef = ref(storageRef, `${infoInter.informationIntervention.reference}/${path}`)
 
 
      const uploadTask = uploadBytesResumable(imageRef, image.file);
@@ -121,10 +131,17 @@ const MonRapport = () => {
 
    })
      
- Promise.all(promisesImages).then((res) =>numberImage.length === res.length && setUrlFirebaseLoaded(true))
+ Promise.all(promisesImages).then((res) => numberImage.length === res.length && setUrlFirebaseLoaded(true))
 
   })
-}) 
+   }
+  }) 
+
+  
+
+
+
+
 }) 
 }
 
@@ -139,9 +156,27 @@ const handleChangeInfoInter = (e,name) => {
 
 const submitInformationInter = (e) => {
 e.preventDefault()
+ setDataLoading(false)
 
+ if(infoInter.informationIntervention.reference === ''){
+
+     setRefIsNull(true)
+     
+
+ }else{
+
+  if (containFile === 0){
+
+    test()
+
+}else{
 
  handleUploadStorageImage()
+
+}}
+
+ 
+
    
 }
 
@@ -152,14 +187,18 @@ const getRapport = async () => {
     const res = await RapportDataService.getRapport(idRapport)
     setDataInfoPdf(res.data().infoInter.informationIntervention)
     setDataInterPdf(res.data().dataInter)
+    setInfoInter(res.data().infoInter)
+    setDataInter(res.data().dataInter)
     setDataLoading(true)
   console.log(res.data())
+  setDataSend(false)
+  setContainFile(0)
 }
  
 
 useEffect(() => {
 
-dataSend && getRapport()
+(dataSend || location.state.getRapport) && getRapport()
 
 // eslint-disable-next-line react-hooks/exhaustive-deps
 },[dataSend])
@@ -170,15 +209,16 @@ const test = async () => {
 
     const data = {infoInter,dataInter}
 
-    setInfoInter({...infoInter,uid : user.user.id})
+    setInfoInter({...infoInter,uid : user.uid})
     
     
-    const res = await RapportDataService.addRapports(data)
-    setIdRapport(res.id)
+    const res = docIsCreated ? await RapportDataService.updateRapport(idRapport,data) : await RapportDataService.addRapports(data)
+   !docIsCreated && setIdRapport(res.id)
     setDataSend(true)
     console.log('envoyé')
     setDataLoading(true)
-
+   setDocIsCreated(true)
+   setUrlFirebaseLoaded(false)
 }
 
 
@@ -189,12 +229,14 @@ urlFirebaseLoaded && test()
 // eslint-disable-next-line react-hooks/exhaustive-deps
 },[urlFirebaseLoaded])
 
-
+console.log(idRapport)
 
 return(
 
     <>
     <h1>Mon rapport </h1>
+  
+    
     <form onSubmit={submitInformationInter}> 
       <div className="section-info-inter">
         <label >
@@ -246,16 +288,22 @@ return(
             <input type="text" name="etage" value={infoInter.informationIntervention.etage} onChange={e => handleChangeInfoInter(e.target.value,e.target.name)}/>
         </label>
            </div>
-        <BodyRapport2 dataInter={dataInter} setDataInter={setDataInter}/>
+        <BodyRapport2 dataInter={dataInter} setDataInter={setDataInter} setContainFile={setContainFile} containFile={containFile}/>
          {/* <BodyRapport dataInter={dataInter} setDataInter={setDataInter}/> */}
-         <input type="submit" value="Enregister" onClick={e => console.log('hello')}/>
+         <input className="buttonRegistrer" type="submit" value={docIsCreated ? "Modifier"  :"Enregister"} onClick={e => console.log('hello')}/>
     </form>
+    {refIsNull && <ModalRef setRefIsNull={setRefIsNull}/>}
+  
     {dataLoading ?
+    <div className="link-pdf">
      <PDFDownloadLink document={<Rapport idRapport={idRapport} dataLoading={setDataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf} />} fileName="somename.pdf">
       {({ blob, url, loading, error }) =>(
-        loading ? 'Loading document...' : 'Download now!')
+        loading ? 'Chargement du document' : 'Telecharger document!')
      }
-    </PDFDownloadLink>:""
+    </PDFDownloadLink>
+    </div>
+    
+    :""
 }
  {/* { <PDFViewer><Rapport idRapport={idRapport} dataLoading={setDataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf} /></PDFViewer>  }  */}
     
