@@ -7,7 +7,7 @@ import RapportDataService from "../rapportDataService/RapportDataService";
 import Rapport from "../rapportPdf/Rapport";
 import { dataIntervention } from "./dataIntervention";
 import BodyRapport2 from "./bodyRapport2";
-import { getStorage, ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { getStorage, ref, getDownloadURL, uploadBytesResumable, uploadString } from "firebase/storage";
 import './monRapport.css'
 import { useLocation } from "react-router-dom";
 import ModalRef from "./ModalRef";

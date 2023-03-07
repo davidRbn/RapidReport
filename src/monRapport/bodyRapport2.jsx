@@ -20,9 +20,24 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
   const handleUpload = (indexData,newImage) => {
 
     setContainFile((prevState) => prevState + 1)
-   
 
-    const url =   URL.createObjectURL(newImage)
+    console.log(newImage)
+
+    let url = newImage
+
+    const reader = new FileReader();
+
+    // L'événement déclenché lorsque la lecture est complète
+    reader.onload = function (e) {
+        // On change l'URL de l'image (base64)
+        url = e.target.result
+    }
+
+    // On lit le fichier "picture" uploadé
+    //  reader.readAsDataURL(url)
+
+// console.log(url)
+     url =   URL.createObjectURL(newImage)
 
     setDataInter((prevState) => prevState.map((data, indexx) =>{
                      
@@ -45,7 +60,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
   
     for (let i = 0; i < e.target.files.length; i++) {
       const newImage = e.target.files[i];
-
+      
       Compress.imageFileResizer(
         newImage,
         480,
@@ -56,7 +71,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
         (uri) => {
            handleUpload(index,uri)         
         },
-        "blob"
+       "blob"
 
       )
       // handleUpload(index,newImage)
@@ -178,7 +193,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
           <div key={index} className="separation">
          <div >
             <h3>{data.titre}</h3>
-            <input accept="image/*" type="file" id='file' onInput={e => handleChange(e,index)}/> 
+            <input accept="image/*" type="file" id='file' onChange={e => handleChange(e,index)}/> 
           </div>
           
           
@@ -250,7 +265,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
             </label>
           </div>
          
-            <input accept="image/*" type="file" id='files' onInput={e => handleChange(e,index)} multiple />
+            <input accept="image/*" type="file" id='files' onChange={e => handleChange(e,index)} multiple />
          
      
             <div className="sectionImageBody">
