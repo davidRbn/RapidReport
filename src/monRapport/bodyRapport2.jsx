@@ -2,6 +2,7 @@ import React from "react";
 // import { getStorage, ref } from "firebase/storage";
 import './bodyRapport.css'
 // import { dataIntervention } from "./dataIntervention";
+import Compress from 'react-image-file-resizer'
 
 
 
@@ -42,7 +43,22 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
   
     for (let i = 0; i < e.target.files.length; i++) {
       const newImage = e.target.files[i];
-      handleUpload(index,newImage)
+
+      Compress.imageFileResizer(
+        newImage,
+        480,
+        480,
+        "PNG",
+        70,
+        0,
+        (uri) => {
+           handleUpload(index,uri)
+          
+        },
+        "blob"
+
+      )
+      // handleUpload(index,newImage)
     }
 
 
@@ -161,7 +177,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
           <div key={index} className="separation">
          <div >
             <h3>{data.titre}</h3>
-            <input accept="image/*" type="file" onInput={e => handleChange(e,index)}/> 
+            <input accept="image/*" type="file" id='file' onInput={e => handleChange(e,index)}/> 
           </div>
           
           
@@ -233,7 +249,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
             </label>
           </div>
          
-            <input accept="image/*" type="file" onInput={e => handleChange(e,index)} multiple />
+            <input accept="image/*" type="file" id='files' onInput={e => handleChange(e,index)} multiple />
          
      
             <div className="sectionImageBody">
