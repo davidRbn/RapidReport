@@ -68,7 +68,7 @@ const MonRapport = () => {
 
 
     
-    if (image.file) {
+    if (image.file ) {
 
    const path = `${image.file.name}`;
    // console.log(storageRef)
@@ -190,7 +190,7 @@ const getRapport = async () => {
     setInfoInter(res.data().infoInter)
     setDataInter(res.data().dataInter)
     setDataLoading(true)
-  console.log(res.data())
+  // console.log(res.data())
   setDataSend(false)
   setContainFile(0)
 }
@@ -229,7 +229,6 @@ urlFirebaseLoaded && test()
 // eslint-disable-next-line react-hooks/exhaustive-deps
 },[urlFirebaseLoaded])
 
-console.log(idRapport)
 
 return(
 

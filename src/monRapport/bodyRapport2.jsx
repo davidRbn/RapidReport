@@ -15,29 +15,58 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
   // const storage = getStorage();
   // const storageRef = ref(storage);
 
+  const handleChange = (e,index) => {
+
+  
+    for (let i = 0; i < e.target.files.length; i++) {
+      const newImage = e.target.files[i];
+      
+      Compress.imageFileResizer(
+        newImage,
+        480,
+        480,
+        "PNG",
+        70,
+        0,
+        (uri) => {
+           handleUpload(index,uri,newImage)         
+        },
+       "blob"
+
+      )
+      // handleUpload(index,newImage)
+    }
 
 
-  const handleUpload = (indexData,newImage) => {
+  }
+
+
+
+  const handleUpload = (indexData,uri,newImage) => {
 
     setContainFile((prevState) => prevState + 1)
 
     console.log(newImage)
 
-    let url = newImage
+    let url = uri
 
-    const reader = new FileReader();
+    // const reader = new FileReader();
 
     // L'événement déclenché lorsque la lecture est complète
-    reader.onload = function (e) {
-        // On change l'URL de l'image (base64)
-        url = e.target.result
-    }
+    // reader.onload = function (e) {
+    //     // On change l'URL de l'image (base64)
+    //     url = e.target.result
+    // }
 
     // On lit le fichier "picture" uploadé
     //  reader.readAsDataURL(url)
 
 // console.log(url)
      url =   URL.createObjectURL(newImage)
+
+     console.log(url)
+     console.log(newImage)
+
 
     setDataInter((prevState) => prevState.map((data, indexx) =>{
                      
@@ -54,30 +83,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
                     }))
   }
 
-  const handleChange = (e,index) => {
 
-  
-    for (let i = 0; i < e.target.files.length; i++) {
-      const newImage = e.target.files[i];
-      
-      Compress.imageFileResizer(
-        newImage,
-        480,
-        480,
-        "PNG",
-        70,
-        0,
-        (uri) => {
-           handleUpload(index,uri)         
-        },
-       "blob"
-
-      )
-      // handleUpload(index,newImage)
-    }
-
-
-  }
 
   
 
