@@ -16,9 +16,6 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
   // const storageRef = ref(storage);
 
   const handleChange = (e,index) => {
-
-    e.preventDefault()
-
   
     for (let i = 0; i < e.target.files.length; i++) {
       const newImage = e.target.files[i];
