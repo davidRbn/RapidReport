@@ -23,7 +23,7 @@ const MonRapport = () => {
 
     const location = useLocation()
     const {user} = useContext(AuthContext)
-    const [dataLoading,setDataLoading] = useState(false)
+    const [dataLoading,setDataLoading] = useState(true)
     const [idRapport, setIdRapport] = useState(location.state.idDoc)
     const [dataSend,setDataSend] = useState(false)
     const [docIsCreated,setDocIsCreated] = useState(location.state.docIsCreated)
@@ -230,7 +230,7 @@ urlFirebaseLoaded && test()
 // eslint-disable-next-line react-hooks/exhaustive-deps
 },[urlFirebaseLoaded])
 
-
+console.log(dataLoading);
 return(
 
     <>
@@ -294,7 +294,7 @@ return(
     </form>
     {refIsNull && <ModalRef setRefIsNull={setRefIsNull}/>}
   
-    {dataLoading ?
+    
     <div className="link-pdf">
      <PDFDownloadLink document={<Rapport idRapport={idRapport} dataLoading={setDataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf} />} fileName="somename.pdf">
       {({ blob, url, loading, error }) =>(
@@ -303,8 +303,7 @@ return(
     </PDFDownloadLink>
     </div>
     
-    :""
-}
+
  {/* { <PDFViewer><Rapport idRapport={idRapport} dataLoading={setDataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf} /></PDFViewer>  }  */}
     
     
