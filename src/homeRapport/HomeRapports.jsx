@@ -9,6 +9,8 @@ import { collection,getDocs,where, query} from "firebase/firestore/lite";
 import { db } from "../firebase/Firebase";
 import "./homeRapports.css"
 import ModalDelete from "../modalDelete/ModalDelete";
+import { getStorage, ref, deleteObject } from "firebase/storage";
+// import {saveAs} from "file-saver";
 
 
 
@@ -21,8 +23,9 @@ const HomeRapports = () => {
     const navigate = useNavigate()
     const [modalIsOpen,setModalIsOpen] = useState(false)
     const [dataUserInfo,setDataUserInfo] = useState({})
-
-
+    const [idDocument,setIdDocument] = useState('')
+    const [refRapport,setRefRapport ] = useState('')
+    const [dataInterDelete,setDataInterDelete] = useState({})
 
 
    const getRapports = async () => {
@@ -59,7 +62,6 @@ const HomeRapports = () => {
      
      useEffect(() =>{
         getInfoUser()
-        console.log('useEffect')
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
@@ -82,18 +84,64 @@ const accessMyReport = (e,idDoc) => {
 }
 
 
-const deleteReport = async (e,idDoc) => {
+const deleteReport = async (e,idDoc,refRapport,dataInterDelete) => {
 
     e.preventDefault()
 
-  await RapportDataService.deleteRapport(idDoc).then(res => console.log(res))
+    const storage = getStorage()
+
+    dataInterDelete.dataInter.filter(data => data.image.length > 0).forEach(data => {
+
+        data.image.forEach(image => {
+
+            const desertRef = ref(storage, `${refRapport}/${image.fileName}`);
+
+            deleteObject(desertRef).then(() => {
+        
+                console.log('image supprimé');
+        
+            }).catch((error) => {
+        
+                console.log(error)
+        
+            })
+
+
+        })
+        })
+
+  await RapportDataService.deleteRapport(idDoc)
   setModalIsOpen(false)
-  console.log('deleted')
   getRapports()
 }
 
-console.log(modalIsOpen)
-    
+
+// const downloadImages = (e) => {
+
+//         e.preventDefault()
+
+//     dataInterDelete.dataInter.filter(data => data.image.length > 0).forEach(data => {
+
+//         data.image.forEach(image => {
+
+//             const xhr = new XMLHttpRequest();
+//             xhr.responseType = 'blob';
+//             xhr.onload = (event) => {
+//               const blob = xhr.response;
+//           console.log(blob);
+//           console.log(event.currentTarget.responseURL)
+//           saveAs(event.currentTarget.responseURL, "Twitter-logo");
+
+//             };
+//             xhr.open('GET', image.url);
+//             xhr.send();
+            
+
+//         })
+//         })        
+
+// }
+
 
 return (
 
@@ -113,12 +161,20 @@ return (
                             {data.infoInter.informationIntervention.client} {data.infoInter.informationIntervention.reference} {data.infoInter.informationIntervention.nomSinistre}
                 </button>
                     <p onClick={e => {e.preventDefault() 
+                                      setIdDocument(data.idDoc)
+                                      setRefRapport(data.infoInter.informationIntervention.reference)
+                                      setDataInterDelete(data)
                                       setModalIsOpen(true)}}>X</p>
+                    {/* <button onClick={e =>{   
+                                             setDataInterDelete(data)
+                                             downloadImages(e)}}>Telecharger images</button>                   */}
                    
     </div>
-{modalIsOpen && <ModalDelete setModalIsOpen={setModalIsOpen} deleteReport={deleteReport} idDoc={data.idDoc} typeDelete={'le rapport'}/>}
 </div>
             )})}
+
+{modalIsOpen && <ModalDelete setModalIsOpen={setModalIsOpen} deleteReport={deleteReport} idDoc={idDocument} dataInterDelete={dataInterDelete} refRapport={refRapport} typeDelete={'le rapport'}/>}
+
 
   
     </div>

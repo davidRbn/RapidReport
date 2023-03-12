@@ -106,7 +106,7 @@ const MonRapport = () => {
              if (i === indexImage) {
 
                
-               let dataImage = {...image,url : res[0]}
+               let dataImage = {...image,url : res[0],fileName: path}
                delete dataImage['file']  
             return dataImage
                

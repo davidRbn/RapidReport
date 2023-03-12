@@ -6,9 +6,10 @@ import './modalDelete.css'
 
 
 
-const ModalDelete = ({typeDelete,setModalIsOpen,deleteReport,idDoc}) => {
+const ModalDelete = ({typeDelete,setModalIsOpen,deleteReport,idDoc,refRapport,dataInterDelete}) => {
 
 
+    console.log(idDoc);
 
 
 
@@ -16,7 +17,7 @@ const ModalDelete = ({typeDelete,setModalIsOpen,deleteReport,idDoc}) => {
 <div className='modal-delete'>
       <div><p>Etes vous sur de vouloir supprimer {typeDelete} ? </p></div>
           <div>
-            <button onClick={e => deleteReport(e,idDoc)}>Supprimer</button>
+            <button onClick={e => deleteReport(e,idDoc,refRapport,dataInterDelete)}>Supprimer</button>
 
             <button  onClick={e => {e.preventDefault()
                                     setModalIsOpen(false)
