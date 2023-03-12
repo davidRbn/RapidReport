@@ -11,6 +11,7 @@ import { getStorage, ref, getDownloadURL, uploadBytesResumable} from "firebase/s
 import './monRapport.css'
 import { useLocation } from "react-router-dom";
 import ModalRef from "./ModalRef";
+import Loader from "../loader/Loader";
 
 
 
@@ -307,7 +308,7 @@ return(
  {/* { <PDFViewer><Rapport idRapport={idRapport} dataLoading={setDataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf} /></PDFViewer>  }  */}
     
     
-    
+    {!dataLoading && <Loader/> }
     
     </>
 )

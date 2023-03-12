@@ -10,6 +10,7 @@ import { db } from "../firebase/Firebase";
 import "./homeRapports.css"
 import ModalDelete from "../modalDelete/ModalDelete";
 import { getStorage, ref, deleteObject } from "firebase/storage";
+import Loader from "../loader/Loader";
 // import {saveAs} from "file-saver";
 
 
@@ -26,7 +27,7 @@ const HomeRapports = () => {
     const [idDocument,setIdDocument] = useState('')
     const [refRapport,setRefRapport ] = useState('')
     const [dataInterDelete,setDataInterDelete] = useState({})
-
+    const [dataIsLoading,setDataIsLoading] = useState(false)
 
    const getRapports = async () => {
           
@@ -43,7 +44,7 @@ const HomeRapports = () => {
 
         const data = await RapportDataService.getRapportUserId(user.uid)
         setRapports(data.docs.map((doc) => ({...doc.data(),idDoc : doc.id})))
-
+        setDataIsLoading(true)
        }
            
     }
@@ -174,7 +175,7 @@ return (
             )})}
 
 {modalIsOpen && <ModalDelete setModalIsOpen={setModalIsOpen} deleteReport={deleteReport} idDoc={idDocument} dataInterDelete={dataInterDelete} refRapport={refRapport} typeDelete={'le rapport'}/>}
-
+{!dataIsLoading && <Loader/>}
 
   
     </div>
