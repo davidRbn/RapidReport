@@ -157,7 +157,6 @@ const handleChangeInfoInter = (e,name) => {
 
 const submitInformationInter = (e) => {
 e.preventDefault()
- setDataLoading(false)
 
  if(infoInter.informationIntervention.reference === ''){
 
@@ -169,10 +168,14 @@ e.preventDefault()
   if (containFile === 0){
 
     test()
+ setDataLoading(false)
+
 
 }else{
 
  handleUploadStorageImage()
+ setDataLoading(false)
+
 
 }}
 

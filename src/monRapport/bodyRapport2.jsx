@@ -2,7 +2,7 @@ import React from "react";
 // import { getStorage, ref } from "firebase/storage";
 import './bodyRapport.css'
 // import { dataIntervention } from "./dataIntervention";
-import Compress from 'react-image-file-resizer'
+import Resizer from 'react-image-file-resizer'
 
 
 
@@ -19,20 +19,37 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
   
     for (let i = 0; i < e.target.files.length; i++) {
       const newImage = e.target.files[i];
-      
-      Compress.imageFileResizer(
-        newImage,
-        480,
-        480,
-        "PNG",
-        70,
-        0,
-        (uri) => {
-           handleUpload(index,uri,newImage)         
-        },
-       "blob"
 
-      )
+     
+        Resizer.imageFileResizer(
+          newImage,
+          300,
+          300,
+          "JPEG",
+          70,
+          0,
+          (uri) => {
+            handleUpload(index,uri,newImage)
+
+          },
+          "base64"
+        );
+      
+
+      
+      // Compress.imageFileResizer(
+      //   newImage,
+      //   480,
+      //   480,
+      //   "JPEG",
+      //   70,
+      //   0,
+      //   (uri) => {
+      //      handleUpload(index,uri,newImage)         
+      //   },
+      //  "blob"
+
+      // )
       // handleUpload(index,newImage)
     }
 
@@ -41,9 +58,10 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
 
 
 
-  const handleUpload = (indexData,uri,newImage) => {
+  const handleUpload = async (indexData,uri,newImage) => {
 
     setContainFile((prevState) => prevState + 1)
+   
 
     console.log(newImage)
 
