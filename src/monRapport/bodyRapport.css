@@ -5,23 +5,30 @@
 
 .separation{
 
-    border-bottom: 2px solid rgb(38, 242, 38);
+    border-bottom: 2px solid #048B9A;
+    background-color: white;
+    /* width: 90%; */
     /* margin: 20px; */
-    padding-left: 20px;
-    padding-bottom: 20px;
+    /* padding-left: 20px;
+    padding-bottom: 20px; */
+    /* margin: 5%; */
+   margin-bottom: 20px;
+   border-radius: 10px;
+   padding-bottom: 20px;
 }
 
 .blocMoyenTech{
 
-    padding:10px 0 ;
+    /* padding:10px 0 ; */
     border-bottom: 2px solid gray;
     margin: 0;
-
+    display: flex;
+    flex-direction: row;
 
 }
 
 .moyenTech{
-color: rgb(38, 242, 38);
+color: #048B9A;
 margin-top: 0;
 
 }
@@ -49,13 +56,26 @@ flex-wrap: wrap;
 }
 
 
-
+.btn-delete-image{
+    width: 80px;
+    text-align: center;
+    margin: auto;
+    background-color: white;
+    border: 2px solid red;
+    border-radius: 10px;
+}
 
 .imageRapportBody{
 
 width: 150px;
 height: 100px;
 
+}
+
+.section-misePression{
+    display: flex;
+    flex-direction: column;
+    width:150px;
 }
 
 .labelMiseEnPression{
@@ -73,7 +93,13 @@ width: 142px;
 .sectionInfoImage{
     display: flex;
     flex-direction: column;
+    margin-top: 20px;
 
+}
+
+.title-des{
+    text-align: center;
+    color: #048B9A;
 }
 
 .s-titre-des{

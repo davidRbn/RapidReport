@@ -148,16 +148,16 @@ return (
 
 <>
 <div>
-    <h1>Mes Rapports</h1>
+    <h1 className="title-home-rapports">Mes Rapports</h1>
         </div>
-            <div><button onClick={e => { navigate('mon-rapport',{state:{docIsCreated:false,idDoc:''}})}}>Creer un nouveau rapport</button>
+            <div ><button className="btn-create-rapport" onClick={e => { navigate('mon-rapport',{state:{docIsCreated:false,idDoc:''}})}}>Creer un nouveau rapport</button>
     </div>
     <div  className="all-rapports">
     {rapports.map((data,key) => {
     return (
         <div  key={key}>
 <div className="bloc-rapports">
-                <button className="list-rapports" 
+                <button className={data.infoInter.informationIntervention.rapportFini ?'list-rapports-interFini': 'list-rapports'} 
                         onClick={e =>  accessMyReport(e,data.idDoc)}>
                             {data.infoInter.informationIntervention.client} {data.infoInter.informationIntervention.reference} {data.infoInter.informationIntervention.nomSinistre}
                 </button>

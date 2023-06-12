@@ -6,6 +6,7 @@ import { useState } from 'react';
 import HeaderPdf2 from '../pdf/header/HeaderPdf2';
 import BodyLandingPage2 from '../pdf/bodyLandingPage/bodyLandingPage2';
 import PageTwoPdf from '../pdf/PageTwoPdf';
+import PageThreePdf from '../pdf/pageThreePdf/pageThreePdf';
 
 
 
@@ -67,18 +68,25 @@ const [indexConstatation,setIndexConstatation] = useState(0)
     return(
         <Document style={styles.document}>
         <Page wrap size="A4" style={styles.page}>
-            <HeaderPdf2 dataInfoPdf={dataInfoPdf}/>
+            {/* <HeaderPdf2 dataInfoPdf={dataInfoPdf}/> */}
             <BodyLandingPage2 idRapport={idRapport} dataLoading={dataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf}/>
             <FooterPdf/>
         </Page>
 
 <Page>
     <HeaderPdf2/>
-          <PageTwoPdf dataInterPdf={dataInterPdf} />
+          <PageTwoPdf dataInfoPdf={dataInfoPdf}  dataInterPdf={dataInterPdf} />
     <FooterPdf/>
 
+</Page>
+
+<Page>
+    <HeaderPdf2/>
+          <PageThreePdf dataInfoPdf={dataInfoPdf}  dataInterPdf={dataInterPdf} />
+    <FooterPdf/>
 
 </Page>
+
 
 
 {dataInterPdf.filter(data => (data.image.length > 0 )&& data.section !== 'vueGlobale').map((dataInter,indexData) => {

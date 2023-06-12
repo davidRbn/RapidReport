@@ -2,7 +2,8 @@ import React from "react";
 // import { getStorage, ref } from "firebase/storage";
 import './bodyRapport.css'
 // import { dataIntervention } from "./dataIntervention";
-import Resizer from 'react-image-file-resizer'
+// import Resizer from 'react-image-file-resizer'
+import EXIF from "exif-js";
 
 
 
@@ -15,26 +16,52 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
   // const storage = getStorage();
   // const storageRef = ref(storage);
 
+
+
   const handleChange = (e,index) => {
   
-    console.log(e.target)
+    // console.log(e.target)
     for (let i = 0; i < e.target.files.length; i++) {
       const newImage = e.target.files[i];
 
-     
-        Resizer.imageFileResizer(
-          newImage,
-          300,
-          300,
-          "JPEG",
-          70,
-          0,
-          (uri) => {
-            handleUpload(index,uri,newImage)
+    EXIF.getData(newImage,function () {
 
-          },
-          "base64"
-        );
+        let orientation = EXIF.getTag(this, 'Orientation')
+
+       console.log(orientation)
+
+      
+       if(orientation === undefined){
+        orientation = 0 
+       }
+
+       console.log(orientation)
+
+
+      console.log(orientation)
+
+      handleUpload(index,newImage,orientation)
+
+
+
+
+        
+      })
+
+
+        // Resizer.imageFileResizer(
+        //   newImage,
+        //   300,
+        //   300,
+        //   "JPEG",
+        //   70,
+        //   0,
+        //   (uri) => {
+         
+
+        //   },
+        //   "base64"
+        // );
       
 
       
@@ -59,14 +86,14 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
 
 
 
-  const handleUpload = async (indexData,uri,newImage) => {
+  const handleUpload = async (indexData,newImage,imageOrientation) => {
 
     setContainFile((prevState) => prevState + 1)
    
 
     console.log(newImage)
 
-    let url = uri
+
 
     // const reader = new FileReader();
 
@@ -80,7 +107,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
     //  reader.readAsDataURL(url)
 
 // console.log(url)
-     url =   URL.createObjectURL(newImage)
+    let url =   URL.createObjectURL(newImage)
 
      console.log(url)
      console.log(newImage)
@@ -91,10 +118,10 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
                       if (indexx === indexData){
                         if(data.section === "miseEnPression"){
 
-                          return {...data, image: [...data.image,{url : url,epreuve : "",finale : "", file : newImage}]}
+                          return {...data, image: [...data.image,{url : url,epreuve : "",finale : "", file : newImage,orientationImage: imageOrientation}]}
 
                         }else{
-                      return {...data, image:  [...data.image,{url : url,legende: "",file : newImage}]}                     
+                      return {...data, image:  [...data.image,{url : url,legende: "",file : newImage,orientationImage: imageOrientation}]}                     
                         }       
                       }else return data
 
@@ -187,8 +214,6 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
 
    )
    setDataInter(newDataInterImage)
-      
-
   }
 
 
@@ -216,7 +241,15 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
           <div key={index} className="separation">
          <div >
             <h3>{data.titre}</h3>
-            <input accept="image/*" capture type="file" onChange={e => handleChange(e,index)}/> 
+           <div>
+            <label>Choisir image</label>
+            <input accept="image/*" type="file" title='Choisir une image' onChange={e => handleChange(e,index)}/> 
+            </div>
+                  <div>
+                     <label>Prendre photo</label> 
+                <     input accept="image/*" capture type="file" title='Prendre une photo' onChange={e => handleChange(e,index)}/> 
+                   </div>
+            
           </div>
           
           
@@ -228,7 +261,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
             
               <div key={indexImage}>
                 <div className="sectionInfoImage">
-                  <button onClick={(e) => deletedImage(index,image.url,e,image)}>Supprimer</button>
+                  <button className="btn-delete-image" onClick={(e) => deletedImage(index,image.url,e,image)}>Supprimer</button>
                   <img className="imageRapportBody" src={image.url} alt="" />
                 </div>
               </div>
@@ -246,7 +279,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
          
           
           return (
-            <div key={index} className="separation" style={{backgroundColor:'#E0E0E0'}}>
+            <div key={index} className="separation">
             
             { data.moyenTechnique.map((moyen,indexMoyen) =>(
 
@@ -257,10 +290,10 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
                        <input className="checkBoxMoyen" type="checkbox"  checked={moyen.isUse} onChange={() => handleChangeMoyen(indexMoyen,index,"isUse",moyen.isUse)}/>
                          Utilisé
                          </label>
-                          <label className="labelMoyenTechnique">
+                          {/* <label className="labelMoyenTechnique">
                   <input className="checkBoxMoyen"  type="checkbox"  checked={moyen.concluant} onChange={() => handleChangeMoyen(indexMoyen,index,"concluant",moyen.concluant)}/>
                Concluant
-            </label>
+            </label> */}
           </div>
               
          
@@ -275,7 +308,8 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
       }else{
 
          return (
-         <div key={index} className="separation" style={index % 2 === 0?{backgroundColor:'white'}:{backgroundColor:"#E0E0E0"}}>
+         <div key={index} className="separation">
+              <h3 className="title-des">{data.titre}</h3>
           <div className="s-titre-des">
             <label className="titre-des">
               Titre :
@@ -287,8 +321,15 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
               <textarea name='description' type="textarea" defaultValue={data.description} onChange={e => handleChangeInfoInter(e.target.value, index, e.target.name)} />
             </label>
           </div>
-         
-            <input accept="image/*" type="file" capture onChange={e => handleChange(e,index)} multiple />
+          <div>
+             <label>Choisir image</label>
+            <input accept="image/*" type="file" title='Choisir une image' onChange={e => handleChange(e,index)} multiple />
+            </div>
+            <div>
+                  <label>Prendre photo</label>
+                    <input accept="image/*" type="file" title='Prendre une photo' capture onChange={e => handleChange(e,index)} />
+            </div>       
+
          
      
             <div className="sectionImageBody">
@@ -299,26 +340,26 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
                 
                   <div key={indexImage}>
                     <div className="sectionInfoImage">
-                  <button onClick={(e) => deletedImage(index,image.url,e,image)}>Supprimer</button>
+                  <button className="btn-delete-image" onClick={(e) => deletedImage(index,image.url,e,image)}>Supprimer</button>
 
                       <img className="imageRapportBody" src={image.url} alt="" />
                       
                      {data.section === "miseEnPression" ? 
-                     <div key={index} >
-                     <p>{indexImage % 2 === 0? `Réseau d'alimention eau froide `: `Réseau d'alimentation eau chaude`}</p>
-                     <label className="labelMiseEnPression">
-                    Réseau eau : 
-                     <input className="inputInfoImage" name='reseau' type='text' defaultValue={image.reseau} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage,e.target.name)} />
+                     <div className="section-misePression" key={index} >
+                         <p>Réseau d'alimention d'eau {image.reseau}</p>
+                           <label className="labelMiseEnPression">
+                                Réseau eau : 
+                                   <input className="inputInfoImage" name='reseau' type='text' defaultValue={image.reseau} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage,e.target.name)} />
+
+                           </label>
+                              <label className="labelMiseEnPression">
+                                  Pression d'épreuve : 
+                         <input className="inputInfoImage" name='epreuve' type='text' defaultValue={image.epreuve} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage,e.target.name)} />
 
                      </label>
-                     <label className="labelMiseEnPression">
-                    Pression d'épreuve : 
-                     <input className="inputInfoImage" name='epreuve' type='text' defaultValue={image.legende} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage,e.target.name)} />
-
-                     </label>
-                     <label className="labelMiseEnPression">
-                      Pression finale : 
-                     <input className="inputInfoImage" name='finale' type='text' defaultValue={image.legende} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage,e.target.name)} />
+                           <label className="labelMiseEnPression">
+                                Pression finale : 
+                            <input className="inputInfoImage" name='finale' type='text' defaultValue={image.finale} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage,e.target.name)} />
 
                      </label>
                       </div>

@@ -2,6 +2,9 @@ import React from "react";
 import {Text, View, StyleSheet,Image } from '@react-pdf/renderer';
 import sintecImage from '../images/sintec.png'
 import globalColor from "../globalStyles/globalStyles";
+import adeauExpertise from '../images/default.png'
+
+
 
 const HeaderPdf = ({dataInfoPdf}) => {
 
@@ -13,6 +16,7 @@ const HeaderPdf = ({dataInfoPdf}) => {
         },
          sectionImageHeader:{
           width:'40%',
+          height:'100px',
           border:'0.8px solid #000000',
           padding:'22px 0 0 0'
 
@@ -100,7 +104,7 @@ const HeaderPdf = ({dataInfoPdf}) => {
         <>
         <View fixed style={stylesHeader.sectionPrinceHeader}>
               <View style={stylesHeader.sectionImageHeader}>     
-                   <Image source={sintecImage}/>                 
+                   <Image source={adeauExpertise}/>                 
               </View>
            <View>
              <View style={stylesHeader.sectionGreenAdress}>

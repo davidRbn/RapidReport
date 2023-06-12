@@ -1,7 +1,7 @@
 import { StyleSheet, View,Text, Image } from "@react-pdf/renderer";
 import React from "react";
 import globalColor from "../globalStyles/globalStyles";
-
+import imageAdeau from "../images/A.d.Eau expertise.png"
 
 
 const BodyLandingPage2 = ({idRapport,dataLoading,dataSend,dataInfoPdf,dataInterPdf}) => {
@@ -29,19 +29,25 @@ const BodyLandingPage2 = ({idRapport,dataLoading,dataSend,dataInfoPdf,dataInterP
             margin:'auto',
             fontWeight:'bold'
         },
+        imageBodyLandingPage:{
+
+            width:"100%",
+            height:'500px'
+        },
         firtArray:{
 
             display:'flex',
             flexDirection:'row',
-            margin:'auto',
+            alignContent:'space-around',
+            justifyContent:'space-around',
             marginBottom:'20px'
 
 
         },      
           firstBlocArray : {
 
-                border: `1px solid ${globalColor.titleColor}`,
-                width:'120px',
+                // border: `1px solid ${globalColor.titleColor}`,
+                width:'160px',
                 height: '60px',
                 display: 'flex',
 
@@ -58,12 +64,11 @@ const BodyLandingPage2 = ({idRapport,dataLoading,dataSend,dataInfoPdf,dataInterP
 
          },
          titleElement : {
-
-            fontSize:'10px',
-            textAlign:'center',
-           
  
-
+            fontSize:'12px',
+            textAlign:'center',
+           color:`${globalColor.titleColor}`,
+           fontWeight:'bolder'
             
          },
          blocBodyArray:{
@@ -72,8 +77,8 @@ const BodyLandingPage2 = ({idRapport,dataLoading,dataSend,dataInfoPdf,dataInterP
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor:'#7FCA8B',
-            opacity:'0.4'
+            // backgroundColor:'#7FCA8B',
+            // opacity:'0.4'
 
 
          },
@@ -87,14 +92,12 @@ const BodyLandingPage2 = ({idRapport,dataLoading,dataSend,dataInfoPdf,dataInterP
 
          firstBlocArray2:{
 
-            border: `1px solid ${globalColor.titleColor}`,
             width:'160px',
             height: '60px',
             display: 'flex',
          },
          firstBlocArray3:{
-            border: `1px solid ${globalColor.titleColor}`,
-            width:'480px',
+            width:'160px',
             height: '60px',
             display: 'flex',
 
@@ -105,21 +108,8 @@ const BodyLandingPage2 = ({idRapport,dataLoading,dataSend,dataInfoPdf,dataInterP
             flexDirection:'row',
             margin:'auto',
          },
-         blocImageLeg : {
-
-            width:"250px",
-            height:"220px",
-            margin:"5px auto",
-            padding:"5px",
-            border:`1px solid ${globalColor.titleColor} `,
-            
-        },textVueGlobale:{
-            fontSize:`${globalColor.textSize}`,
-            margin:'10px 0'
-        
-        },imageVueGlobale:{
-
-            objectFit:'contain'
+        sectionIntervenant:{
+            margin:'auto'
         }
 
 
@@ -130,94 +120,65 @@ const BodyLandingPage2 = ({idRapport,dataLoading,dataSend,dataInfoPdf,dataInterP
 
 return (
     
+
+
 <View>
 
-<View style={stylesLandingPage.sectionObjet}>
-        <Text style={stylesLandingPage.textObjet2}>RAPPORT DE RECHERCHE DE FUITE TECHNIQUE</Text>
-
-</View>
+    <View>
+        <Image style={stylesLandingPage.imageBodyLandingPage} source={imageAdeau}/>
+    </View>
 
  <View >
     <View style={stylesLandingPage.firtArray}>
+       <View> 
         <View style={stylesLandingPage.firstBlocArray}>
-            <View  style={stylesLandingPage.elementArray}><Text style={stylesLandingPage.titleElement}>DONNEUR D'ORDRE</Text></View>
-            <View  style={stylesLandingPage.blocBodyArray}><Text style={stylesLandingPage.bodyArray}>{dataInfoPdf.client}</Text></View>
-
+                <View  style={stylesLandingPage.elementArray}><Text style={stylesLandingPage.titleElement}>DONNEUR D'ORDRE</Text></View>
+                 <View  style={stylesLandingPage.blocBodyArray}><Text style={stylesLandingPage.bodyArray}>{dataInfoPdf.client}</Text></View>
         </View>
-        <View style={stylesLandingPage.firstBlocArray}>
-            <View  style={stylesLandingPage.elementArray}><Text style={stylesLandingPage.titleElement}>VOS REFERENCE</Text></View>
-            <View  style={stylesLandingPage.blocBodyArray}> <Text style={stylesLandingPage.bodyArray}>{dataInfoPdf.vosReference}</Text></View>
 
+         <View style={stylesLandingPage.firstBlocArray3}>
+                 <View  style={stylesLandingPage.elementArray}><Text style={stylesLandingPage.titleElement}>ADRESSE D'INTERVENTION</Text></View>
+                <View  style={stylesLandingPage.blocBodyArray}><Text style={stylesLandingPage.bodyArray}>{dataInfoPdf.lieuIntervention}</Text></View>
         </View>
-        <View style={stylesLandingPage.firstBlocArray}>
+        </View>
+       
+        {/* <View style={stylesLandingPage.firstBlocArray}>
             <View  style={stylesLandingPage.elementArray}><Text style={stylesLandingPage.titleElement}>NOS REFERENCE</Text></View>
             <View  style={stylesLandingPage.blocBodyArray}><Text style={stylesLandingPage.bodyArray}>{dataInfoPdf.reference}</Text></View>
 
-        </View>
-        <View style={stylesLandingPage.firstBlocArray}>
-            <View  style={stylesLandingPage.elementArray}><Text style={stylesLandingPage.titleElement}>FRANCHISE</Text></View>
-            <View  style={stylesLandingPage.blocBodyArray}> <Text style={stylesLandingPage.bodyArray}>{dataInfoPdf.franchise}</Text></View>
+        </View> */}   
 
-        </View>
- 
-    </View>
-
-
-
-    <View style={stylesLandingPage.firtArray}>
+        <View>
         <View style={stylesLandingPage.firstBlocArray2}>
-            <View  style={stylesLandingPage.elementArray}><Text style={stylesLandingPage.titleElement}>REFERENT SIN&TEC RDF</Text></View>
-                     <View  style={stylesLandingPage.blocBodyArray}><Text style={stylesLandingPage.bodyArray}>ANTONIN M.</Text></View>
-         </View>
-         <View style={stylesLandingPage.firstBlocArray2}>
-            <View  style={stylesLandingPage.elementArray}><Text style={stylesLandingPage.titleElement}>INTERVENANT SIN&TEC RDF</Text></View>
-                     <View  style={stylesLandingPage.blocBodyArray}><Text style={stylesLandingPage.bodyArray}>{dataInfoPdf.intervenant}</Text></View>
-         </View>
-         <View style={stylesLandingPage.firstBlocArray2}>
             <View  style={stylesLandingPage.elementArray}><Text style={stylesLandingPage.titleElement}>DATE D'INTERVENTION</Text></View>
+            <View  style={stylesLandingPage.blocBodyArray}><Text style={stylesLandingPage.bodyArray}>{dataInfoPdf.dateIntervention}</Text></View>
+         </View>
+
+         <View style={stylesLandingPage.firstBlocArray2}>
+            <View  style={stylesLandingPage.elementArray}><Text style={stylesLandingPage.titleElement}>DATE RAPPORT</Text></View>
                      <View  style={stylesLandingPage.blocBodyArray}><Text style={stylesLandingPage.bodyArray}>{dataInfoPdf.dateIntervention}</Text></View>
          </View>
 
-    </View>
-       <View style={stylesLandingPage.blocAdress}>
-         <View style={stylesLandingPage.firstBlocArray3}>
-            <View  style={stylesLandingPage.elementArray}><Text style={stylesLandingPage.titleElement}>ADRESSE D'INTERVENTION</Text></View>
-                     <View  style={stylesLandingPage.blocBodyArray}><Text style={stylesLandingPage.bodyArray}>{dataInfoPdf.lieuIntervention}</Text></View>
-            </View>
 
-
-
-       </View>
-       <View style={stylesLandingPage.firtArray}>
-        <View style={stylesLandingPage.firstBlocArray}>
-            <View  style={stylesLandingPage.elementArray}><Text style={stylesLandingPage.titleElement}>ASSURE(E)</Text></View>
-            <View  style={stylesLandingPage.blocBodyArray}><Text style={stylesLandingPage.bodyArray}>{dataInfoPdf.nomSinistre}</Text></View>
 
         </View>
-        <View style={stylesLandingPage.firstBlocArray}>
-            <View  style={stylesLandingPage.elementArray}><Text style={stylesLandingPage.titleElement}>TYPE DE BIEN</Text></View>
-            <View  style={stylesLandingPage.blocBodyArray}> <Text style={stylesLandingPage.bodyArray}>{dataInfoPdf.typeDeBien}</Text></View>
-
-        </View>
-        <View style={stylesLandingPage.firstBlocArray}>
-            <View  style={stylesLandingPage.elementArray}><Text style={stylesLandingPage.titleElement}>SITUATION</Text></View>
-            <View  style={stylesLandingPage.blocBodyArray}><Text style={stylesLandingPage.bodyArray}>{dataInfoPdf.situation}</Text></View>
-
-        </View>
-        <View style={stylesLandingPage.firstBlocArray}>
-            <View  style={stylesLandingPage.elementArray}><Text style={stylesLandingPage.titleElement}>ETAGE(S)</Text></View>
-            <View  style={stylesLandingPage.blocBodyArray}> <Text style={stylesLandingPage.bodyArray}>{dataInfoPdf.etage}</Text></View>
-
-        </View>
- 
+        
     </View>
 
+    <View style={stylesLandingPage.sectionIntervenant}>
+
+    <View style={stylesLandingPage.firstBlocArray2}>
+            <View  style={stylesLandingPage.elementArray}><Text style={stylesLandingPage.titleElement}>INTERVENANT</Text></View>
+                     <View  style={stylesLandingPage.blocBodyArray}><Text style={stylesLandingPage.bodyArray}>{dataInfoPdf.intervenant}</Text></View>
+         </View>
+
+    </View>
 
     </View>
     
     <View>
         
-         {dataInterPdf.filter(data => data.section === 'vueGlobale').map((data,indexData )=> 
+         {/* {dataInterPdf.filter(data => data.section === 'vueGlobale').map((data,indexData )=> 
     
             <View key={indexData}>
 
@@ -237,7 +198,7 @@ return (
             
             </View>
             
-            )}
+            )} */}
 
     </View>
 

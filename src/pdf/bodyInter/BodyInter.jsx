@@ -15,7 +15,8 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
   const styles = StyleSheet.create({
 
     titleDataInter:{
-        color:`${globalColor.titleColor}`
+        color:`${globalColor.titleColor}`,
+        textAlign:'center'
 
     },
     titleInvestigations:{
@@ -35,10 +36,11 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
     containerAllImage:{
       display:"flex",
       flexDirection:"row",
-      alignContent:'space-around',
+      alignContent:'center',
       // border:"5px solid red",
       flexWrap:'wrap',
-      marginTop:'20px',
+      marginTop:'10px',
+      marginBottom:'10px',
 
     },
     firstBlocImage:{
@@ -53,27 +55,55 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
      width:"50%",
       // border:"5px solid blue",
       margin:'0 auto',
-      marginTop:'60px'
-
+      marginTop:'20px',
+    //  position:'relative'
 
     },
     blocImageLeg : {
 
-        width:"250px",
-        height:"220px",
+        width:"260px",
+        maxHeight:'300px',
+        minHeight:'200px',
         margin:"5px auto",
         padding:"2px",
+        // border:`1px solid ${globalColor.titleColor} `,
+        // borderRadius:'10%',
+        // position:'relative'
+        // display:"flex",
+        // flexDirection:"column",
+        // justifyContent:'space-evenly'
         
+    },
+    blocImageLegPortrait:{
+
+      // transform:'rotate(90deg)' ,
+      // transformOrigin:'center',
+      // overflow:'hidden',
+
+      // height:'150px',
+      // width:'230px',
+    //  margin:'20px 0',
+      padding:'2px',
+      width:'100%',
+      height:'100%',
+      display:'flex',
+      justifyContent:'center',
+      alignItems:'center'
+      
+
     },
 
     legendeImage:{
 
       textAlign:'center',
       fontSize:`${globalColor.textSize}`,
-      margin:'5px 0'
+      margin:'5px 0 0 0',
+      // transform:'translateY(10%)'
+      position:'relative',
+      // top:'5%'
     
     },
-
+  
     legendeImageMiseEnPression : {
        
       textAlign:'center',
@@ -84,17 +114,33 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
     
     imageRapport:{
 
-      objectFit:'contain'
-    }
+      objectFit:'contain',
+      // transform:'rotate(90deg)'
+      // maxHeight:'200px',
+    
+    },
+    imageRapportPortrait:{
+      // objectFit:'scale-down',
+      // transform:'rotate(90deg)',
+    //   width:'185px',
+    //   height:'130px',
+      transform:'rotate(90deg)',
+      maxHeight:'100%',
+      maxWidth:'100%'
+    //   transformOrigin:'center',
+    //   margin:'auto'
+     }
 
 
   })
+
+// console.log(dataInterPdf)
 
 return (
 
   
     <View>
-      {indexData === 0?<Text style={styles.titleInvestigations}>Détail des investigations : </Text>:<Text></Text>}
+      {/* {indexData === 0?<Text style={styles.titleInvestigations}>Détail des investigations : </Text>:<Text></Text>} */}
        <Text style={styles.titleDataInter}>{dataInterPdf.section === 'constatations' ? `${dataInterPdf.titre} et TH` : dataInterPdf.titre } </Text>        
 
 
@@ -102,24 +148,26 @@ return (
     
     <Text style={styles.descriptionDataInter}>{dataInterPdf.section === "constatations" ? "" : dataInterPdf.description}</Text>
 
-    <View  wrap style={styles.containerAllImage}>
+    <View wrap style={styles.containerAllImage}>
 
     {dataInterPdf.image.map((image,index) => (
 
             <View wrap={false} key={index} style={(index > 3) ? styles.firstBlocImage2: styles.firstBlocImage}>
                  <View style={styles.blocImageLeg}>
-                    <Image style={styles.imageRapport} source={{uri : image.url,method: "GET"}}/>
-
+                 
+                 <View style={image.orientationImage === 6 && styles.blocImageLegPortrait}>
+                     <Image style={image.orientationImage === 6 ? styles.imageRapportPortrait : styles.imageRapport} source={{uri : image.url,method: "GET"}}/>
+                  </View>
 
                     { dataInterPdf.section === "miseEnPression"?
-                    <>
+                    <View style={styles.blocMiseEnPression}>
                     <Text style={styles.legendeImage}>Type de canalisation : réseau d'eau {image.reseau}</Text>
                          <Text style={styles.legendeImageMiseEnPression}>Pression d'épreuve : {image.epreuve} bars</Text>
                              <Text style={styles.legendeImage}>Durée de la mise en épreuve : 15 minutes</Text>
                      <Text style={styles.legendeImage}>Pression finale : {image.finale} bars</Text>        
-                    </>
+                    </View>
                     :
-                    <Text style={styles.legendeImage}>{image.legende}</Text>
+                   <View> <Text style={styles.legendeImage}>{image.legende}</Text></View>
                     
                     }
                    

@@ -17,7 +17,7 @@
     position: absolute;
     width: 6px;
     height: 6px;
-    background: #c91212;
+    background-color: #048B9A;
     border-radius: 50%;
     animation: lds-default 1.2s linear infinite;
   }

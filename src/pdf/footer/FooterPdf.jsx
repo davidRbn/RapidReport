@@ -12,9 +12,9 @@ const FooterPdf = () => {
         sectionFooter:{
 
             width:'100%',
-            height:'80px',
+            height:'50px',
             position :'absolute',
-            bottom:'5px',
+            bottom:'3px',
             textAlign:'center',
             marginTop:'20px',
             
@@ -28,14 +28,16 @@ const FooterPdf = () => {
 
     })
 
+
+
     return(
 
         
         <View fixed style={stylesFooter.sectionFooter}>
-            <Text style={stylesFooter.textFooter}>SIN&amp;TEC SUD – SARL au capital de 10 000 000.00 € - 106 Allée Ampère 13240 GEMENOS</Text>
-                    <Text style={stylesFooter.textFooter}>Tél : 0 488 603 911 – SIRET 878 101 658 / FR35 878 101 658 – R.C.S. Marseille</Text>
-                        <Text style={stylesFooter.textFooter}>www.groupesinettec.com</Text>
-                    <Text style={stylesFooter.textFooter}>Groupe MANAGEMENT PROJECTS</Text>
+            <Text style={stylesFooter.textFooter}>A.D.Eau Expertise – SAS au capital de 3 000.00 € - 78 rue Charles Kaddouz</Text>
+                    <Text style={stylesFooter.textFooter}>13012 MARSEILLE</Text>
+                        <Text style={stylesFooter.textFooter}>Tél : 06 23 77 78 01 – SIRET 95300466000015135 – R.C.S. Marseille</Text>
+                    {/* <Text style={stylesFooter.textFooter}>Groupe MANAGEMENT PROJECTS</Text> */}
         </View>
         
         

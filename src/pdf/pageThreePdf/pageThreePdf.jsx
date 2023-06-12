@@ -1,61 +1,27 @@
-import { Image, StyleSheet, Text, View } from "@react-pdf/renderer";
+import { StyleSheet, Text, View } from "@react-pdf/renderer";
 import React from "react";
-import globalColor from "./globalStyles/globalStyles";
+import globalColor from "../globalStyles/globalStyles";
 
 
 
 
-const PageTwoPdf = ({dataInterPdf,dataInfoPdf}) => {
+const PageThreePdf = ({dataInterPdf}) => {
 
 
     const stylesPageTwoPdf = StyleSheet.create({
 
-
-      sectionVueGlobale:{
-        display:'flex',
-        flexDirection:'row',
-        alignContent:'space-around',
-        alignItems:'center',
-        width:'100%',
-
-      },
-      sectionTextVueGlobale:{
-
-        width:'40%',
-        textAlign:'center'
-
-      },
-      textVueGlobale:{
-
-        color:`${globalColor.titleColor}`,
-        paddingBottom:'5px'
-
-      },
-         blocImageLeg : {
-
-            width:"250px",
-            height:"220px",
-            margin:"5px auto",
-            padding:"5px",
-            border:`1px solid ${globalColor.titleColor} `,
-            borderRadius:'10%'
-            
-        },
-       imageVueGlobale:{
-
-          objectFit:'contain',
-        
-      },
         blocArray:{
 
-            margin:'auto'
+            margin:'auto',
+            
 
         },
          ligneArray:{
 
             display:'flex',
             flexDirection:'row',
-            width:'510px'
+            margin:'auto'
+            // width:'510px'
 
 
          },
@@ -84,7 +50,7 @@ const PageTwoPdf = ({dataInterPdf,dataInfoPdf}) => {
              color:`${globalColor.titleColor}`,
             fontSize:`${globalColor.textSize}`,
             padding:'5px 5px',
-            border: `1px solid ${globalColor.titleColor}`,
+            // border: `1px solid ${globalColor.titleColor}`,
             width:'120px',
             textAlign:'center',
 
@@ -92,10 +58,12 @@ const PageTwoPdf = ({dataInterPdf,dataInfoPdf}) => {
           textAlignMoyen1 : {
 
             fontSize:`${globalColor.textSize}`,
-            width:'270px',
+            width:'200px',
             textAlign:'center',
             padding:'2px 5px',
-            border: `1px solid ${globalColor.titleColor}`,
+            borderBottom: `2px solid ${globalColor.titleColor}`,
+            borderRight: `2px solid ${globalColor.titleColor}`,
+
             
 
           },
@@ -104,8 +72,8 @@ const PageTwoPdf = ({dataInterPdf,dataInfoPdf}) => {
             fontSize:`${globalColor.textSize}`,
             textAlign:'center',
             padding:'2px 5px',
-            width:'120px',
-            border: `1px solid ${globalColor.titleColor}`,
+            width:'30px',
+            borderBottom: `2px solid ${globalColor.titleColor}`,
             opacity:'1'
             
 
@@ -159,40 +127,43 @@ const PageTwoPdf = ({dataInterPdf,dataInfoPdf}) => {
 return (
 
 <>
-  {dataInterPdf.filter(data => data.section === 'constatations'|| data.section === "vueGlobale" || data.section === 'conclusion').map((data,indexData )=> 
+  {dataInterPdf.filter(data => data.section === 'investigations'|| data.section === "moyenTechnique").map((data,indexData )=> 
     
-   { if(data.section === 'vueGlobale'){
+   { if(data.section === 'moyenTechnique'){
 
 return ( 
+<View key={indexData}>
+<Text style={stylesPageTwoPdf.titleDataInter}>{data.titre}</Text>
+    
+    <View>
+        {/* <Text style={stylesPageTwoPdf.titleDataInter}>Investigations : </Text> */}
+          <Text  style={stylesPageTwoPdf.description}>Lors de notre intervention, nous avons mis en œuvre les moyens techniques suivants :</Text>
+    </View>
+
+     <View  style={stylesPageTwoPdf.blocArray}>
+
+     {/* <View style={stylesPageTwoPdf.ligneArray}>
+          <Text style={stylesPageTwoPdf.headArray1} >MOYENS TECHNIQUES DISPONIBLES</Text>
+          <Text style={stylesPageTwoPdf.headArray}>MIS EN OEUVRE</Text>  
+          <Text style={stylesPageTwoPdf.headArray}>CONCLUANT</Text>  
+     </View> 
+     */}
+         {data.moyenTechnique.map((moyen,indexMoyen) => 
+            
+            
+            <View key={indexMoyen} style={stylesPageTwoPdf.ligneArray } >
+
+                 <Text style={stylesPageTwoPdf.textAlignMoyen1}>{moyen.materielUtilise}</Text>
+                 <Text style={stylesPageTwoPdf.textAlignMoyen}>{moyen.isUse ? 'X' : ''}</Text>
+                 {/* <Text style={stylesPageTwoPdf.textAlignMoyen}></Text> */}
 
 
-  <View style={stylesPageTwoPdf.sectionVueGlobale} key={indexData}>
-
-  {data.image.map((image,index)=> 
-<>
-
-      <View style={stylesPageTwoPdf.sectionTextVueGlobale}>
-              <Text style={stylesPageTwoPdf.textVueGlobale}>{dataInfoPdf.client}</Text>
-              <Text style={stylesPageTwoPdf.textVueGlobale}>-</Text>
-
-              <Text style={stylesPageTwoPdf.textVueGlobale}>{dataInfoPdf.copro}</Text>
-      </View>  
-      
-      <View key={index} style={stylesPageTwoPdf.blocImageLeg}>
-              <Image style={stylesPageTwoPdf.imageVueGlobale} source={{uri : image.url,method: "GET"}}/>
-
-      </View>
- </>     
-      
-      )}
-   
-   
-  
-  
-  </View>
-
-
- )     
+            </View>
+                    
+            
+            )} 
+</View>
+ </View>    )     
       
 
    }else {
@@ -223,4 +194,4 @@ return (
 }
 
 
-export default PageTwoPdf
+export default PageThreePdf

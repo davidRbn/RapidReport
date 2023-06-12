@@ -1,4 +1,4 @@
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
@@ -39,16 +39,18 @@ const MonRapport = () => {
         informationIntervention : {
              client : "",
              reference: "",
-             vosReference: "",
+             copro: "",
              franchise: "",
              contact : "",
              nomSinistre:"",
              lieuIntervention : "",
              dateIntervention: "",
+             dateRapport:"",
              intervenant:"",
              typeDeBien : "",
              etage: "",
-             situation:""
+             situation:"",
+             rapportFini:false
         }
      
     })
@@ -67,7 +69,7 @@ const MonRapport = () => {
 
    data.image.forEach((image,indexImage) => {
 
-
+ 
     
     if (image.file ) {
 
@@ -140,7 +142,7 @@ const MonRapport = () => {
 
   
 
-
+// setaDataLoading(false) ????????????????????????
 
 
 }) 
@@ -162,7 +164,6 @@ e.preventDefault()
 
      setRefIsNull(true)
      
-
  }else{
 
   if (containFile === 0){
@@ -170,19 +171,12 @@ e.preventDefault()
     test()
  setDataLoading(false)
 
-
 }else{
 
  handleUploadStorageImage()
  setDataLoading(false)
 
-
-}}
-
- 
-
-   
-}
+}}}
 
 
 
@@ -233,11 +227,13 @@ urlFirebaseLoaded && test()
 // eslint-disable-next-line react-hooks/exhaustive-deps
 },[urlFirebaseLoaded])
 
-console.log(dataLoading);
+// console.log(infoInter);
 return(
 
-    <>
-    <h1>Mon rapport </h1>
+    <div className="blocCreateRapport">
+
+      <div className="sectionCreateRapport">
+    <h1 className="titleMonRapport">Mon rapport </h1>
   
     
     <form onSubmit={submitInformationInter}> 
@@ -251,25 +247,25 @@ return(
             <input type="text" name="reference" value={infoInter.informationIntervention.reference} onChange={e => handleChangeInfoInter(e.target.value,e.target.name) }/>
         </label>
         <label>
-            Vos références : 
-            <input type="text" name="vosReference" value={infoInter.informationIntervention.vosReference} onChange={e => handleChangeInfoInter(e.target.value,e.target.name) }/>
+            Nom copro : 
+            <input type="text" name="copro" value={infoInter.informationIntervention.copro} onChange={e => handleChangeInfoInter(e.target.value,e.target.name) }/>
         </label>
-        <label>
+        {/* <label>
             Franchise : 
             <input type="text" name="franchise" value={infoInter.informationIntervention.franchise} onChange={e => handleChangeInfoInter(e.target.value,e.target.name) }/>
-        </label>
-        <label>
+        </label> */}
+        {/* <label>
             Contact : 
             <input type="text" name="contact" value={infoInter.informationIntervention.contact} onChange={e => handleChangeInfoInter(e.target.value,e.target.name)}/>
-        </label>
-        <label>
+        </label> */}
+        {/* <label>
             Nom du sinistré : 
             <input type="text" name="nomSinistre" value={infoInter.informationIntervention.nomSinistre} onChange={e => handleChangeInfoInter(e.target.value,e.target.name)}/>
-        </label>
-        <label>
+        </label> */}
+        {/* <label>
             Situation: 
             <input type="text" name="situation" value={infoInter.informationIntervention.situation} onChange={e => handleChangeInfoInter(e.target.value,e.target.name)}/>
-        </label>
+        </label> */}
         <label>
             Lieu de l'intervention : 
             <input type="text" name="lieuIntervention" value={infoInter.informationIntervention.lieuIntervention} onChange={e => handleChangeInfoInter(e.target.value,e.target.name)}/>
@@ -279,40 +275,54 @@ return(
             <input type="date" name="dateIntervention" value={infoInter.informationIntervention.dateIntervention} onChange={e => handleChangeInfoInter(e.target.value,e.target.name)}/>
         </label>
         <label>
+            Date du rapport : 
+            <input type="date" name="dateRapport" value={infoInter.informationIntervention.dateRapport} onChange={e => handleChangeInfoInter(e.target.value,e.target.name)}/>
+        </label>
+        <label>
             Intervenant : 
             <input type="text" name="intervenant" value={infoInter.informationIntervention.intervenant} onChange={e => handleChangeInfoInter(e.target.value,e.target.name)}/>
         </label>
-        <label>
+        {/* <label>
             Type de bien : 
             <input type="text" name="typeDeBien" value={infoInter.informationIntervention.typeDeBien} onChange={e => handleChangeInfoInter(e.target.value,e.target.name)}/>
-        </label>
-        <label>
+        </label> */}
+        {/* <label>
             Etage : 
             <input type="text" name="etage" value={infoInter.informationIntervention.etage} onChange={e => handleChangeInfoInter(e.target.value,e.target.name)}/>
-        </label>
+        </label> */}
+           <label className="labelMoyenTechnique">
+                 Rapport terminé :  
+                 <input className="checkBoxMoyen" type="checkbox"  checked={infoInter.informationIntervention.rapportFini} onChange={() => handleChangeInfoInter(!infoInter.informationIntervention.rapportFini,"rapportFini")}/>
+                 
+                    </label>
            </div>
         <BodyRapport2 dataInter={dataInter} setDataInter={setDataInter} setContainFile={setContainFile} containFile={containFile}/>
+
+
+
          {/* <BodyRapport dataInter={dataInter} setDataInter={setDataInter}/> */}
          <input className="buttonRegistrer" type="submit" value={docIsCreated ? "Modifier"  :"Enregister"} onClick={e => console.log('hello')}/>
     </form>
+
+    </div>
     {refIsNull && <ModalRef setRefIsNull={setRefIsNull}/>}
   
     
-    <div className="link-pdf">
+    {/* <div className="link-pdf">
      <PDFDownloadLink document={<Rapport idRapport={idRapport} dataLoading={setDataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf} />} fileName="somename.pdf">
       {({ blob, url, loading, error }) =>(
         loading ? 'Chargement du document' : 'Telecharger document!')
      }
     </PDFDownloadLink>
-    </div>
+    </div> */}
     
 
- {/* { <PDFViewer><Rapport idRapport={idRapport} dataLoading={setDataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf} /></PDFViewer>  }  */}
+ { <PDFViewer><Rapport idRapport={idRapport} dataLoading={setDataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf} /></PDFViewer>  } 
     
     
     {!dataLoading && <Loader/> }
     
-    </>
+    </div>
 )
 
 

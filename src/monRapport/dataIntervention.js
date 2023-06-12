@@ -11,35 +11,42 @@ export const dataIntervention =
 
 },{   
     section : 'constatations',
-    titre: "Constatations",
+    titre: "Origine des désordres",
     description:"",
     image:[]
 
-},
+},{
+
+    section : 'conclusion',
+    titre :'Conclusion',
+    description : '',
+    image : []
+
+ },
 {
    section : "moyenTechnique",
    titre : 'Moyens technique utilisés',
    image:[],
    moyenTechnique : [
         {
-            materielUtilise : 'TH',
+            materielUtilise : 'Testeur d\'humidité',
             isUse : true,
             concluant : false        },
         {
-            materielUtilise : 'Inspection thermographique',
+            materielUtilise : 'Caméra thermographique',
             isUse : true,
             concluant : false        },
         {
-            materielUtilise : 'Contrôle hygrometrique',
+            materielUtilise : 'Mise en pression réseau',
             isUse : false,
             concluant : false
         },
         {
-            materielUtilise : 'Test de pression',
+            materielUtilise : 'Colorant',
             isUse : true,
             concluant : false        },
         {
-            materielUtilise : 'Test au colorant',
+            materielUtilise : 'Arrosage ciblé',
             isUse : false,
             concluant : false
         },
@@ -54,6 +61,11 @@ export const dataIntervention =
             concluant : false
         },
         {
+            materielUtilise : 'Fumigène',
+            isUse : false,
+            concluant : false
+        },
+        {
             materielUtilise : 'Gaz traceur',
             isUse : false,
             concluant : false
@@ -64,25 +76,27 @@ export const dataIntervention =
             concluant : false
         },
         {
-            materielUtilise : 'Arrosage ciblé',
+            materielUtilise : 'Hygrometrie',
             isUse : false,
             concluant : false
         },
-        {
-            materielUtilise : 'Mise en charge colorée',
-            isUse : false,
-            concluant : false
-        },
-        {
-            materielUtilise : 'Fumigène',
-            isUse : false,
-            concluant : false
-        },
+        // {
+        //     materielUtilise : 'Fumigène',
+        //     isUse : false,
+        //     concluant : false
+        // },
 
    ]
 
 
-},
+},{
+
+    section : 'investigations',
+    titre :'Déroulé des investigations',
+    description : '',
+    image : []
+
+ },
 {
    
     section : 'miseEnPression',
@@ -141,14 +155,6 @@ export const dataIntervention =
     titre: " Autre ",
     description:"",
     image:[],
- },{
-
-    section : 'conclusion',
-    titre :'Conclusion',
-    description : '',
-    image : []
-
-
  }
 
 ]

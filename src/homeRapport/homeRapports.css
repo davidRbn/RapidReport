@@ -1,7 +1,24 @@
+.title-home-rapports{
+
+    text-align: center;
+    color: #048B9A;
+}
+
+.btn-create-rapport{
+    cursor: pointer;
+    border: none;
+    background-color: #048B9A;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding: 10px;
+}
+
 .all-rapports{
 
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .list-rapports{
@@ -11,6 +28,20 @@
     min-height: 20px;
     margin: 5px;
     background-color: white;
+    border-radius: 10px;
+    border: solid 1px red;
+}
+
+.list-rapports-interFini{
+
+    cursor: pointer;
+    min-width:250px;
+    min-height: 20px;
+    margin: 5px;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px green;
+
 }
 
 .bloc-rapports{
