@@ -26,9 +26,7 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
     },
     descriptionDataInter: {
       
-      marginTop:'20px',
-      marginRight:"20px",
-      marginLeft: '20px',
+      margin:'20px',
       fontSize:`${globalColor.textSize}`,
       lineHeight:`${globalColor.lineHeigth}`
 
@@ -37,22 +35,24 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
       display:"flex",
       flexDirection:"row",
       alignContent:'center',
+      justifyContent:'center',
       // border:"5px solid red",
       flexWrap:'wrap',
       marginTop:'10px',
-      marginBottom:'10px',
+      // marginBottom:'10px',
 
     },
     firstBlocImage:{
 
       width:"50%",
       // border:"5px solid blue",
-      margin:'0 auto'
+      margin:'O auto'
 
     },
     firstBlocImage2:{
      
      width:"50%",
+
       // border:"5px solid blue",
       margin:'0 auto',
       marginTop:'20px',

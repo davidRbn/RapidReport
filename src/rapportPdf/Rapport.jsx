@@ -54,7 +54,8 @@ const [indexConstatation,setIndexConstatation] = useState(0)
         },
         page: {
           backgroundColor: '#FFFFFF',
-          paddingBottom:'120px'
+          paddingBottom:'60px',
+          height:'100%'
         },
         section: {
           margin: 10,
@@ -73,14 +74,14 @@ const [indexConstatation,setIndexConstatation] = useState(0)
             <FooterPdf/>
         </Page>
 
-<Page>
+<Page size="A4" style={styles.page}>
     <HeaderPdf2/>
           <PageTwoPdf dataInfoPdf={dataInfoPdf}  dataInterPdf={dataInterPdf} />
     <FooterPdf/>
 
 </Page>
 
-<Page>
+<Page size="A4" style={styles.page}>
     <HeaderPdf2/>
           <PageThreePdf dataInfoPdf={dataInfoPdf}  dataInterPdf={dataInterPdf} />
     <FooterPdf/>
