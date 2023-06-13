@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 // import { getStorage, ref } from "firebase/storage";
 import './bodyRapport.css'
 // import { dataIntervention } from "./dataIntervention";
 // import Resizer from 'react-image-file-resizer'
 import EXIF from "exif-js";
+import ModalDeleteImage from "./modalDeleteImage/ModalDeleteImage";
 
 
 
@@ -15,8 +16,10 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
 
   // const storage = getStorage();
   // const storageRef = ref(storage);
-
-
+  const [deleteImage,setDeleteImage] = useState(false)
+  const [indexRapport,setIndexRapport] = useState()
+  const [infoImage,setInfoImage] = useState()
+  const [urlImage,setUrlImage] = useState()
 
   const handleChange = (e,index) => {
   
@@ -201,6 +204,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
 
     e.preventDefault()
 
+
     image.file instanceof File && setContainFile(prevState => prevState - 1)
 
      
@@ -214,6 +218,15 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
 
    )
    setDataInter(newDataInterImage)
+   setDeleteImage(false)
+  }
+
+  const openModalImageDelete = (e) => {
+  
+          e.preventDefault()
+          console.log(deleteImage)
+          setDeleteImage(true)
+
   }
 
 
@@ -228,7 +241,6 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
 
   return (
     <>
-
       <div><h2>Mon intervention : </h2></div>
 
 
@@ -245,11 +257,11 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
             <label>Choisir image</label>
             <input accept="image/*" type="file" title='Choisir une image' onChange={e => handleChange(e,index)}/> 
             </div>
-                  <div>
+                  {/* <div>
                      <label>Prendre photo</label> 
                 <     input accept="image/*" capture type="file" title='Prendre une photo' onChange={e => handleChange(e,index)}/> 
                    </div>
-            
+             */}
           </div>
           
           
@@ -261,8 +273,18 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
             
               <div key={indexImage}>
                 <div className="sectionInfoImage">
-                  <button className="btn-delete-image" onClick={(e) => deletedImage(index,image.url,e,image)}>Supprimer</button>
-                  <img className="imageRapportBody" src={image.url} alt="" />
+                  {/* <button className="btn-delete-image" onClick={(e) => deletedImage(index,image.url,e,image)}>Supprimer</button> */}
+                  <button className="btn-delete-image" onClick={(e) => {
+                                                                        openModalImageDelete(e)
+                                                                        setIndexRapport(index)
+                                                                        setInfoImage(image)
+                                                                        setUrlImage(image.url)
+                                                                        
+                                                                                               }}>Supprimer</button>
+                  {deleteImage && <ModalDeleteImage openModalImageDelete={openModalImageDelete} deletedImage={deletedImage} index={indexRapport} imageUrl={urlImage} image={infoImage} setDeleteImage={setDeleteImage}/>}
+                  <div className="blocImageRapportBody">
+                      <img  className="imageRapportBody" src={image.url} alt="" /> 
+                      </div> 
                 </div>
               </div>
             
@@ -313,12 +335,12 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
           <div className="s-titre-des">
             <label className="titre-des">
               Titre :
-              <input disabled={data.section === 'miseEnPression' || data.section === "conclusion"? true : false} name='titre' type="text" defaultValue={data.titre} onChange={e => handleChangeInfoInter(e.target.value, index, e.target.name)} />
+              <input disabled={data.section === 'miseEnPression' || data.section === "conclusion"? true : false} name='titre' type="text" value={data.titre} onChange={e => handleChangeInfoInter(e.target.value, index, e.target.name)} />
               
             </label>
             <label>
               <div> Description : </div>
-              <textarea name='description' type="textarea" defaultValue={data.description} onChange={e => handleChangeInfoInter(e.target.value, index, e.target.name)} />
+              <textarea name='description' type="textarea" value={data.description} onChange={e => handleChangeInfoInter(e.target.value, index, e.target.name)} />
             </label>
           </div>
           <div>
@@ -326,8 +348,8 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
             <input accept="image/*" type="file" title='Choisir une image' onChange={e => handleChange(e,index)} multiple />
             </div>
             <div>
-                  <label>Prendre photo</label>
-                    <input accept="image/*" type="file" title='Prendre une photo' capture onChange={e => handleChange(e,index)} />
+                  {/* <label>Prendre photo</label>
+                    <input accept="image/*" type="file" title='Prendre une photo' capture onChange={e => handleChange(e,index)} /> */}
             </div>       
 
          
@@ -340,33 +362,43 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
                 
                   <div key={indexImage}>
                     <div className="sectionInfoImage">
-                  <button className="btn-delete-image" onClick={(e) => deletedImage(index,image.url,e,image)}>Supprimer</button>
-
-                      <img className="imageRapportBody" src={image.url} alt="" />
+                  {/* <button className="btn-delete-image" onClick={(e) => deletedImage(index,image.url,e,image)}>Supprimer</button> */}
+                  <button className="btn-delete-image" onClick={(e) => {
+                                                                        openModalImageDelete(e)
+                                                                        setIndexRapport(index)
+                                                                        setInfoImage(image)
+                                                                        setUrlImage(image.url)
+                                                                        
+                                                                                               }}>Supprimer</button>
+                  {deleteImage && <ModalDeleteImage openModalImageDelete={openModalImageDelete} deletedImage={deletedImage} index={indexRapport} imageUrl={urlImage} image={infoImage} setDeleteImage={setDeleteImage}/>}
+                    
+                    <div className="blocImageRapportBody">
+                      <img  className="imageRapportBody" src={image.url} alt="" /> 
+                      </div> 
                       
                      {data.section === "miseEnPression" ? 
                      <div className="section-misePression" key={index} >
                          <p>Réseau d'alimention d'eau {image.reseau}</p>
                            <label className="labelMiseEnPression">
                                 Réseau eau : 
-                                   <input className="inputInfoImage" name='reseau' type='text' defaultValue={image.reseau} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage,e.target.name)} />
+                                   <input className="inputInfoImage" name='reseau' type='text' value={image.reseau} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage,e.target.name)} />
 
                            </label>
                               <label className="labelMiseEnPression">
                                   Pression d'épreuve : 
-                         <input className="inputInfoImage" name='epreuve' type='text' defaultValue={image.epreuve} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage,e.target.name)} />
+                         <input className="inputInfoImage" name='epreuve' type='text' value={image.epreuve} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage,e.target.name)} />
 
                      </label>
                            <label className="labelMiseEnPression">
                                 Pression finale : 
-                            <input className="inputInfoImage" name='finale' type='text' defaultValue={image.finale} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage,e.target.name)} />
+                            <input className="inputInfoImage" name='finale' type='text' value={image.finale} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage,e.target.name)} />
 
                      </label>
                       </div>
                      : 
                      <div key={index}>
 
-                     <input className="inputInfoImage" type='text' defaultValue={image.legende} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage)} />
+                     <input className="inputInfoImage" type='text' value={image.legende} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage)} />
                           
                      </div>
                      

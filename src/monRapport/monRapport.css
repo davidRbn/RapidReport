@@ -30,10 +30,15 @@ margin: 0 3%;
 
 .buttonRegistrer{
 
+color: white;
+font-weight: bold;
 position: fixed;
+border-radius: 10px;
 bottom: 3%;
 right: 3%;
 background-color: #048B9A;
+height: 40px;
+width: 100px;
 
 }
 

@@ -7,11 +7,12 @@
 }
 
 .auth{
-    border: 1px solid black;
-    height: 400px;
-    width: 488px;
+    height: 100vh;
+    width: 90%;
     margin: auto;
-  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .form-auth{
