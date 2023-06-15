@@ -188,6 +188,7 @@ const getRapport = async () => {
     setInfoInter(res.data().infoInter)
     setDataInter(res.data().dataInter)
     setDataLoading(true)
+
   // console.log(res.data())
   setDataSend(false)
   setContainFile(0)
@@ -217,6 +218,7 @@ const test = async () => {
     setDataLoading(true)
    setDocIsCreated(true)
    setUrlFirebaseLoaded(false)
+
 }
 
 
@@ -226,6 +228,8 @@ urlFirebaseLoaded && test()
 
 // eslint-disable-next-line react-hooks/exhaustive-deps
 },[urlFirebaseLoaded])
+
+
 
 // console.log(infoInter);
 return(
@@ -308,7 +312,7 @@ return(
     {refIsNull && <ModalRef setRefIsNull={setRefIsNull}/>}
   
  <div className="link-pdf">
-     <PDFDownloadLink document={<Rapport idRapport={idRapport} dataLoading={setDataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf} />} fileName="somename.pdf">
+     <PDFDownloadLink document={<Rapport idRapport={idRapport} dataLoading={setDataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf} />} fileName={`${infoInter.informationIntervention.client} ${infoInter.informationIntervention.reference} ${infoInter.informationIntervention.dateIntervention}`}>
       {({ blob, url, loading, error }) =>(
         loading ? 'Chargement du document' : 'Telecharger document!')
      }

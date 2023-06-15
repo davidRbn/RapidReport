@@ -34,7 +34,7 @@ const PageTwoPdf = ({dataInterPdf,dataInfoPdf}) => {
          blocImageLeg : {
 
             width:"250px",
-            height:"220px",
+            height:"210px",
             margin:"5px auto",
             padding:"5px",
             border:`1px solid ${globalColor.titleColor} `,
@@ -44,6 +44,8 @@ const PageTwoPdf = ({dataInterPdf,dataInfoPdf}) => {
        imageVueGlobale:{
 
           objectFit:'contain',
+          // border:`10px solid ${globalColor.titleColor}`,
+          borderRadius:'10%'
         
       },
         blocArray:{

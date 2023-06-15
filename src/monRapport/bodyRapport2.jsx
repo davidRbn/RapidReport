@@ -381,7 +381,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
                          <p>Réseau d'alimention d'eau {image.reseau}</p>
                            <label className="labelMiseEnPression">
                                 Réseau eau : 
-                                   <input className="inputInfoImage" name='reseau' type='text' value={image.reseau} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage,e.target.name)} />
+                                   <textarea className="inputInfoImage" name='reseau' type='text' value={image.reseau} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage,e.target.name)} />
 
                            </label>
                               <label className="labelMiseEnPression">
@@ -398,7 +398,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
                      : 
                      <div key={index}>
 
-                     <input className="inputInfoImage" type='text' value={image.legende} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage)} />
+                     <textarea className="inputInfoImage" type='text' value={image.legende} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage)} />
                           
                      </div>
                      

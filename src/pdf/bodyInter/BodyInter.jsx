@@ -16,7 +16,9 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
 
     titleDataInter:{
         color:`${globalColor.titleColor}`,
-        textAlign:'center'
+        textAlign:'center',
+        padding:'2px',
+        // borderBottom:'1px solid black'
 
     },
     titleInvestigations:{
@@ -28,17 +30,18 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
       
       margin:'20px',
       fontSize:`${globalColor.textSize}`,
-      lineHeight:`${globalColor.lineHeigth}`
+      lineHeight:`${globalColor.lineHeigth}`,
+      textAlign:'center'
 
     },
     containerAllImage:{
       display:"flex",
       flexDirection:"row",
-      alignContent:'center',
+      // alignContent:'center',
       justifyContent:'center',
       // border:"5px solid red",
       flexWrap:'wrap',
-      marginTop:'10px',
+      marginTop:'5px',
       // marginBottom:'10px',
 
     },
@@ -61,7 +64,7 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
     },
     blocImageLeg : {
 
-        width:"260px",
+        width:"220px",
         maxHeight:'300px',
         minHeight:'200px',
         margin:"5px auto",
@@ -71,7 +74,11 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
         // position:'relative'
         // display:"flex",
         // flexDirection:"column",
-        // justifyContent:'space-evenly'
+        // justifyContent:'space-evenly',
+        display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  textAlign: 'center',
         
     },
     blocImageLegPortrait:{
@@ -84,11 +91,14 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
       // width:'230px',
     //  margin:'20px 0',
       padding:'2px',
-      width:'100%',
-      height:'100%',
+      width:'300px',
+      height:'220px',
       display:'flex',
       justifyContent:'center',
-      alignItems:'center'
+      alignItems:'center',
+      position: 'relative', // ou 'absolute' en fonction du contexte
+      top: '50%',
+      transform: 'translateY(-50%)',
       
 
     },
@@ -102,6 +112,19 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
       position:'relative',
       // top:'5%'
     
+    },
+    legendeImagePortrait:{
+
+      position: 'relative',
+      top: '50%',
+      transform: 'translateY(-50%)',
+      textAlign:'center',
+      fontSize:`${globalColor.textSize}`,
+      margin:'5px 0 0 0',
+      // transform:'translateY(10%)'
+      // top:'5%'
+    
+
     },
   
     legendeImageMiseEnPression : {
@@ -117,6 +140,8 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
       objectFit:'contain',
       // transform:'rotate(90deg)'
       // maxHeight:'200px',
+      border:`10px solid ${globalColor.titleColor}`,
+      borderRadius:'10%'
     
     },
     imageRapportPortrait:{
@@ -167,7 +192,7 @@ return (
                      <Text style={styles.legendeImage}>Pression finale : {image.finale} bars</Text>        
                     </View>
                     :
-                   <View> <Text style={styles.legendeImage}>{image.legende}</Text></View>
+                   <View> <Text style={image.orientationImage === 6 ? styles.legendeImagePortrait:styles.legendeImage}>{image.legende}</Text></View>
                     
                     }
                    
