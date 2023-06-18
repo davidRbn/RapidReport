@@ -82,7 +82,7 @@ const PageThreePdf = ({dataInterPdf}) => {
 
         titleDataInter:{
             color:`${globalColor.titleColor}`,
-            margin:'10px',
+            margin:'20px',
             textAlign:'center'
     
         },

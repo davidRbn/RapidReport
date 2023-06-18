@@ -49,7 +49,7 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
 
       width:"50%",
       // border:"5px solid blue",
-      margin:'O auto'
+      margin:'0 auto'
 
     },
     firstBlocImage2:{

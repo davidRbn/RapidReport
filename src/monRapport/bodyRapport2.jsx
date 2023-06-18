@@ -32,14 +32,14 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
         let orientation = EXIF.getTag(this, 'Orientation')
 
        console.log(orientation)
-
-      
+             
        if(orientation === undefined){
         orientation = 0 
        }
 
-       console.log(orientation)
-
+      //  const modifiedFile = new File([newImage], newImage.name, { type: newImage.type });
+       
+// console.log(newImage)
 
       console.log(orientation)
 

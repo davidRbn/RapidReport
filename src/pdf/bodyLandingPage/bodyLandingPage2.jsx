@@ -1,7 +1,7 @@
 import { StyleSheet, View,Text, Image } from "@react-pdf/renderer";
 import React from "react";
 import globalColor from "../globalStyles/globalStyles";
-import imageAdeau from "../images/A.d.Eau expertise.png"
+import imageAdeau from "../images/A.d.Eau expertise2.png"
 
 
 const BodyLandingPage2 = ({idRapport,dataLoading,dataSend,dataInfoPdf,dataInterPdf}) => {

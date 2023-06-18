@@ -50,10 +50,12 @@ const [indexConstatation,setIndexConstatation] = useState(0)
     const styles = StyleSheet.create({
         document: { 
             width: '100%',
-            height:'100%'
+            height:'100%',
         },
         page: {
-          backgroundColor: '#FFFFFF',
+          backgroundColor:'#E7ECE8',
+
+          // backgroundColor: '#FFFFFF',
           paddingBottom:'60px',
           height:'100%'
         },

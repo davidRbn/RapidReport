@@ -48,6 +48,14 @@ const PageTwoPdf = ({dataInterPdf,dataInfoPdf}) => {
           borderRadius:'10%'
         
       },
+      sectionConstatationConclusion:{
+
+        display:'flex',
+        flexDirection:'column',
+        justifyContent:'space-evenly',
+        height:'540px'
+
+      },
         blocArray:{
 
             margin:'auto'
@@ -161,59 +169,56 @@ const PageTwoPdf = ({dataInterPdf,dataInfoPdf}) => {
 return (
 
 <>
-  {dataInterPdf.filter(data => data.section === 'constatations'|| data.section === "vueGlobale" || data.section === 'conclusion').map((data,indexData )=> 
-    
-   { if(data.section === 'vueGlobale'){
-
-return ( 
+  {dataInterPdf.filter(data => data.section === "vueGlobale").map((data,indexData )=> ( 
 
 
-  <View style={stylesPageTwoPdf.sectionVueGlobale} key={indexData}>
+  <View key={indexData}>
 
   {data.image.map((image,index)=> 
-<>
+   
+    <View key={index} style={stylesPageTwoPdf.sectionVueGlobale}>
 
-      <View style={stylesPageTwoPdf.sectionTextVueGlobale}>
+      <View   style={stylesPageTwoPdf.sectionTextVueGlobale}>
               <Text style={stylesPageTwoPdf.textVueGlobale}>{dataInfoPdf.client}</Text>
               <Text style={stylesPageTwoPdf.textVueGlobale}>-</Text>
 
               <Text style={stylesPageTwoPdf.textVueGlobale}>{dataInfoPdf.copro}</Text>
       </View>  
       
-      <View key={index} style={stylesPageTwoPdf.blocImageLeg}>
+      <View style={stylesPageTwoPdf.blocImageLeg}>
               <Image style={stylesPageTwoPdf.imageVueGlobale} source={{uri : image.url,method: "GET"}}/>
 
       </View>
- </>     
+  </View>
       
       )}
    
-   
+</View>
   
-  
-  </View>
 
 
- )     
-      
 
-   }else {
+ ))}
+
+ <View style={stylesPageTwoPdf.sectionConstatationConclusion}>
+
+{dataInterPdf.filter(data => data.section === 'constatations'|| data.section === 'conclusion').map((data,indexData )=>(
+        
+        <View key={indexData}>
+          <Text style={stylesPageTwoPdf.titleDataInter}>{data.titre}</Text>
+          <Text style={stylesPageTwoPdf.description}>{data.description}</Text>
+     
+        </View>
        
-   return (<View key={indexData}>
-    <Text style={stylesPageTwoPdf.titleDataInter}>{data.titre}</Text>
-    <Text style={stylesPageTwoPdf.description}>{data.description}</Text>
-  
-  </View>)
+       
+       
+       
+       ))
+     
+     
+         }
 
-
-   }
-   
-   
-   }
-    
-    
-    
-    )}
+</View>         
 
 </>
 
