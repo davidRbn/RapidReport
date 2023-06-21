@@ -340,7 +340,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
             </label>
             <label>
               <div> Description : </div>
-              <textarea name='description' type="textarea" value={data.description} onChange={e => handleChangeInfoInter(e.target.value, index, e.target.name)} />
+              <textarea name='description' type="textarea" maxLength={730} value={data.description} onChange={e => handleChangeInfoInter(e.target.value, index, e.target.name)} />
             </label>
           </div>
           <div>
@@ -398,7 +398,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
                      : 
                      <div key={index}>
 
-                     <textarea className="inputInfoImage" type='text' value={image.legende} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage)} />
+                     <textarea className="inputInfoImage" type='text' maxLength={95} value={image.legende} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage)} />
                           
                      </div>
                      

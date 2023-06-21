@@ -14,7 +14,7 @@ const FooterPdf = () => {
             width:'100%',
             height:'50px',
             position :'absolute',
-            bottom:'3px',
+            bottom:'1px',
             textAlign:'center',
             marginTop:'20px',
             
@@ -22,7 +22,7 @@ const FooterPdf = () => {
         textFooter:{
 
             fontSize:`${globalColor.textSize}`,
-            padding:'3px',
+            padding:'1px',
             color:'grey'
         }
 
@@ -34,8 +34,8 @@ const FooterPdf = () => {
 
         
         <View fixed style={stylesFooter.sectionFooter}>
-            <Text style={stylesFooter.textFooter}>A.D.Eau Expertise – SAS au capital de 3 000.00 € - 78 rue Charles Kaddouz</Text>
-                    <Text style={stylesFooter.textFooter}>13012 MARSEILLE</Text>
+            <Text style={stylesFooter.textFooter}>A.D.Eau Expertise – SAS au capital de 3 000.00 € - 78 rue Charles Kaddouz 13012 MARSEILLE</Text>
+                    {/* <Text style={stylesFooter.textFooter}>13012 MARSEILLE</Text> */}
                         <Text style={stylesFooter.textFooter}>Tél : 06 23 77 78 01 – SIRET 95300466000015135 – R.C.S. Marseille</Text>
                     {/* <Text style={stylesFooter.textFooter}>Groupe MANAGEMENT PROJECTS</Text> */}
         </View>

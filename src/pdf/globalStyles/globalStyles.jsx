@@ -2,9 +2,9 @@
 const globalColor = {
 
     titleColor : "#048B9A",
-    textSize : '11px',
+    textSize : '10.5px',
     secondaryColor : "#1A4C00",
-    lineHeigth : '1.4'
+    lineHeigth : '1.3'
 
 }
 

@@ -12,6 +12,48 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
 
   // dataInterPdf &&  dataInterPdf.filter(data => data.section === 'constatation').map(e => console.log(e))
 
+
+  const getBlockImageLegStyle = (length,index) => {
+    
+  //   {
+  //   width: (length > 1 && length < 5) || length === 4 || length === 7 || length === 8 ? "280px" : length === 1 ? "350px" :  "220px",
+  //   maxHeight: (length > 1 && length < 5) || length === 4 || length === 7 || length === 8 ? "300px" : length === 1 ? "400px" :  "300px",
+  //   minHeight: (length > 1 && length < 5) || length === 4 || length === 7 || length === 8 ? "280px" : length === 1 ? "350px" :  "200px",
+  //   margin: "5px auto",
+  //   padding: "2px",
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   alignItems: 'center',
+  //   textAlign: 'center',
+
+  // }
+  
+ return (length > 1 && length < 5) || length === 4 || length === 7 || length === 8 ? styles.blocImageMoyen : length === 1 ? styles.blocImageGrand : styles.blocImageLegPetit
+  
+  }
+
+  const getContainerImage = (length) => {
+  //   {
+
+  //   display:"flex",
+  //   flexDirection:length === 2 ? "column" :"row",
+  //   alignContent:length === 2 ?'center':"none",
+  //   justifyContent:length === 2 ? "space-evenly" : 'center',
+  //   // border:"5px solid red",
+  //   flexWrap:'wrap',
+  //   marginTop:'5px',
+  //   // marginBottom:'10px',
+
+  // }
+
+  return length === 2 ? styles.containeAllImageColonne : styles.containerAllImage
+
+
+  
+  }
+
+
+
   const styles = StyleSheet.create({
 
     titleDataInter:{
@@ -28,13 +70,20 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
     },
     descriptionDataInter: {
       
-      margin:'20px',
+      marginTop:'10px',
+      marginBottom:'0px',
+      marginLeft:'5px',
+      marginRight:'5px',
       fontSize:`${globalColor.textSize}`,
       lineHeight:`${globalColor.lineHeigth}`,
-      textAlign:'center'
+      textAlign:'center',
+      maxHeight:'92px',
+      minHeight:'90px'
 
     },
-    containerAllImage:{
+    containerAllImage:
+    
+    {
       display:"flex",
       flexDirection:"row",
       // alignContent:'center',
@@ -45,11 +94,36 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
       // marginBottom:'10px',
 
     },
+    containeAllImageColonne:{
+
+      display:"flex",
+      flexDirection:"column",
+      alignContent:'center',
+      justifyContent:'space-evenly',
+      // border:"5px solid red",
+      flexWrap:'wrap',
+      marginTop:'5px',
+      // marginBottom:'10px',
+   
+
+    },
+    containerAll2Image:{
+
+      display:"flex",
+      flexDirection:"column",
+      alignContent:'center',
+      justifyContent:'space-evenly',
+      // border:"5px solid red",
+      flexWrap:'wrap',
+      marginTop:'5px',
+      // height:'570px'
+
+    },
     firstBlocImage:{
 
-      width:"50%",
-      // border:"5px solid blue",
-      margin:'0 auto'
+      // width:"50%",
+      // // border:"5px solid blue",
+      // margin:'0 auto'
 
     },
     firstBlocImage2:{
@@ -62,7 +136,7 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
     //  position:'relative'
 
     },
-    blocImageLeg : {
+    blocImageLegPetit : {
 
         width:"220px",
         maxHeight:'300px',
@@ -76,10 +150,39 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
         // flexDirection:"column",
         // justifyContent:'space-evenly',
         display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  textAlign: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
         
+    },
+
+    blocImageMoyen:{
+
+      width:"280px",
+      maxHeight:'300px',
+      minHeight:'280px',
+      margin:"5px auto",
+      padding:"2px",
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      textAlign: 'center',
+
+
+    },
+    blocImageGrand:{
+
+      width:"350px",
+      maxHeight:'400px',
+      minHeight:'350px',
+      margin:"5px auto",
+      padding:"2px",
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      textAlign: 'center',
+
+
     },
     blocImageLegPortrait:{
 
@@ -108,9 +211,10 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
       textAlign:'center',
       fontSize:`${globalColor.textSize}`,
       margin:'5px 0 0 0',
+      maxHeight:'30px'
       // transform:'translateY(10%)'
-      position:'relative',
-      // top:'5%'
+      // position:'relative',
+      // top:'5%',
     
     },
     legendeImagePortrait:{
@@ -131,7 +235,9 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
        
       textAlign:'center',
       fontSize:`${globalColor.textSize}`,
-      margin:'5px 0'
+      // margin:'5px 0'
+      margin:'5px 0 0 0',
+
 
     },
     
@@ -159,6 +265,8 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
 
   })
 
+  
+
 // console.log(dataInterPdf)
 
 return (
@@ -173,14 +281,14 @@ return (
     
     <Text style={styles.descriptionDataInter}>{dataInterPdf.section === "constatations" ? "" : dataInterPdf.description}</Text>
 
-    <View wrap style={styles.containerAllImage}>
+    <View style={getContainerImage(dataInterPdf.image.length)}>
 
     {dataInterPdf.image.map((image,index) => (
 
-            <View wrap={false} key={index} style={(index > 3) ? styles.firstBlocImage2: styles.firstBlocImage}>
-                 <View style={styles.blocImageLeg}>
+            // <View debug wrap={false} key={index} style={(index > 3) ? styles.firstBlocImage2: styles.firstBlocImage}>
+                 <View  key={index} style={getBlockImageLegStyle(dataInterPdf.image.length,index)}>
                  
-                 <View style={image.orientationImage === 6 && styles.blocImageLegPortrait}>
+                 <View wrap={false} style={image.orientationImage === 6 && styles.blocImageLegPortrait}>
                      <Image style={image.orientationImage === 6 ? styles.imageRapportPortrait : styles.imageRapport} source={{uri : image.url,method: "GET"}}/>
                   </View>
 
@@ -192,7 +300,7 @@ return (
                      <Text style={styles.legendeImage}>Pression finale : {image.finale} bars</Text>        
                     </View>
                     :
-                   <View> <Text style={image.orientationImage === 6 ? styles.legendeImagePortrait:styles.legendeImage}>{image.legende}</Text></View>
+                   <Text style={image.orientationImage === 6 ? styles.legendeImagePortrait:styles.legendeImage}>{image.legende}</Text>
                     
                     }
                    
@@ -200,7 +308,7 @@ return (
                 
 
 
-            </View>
+            // </View>
 
 
     ))}

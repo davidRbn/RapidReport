@@ -1,6 +1,6 @@
 import React from "react";
 import {Text, View, StyleSheet,Image } from '@react-pdf/renderer';
-import sintecImage from '../images/sintec.png'
+// import sintecImage from '../images/sintec.png'
 import globalColor from "../globalStyles/globalStyles";
 import adeauExpertise from '../images/default.png'
 

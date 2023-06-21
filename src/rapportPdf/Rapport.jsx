@@ -57,7 +57,7 @@ const [indexConstatation,setIndexConstatation] = useState(0)
 
           // backgroundColor: '#FFFFFF',
           paddingBottom:'60px',
-          height:'100%'
+          // height:'100%'
         },
         section: {
           margin: 10,
@@ -70,7 +70,7 @@ const [indexConstatation,setIndexConstatation] = useState(0)
 
     return(
         <Document style={styles.document}>
-        <Page wrap size="A4" style={styles.page}>
+        <Page size="A4" style={styles.page}>
             {/* <HeaderPdf2 dataInfoPdf={dataInfoPdf}/> */}
             <BodyLandingPage2 idRapport={idRapport} dataLoading={dataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf}/>
             <FooterPdf/>
@@ -98,7 +98,7 @@ const [indexConstatation,setIndexConstatation] = useState(0)
   
   return (
     
-  <Page key={indexData} size="A4" style={styles.page}>  
+  <Page wrap key={indexData} size="A4" style={styles.page}>  
           <HeaderPdf2 dataInfoPdf={dataInfoPdf}/>
             <BodyInter setIndexConstatation={setIndexConstatation} indexConstatation={indexConstatation} indexData={indexData} dataInterPdf={dataInter}/>
           <FooterPdf/>

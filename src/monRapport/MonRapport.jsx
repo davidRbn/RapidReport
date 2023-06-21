@@ -232,6 +232,7 @@ urlFirebaseLoaded && test()
 
 
 // console.log(infoInter);
+console.log(dataInterPdf);
 return(
 
     <div className="blocCreateRapport">
@@ -315,6 +316,7 @@ return(
      <PDFDownloadLink document={<Rapport idRapport={idRapport} dataLoading={setDataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf} />} fileName={`${infoInter.informationIntervention.client} ${infoInter.informationIntervention.reference} ${infoInter.informationIntervention.dateIntervention}`}>
       {({ blob, url, loading, error }) =>(
         loading ? 'Chargement du document' : 'Telecharger document!')
+
      }
     </PDFDownloadLink>
     </div> 

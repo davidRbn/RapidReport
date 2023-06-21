@@ -159,7 +159,7 @@ return (
 <div className="bloc-rapports">
                 <button className={data.infoInter.informationIntervention.rapportFini ?'list-rapports-interFini': 'list-rapports'} 
                         onClick={e =>  accessMyReport(e,data.idDoc)}>
-                            {data.infoInter.informationIntervention.client} {data.infoInter.informationIntervention.reference} {data.infoInter.informationIntervention.nomSinistre}
+                            {data.infoInter.informationIntervention.client} {data.infoInter.informationIntervention.reference} {data.infoInter.informationIntervention.dateIntervention}
                 </button>
                     <p onClick={e => {e.preventDefault() 
                                       setIdDocument(data.idDoc)
