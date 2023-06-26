@@ -68,6 +68,16 @@ const [indexConstatation,setIndexConstatation] = useState(0)
 
 
 
+      // useEffect(() => {
+      //   let totalImages = 0;
+      //   dataInterPdf.forEach((data) => {
+      //     totalImages += data.image.length;
+      //   });
+      //   setCounter(totalImages);
+      // }, [dataInterPdf]);
+
+
+
     return(
         <Document style={styles.document}>
         <Page size="A4" style={styles.page}>
@@ -100,7 +110,7 @@ const [indexConstatation,setIndexConstatation] = useState(0)
     
   <Page wrap key={indexData} size="A4" style={styles.page}>  
           <HeaderPdf2 dataInfoPdf={dataInfoPdf}/>
-            <BodyInter setIndexConstatation={setIndexConstatation} indexConstatation={indexConstatation} indexData={indexData} dataInterPdf={dataInter}/>
+            <BodyInter indexDataPdf={indexData} setIndexConstatation={setIndexConstatation} indexConstatation={indexConstatation} indexData={indexData} dataInterPdf={dataInter}/>
           <FooterPdf/>
    </Page>
        

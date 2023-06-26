@@ -12,29 +12,36 @@ const PageTwoPdf = ({dataInterPdf,dataInfoPdf}) => {
 
 
       sectionVueGlobale:{
-        display:'flex',
-        flexDirection:'row',
-        alignContent:'space-around',
-        alignItems:'center',
+        // display:'flex',
+        // flexDirection:'column',
+        // alignContent:'space-around',
+        // alignItems:'center',
         width:'100%',
 
       },
       sectionTextVueGlobale:{
 
-        width:'40%',
-        textAlign:'center'
+        width:'100%',
+        textAlign:'center',
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'center',
+        marginBottom:'15px'
 
       },
       textVueGlobale:{
 
         color:`${globalColor.titleColor}`,
-        paddingBottom:'5px'
+        paddingBottom:'5px',
+        marginLeft:'5px'
 
       },
          blocImageLeg : {
 
-            width:"250px",
-            height:"210px",
+            maxWidth:"380px",
+            minWidth:'350px',
+            maxHeight:"300px",
+            minHeight:'270px',
             margin:"5px auto",
             padding:"5px",
             border:`1px solid ${globalColor.titleColor} `,
@@ -52,8 +59,13 @@ const PageTwoPdf = ({dataInterPdf,dataInfoPdf}) => {
 
         display:'flex',
         flexDirection:'column',
-        justifyContent:'space-evenly',
-        height:'540px'
+        justifyContent:'flex-start',
+        // height:'480px'
+
+      },
+      blocTitleDes:{
+
+        marginTop:'40px'
 
       },
         blocArray:{
@@ -178,7 +190,7 @@ return (
    
     <View key={index} style={stylesPageTwoPdf.sectionVueGlobale}>
 
-      <View   style={stylesPageTwoPdf.sectionTextVueGlobale}>
+      <View style={stylesPageTwoPdf.sectionTextVueGlobale}>
               <Text style={stylesPageTwoPdf.textVueGlobale}>{dataInfoPdf.client}</Text>
               <Text style={stylesPageTwoPdf.textVueGlobale}>-</Text>
 
@@ -204,7 +216,7 @@ return (
 
 {dataInterPdf.filter(data => data.section === 'constatations'|| data.section === 'conclusion').map((data,indexData )=>(
         
-        <View key={indexData}>
+        <View style={stylesPageTwoPdf.blocTitleDes} key={indexData}>
           <Text style={stylesPageTwoPdf.titleDataInter}>{data.titre}</Text>
           <Text style={stylesPageTwoPdf.description}>{data.description}</Text>
      

@@ -232,7 +232,7 @@ urlFirebaseLoaded && test()
 
 
 // console.log(infoInter);
-console.log(dataInterPdf);
+// console.log(dataInterPdf);
 return(
 
     <div className="blocCreateRapport">

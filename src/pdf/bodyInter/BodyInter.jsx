@@ -6,52 +6,49 @@ import globalColor from "../globalStyles/globalStyles";
 
 
 
-const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatation}) => {
+const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setIndexConstatation}) => {
 
     // const [dataTest, setDataTest] = useState(dataIntervention)
 
   // dataInterPdf &&  dataInterPdf.filter(data => data.section === 'constatation').map(e => console.log(e))
 
 
+  // const incrementCounter = () => {
+  //   setPhotoCounter((prevCounter) => prevCounter + 1)
+
+  //   return photoCounter
+  // };
+
   const getBlockImageLegStyle = (length,index) => {
     
-  //   {
-  //   width: (length > 1 && length < 5) || length === 4 || length === 7 || length === 8 ? "280px" : length === 1 ? "350px" :  "220px",
-  //   maxHeight: (length > 1 && length < 5) || length === 4 || length === 7 || length === 8 ? "300px" : length === 1 ? "400px" :  "300px",
-  //   minHeight: (length > 1 && length < 5) || length === 4 || length === 7 || length === 8 ? "280px" : length === 1 ? "350px" :  "200px",
-  //   margin: "5px auto",
-  //   padding: "2px",
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   alignItems: 'center',
-  //   textAlign: 'center',
 
-  // }
+              // return (length > 1 && length < 5) || length === 4 || length === 7 || length === 8 ? styles.blocImageMoyen : length === 1 ? styles.blocImageGrand : styles.blocImageLegPetit
   
- return (length > 1 && length < 5) || length === 4 || length === 7 || length === 8 ? styles.blocImageMoyen : length === 1 ? styles.blocImageGrand : styles.blocImageLegPetit
-  
+              if((length > 1 && length < 5) || length === 4 || length === 7 || length === 8 ){
+
+                if((length === 7 || length === 8) && (index === 4 || index === 5)){
+
+                  return [styles.blocImageMoyen,styles.blocImageMoyenSecondPage]
+                }else {
+
+                  return styles.blocImageMoyen
+                }
+
+              }else if (length === 1){
+
+                  return styles.blocImageGrand 
+
+              }else {
+
+                return styles.blocImageLegPetit
+              }
   }
 
   const getContainerImage = (length) => {
-  //   {
-
-  //   display:"flex",
-  //   flexDirection:length === 2 ? "column" :"row",
-  //   alignContent:length === 2 ?'center':"none",
-  //   justifyContent:length === 2 ? "space-evenly" : 'center',
-  //   // border:"5px solid red",
-  //   flexWrap:'wrap',
-  //   marginTop:'5px',
-  //   // marginBottom:'10px',
-
-  // }
-
-  return length === 2 ? styles.containeAllImageColonne : styles.containerAllImage
 
 
-  
+               return length === 2 ? styles.containeAllImageColonne : styles.containerAllImage  
   }
-
 
 
   const styles = StyleSheet.create({
@@ -153,6 +150,10 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
         flexDirection: 'column',
         alignItems: 'center',
         textAlign: 'center',
+        justifyContent:'center',
+         border:`2px solid ${globalColor.titleColor}`,
+         borderRadius:'5%'
+
         
     },
 
@@ -166,8 +167,16 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
+      justifyContent:'center',
       textAlign: 'center',
+      border:`2px solid ${globalColor.titleColor}`,
+      borderRadius:'5%'
 
+    },
+    blocImageMoyenSecondPage:{
+
+      marginTop:"80px",
+      marginBottom:'50px'
 
     },
     blocImageGrand:{
@@ -180,8 +189,10 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
+      justifyContent:'center',
       textAlign: 'center',
-
+      border:`2px solid ${globalColor.titleColor}`,
+      borderRadius:'5%',
 
     },
     blocImageLegPortrait:{
@@ -246,7 +257,7 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
       objectFit:'contain',
       // transform:'rotate(90deg)'
       // maxHeight:'200px',
-      border:`10px solid ${globalColor.titleColor}`,
+      // border:`10px solid ${globalColor.titleColor}`,
       borderRadius:'10%'
     
     },
@@ -265,9 +276,9 @@ const BodyInter = ({dataInterPdf,indexData,indexConstatation,setIndexConstatatio
 
   })
 
-  
 
-// console.log(dataInterPdf)
+
+console.log(dataInterPdf);
 
 return (
 
@@ -283,11 +294,18 @@ return (
 
     <View style={getContainerImage(dataInterPdf.image.length)}>
 
-    {dataInterPdf.image.map((image,index) => (
+    {dataInterPdf.image.map((image,index) => {
+    
+
+    
+    return (
+
+          
 
             // <View debug wrap={false} key={index} style={(index > 3) ? styles.firstBlocImage2: styles.firstBlocImage}>
                  <View  key={index} style={getBlockImageLegStyle(dataInterPdf.image.length,index)}>
                  
+                 {/* <Text style={styles.photoNumber}>{counter.current}</Text> */}
                  <View wrap={false} style={image.orientationImage === 6 && styles.blocImageLegPortrait}>
                      <Image style={image.orientationImage === 6 ? styles.imageRapportPortrait : styles.imageRapport} source={{uri : image.url,method: "GET"}}/>
                   </View>
@@ -295,9 +313,9 @@ return (
                     { dataInterPdf.section === "miseEnPression"?
                     <View style={styles.blocMiseEnPression}>
                     <Text style={styles.legendeImage}>Type de canalisation : réseau d'eau {image.reseau}</Text>
-                         <Text style={styles.legendeImageMiseEnPression}>Pression d'épreuve : {image.epreuve} bars</Text>
+                         <Text style={styles.legendeImageMiseEnPression}>Pression d'épreuve : {image.epreuve}</Text>
                              <Text style={styles.legendeImage}>Durée de la mise en épreuve : 15 minutes</Text>
-                     <Text style={styles.legendeImage}>Pression finale : {image.finale} bars</Text>        
+                     <Text style={styles.legendeImage}>Pression finale : {image.finale}</Text>        
                     </View>
                     :
                    <Text style={image.orientationImage === 6 ? styles.legendeImagePortrait:styles.legendeImage}>{image.legende}</Text>
@@ -311,7 +329,7 @@ return (
             // </View>
 
 
-    ))}
+    )})}
 
 </View>
 

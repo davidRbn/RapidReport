@@ -20,6 +20,10 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
   const [indexRapport,setIndexRapport] = useState()
   const [infoImage,setInfoImage] = useState()
   const [urlImage,setUrlImage] = useState()
+ 
+
+
+
 
   const handleChange = (e,index) => {
   
@@ -129,6 +133,23 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
                       }else return data
 
                     }))
+
+  //   setDataInter((prevState) => prevState.map((data, indexx) =>{
+                     
+  //     if (indexx === indexData){
+  //       if(data.section === "miseEnPression"){
+
+  //         return {...data, image: [...data.image,{url : url,epreuve : "",finale : "", file : newImage,orientationImage: imageOrientation}]}
+
+  //       }else{
+  //     return {...data, image:  [...data.image,{url : url,legende: "",file : newImage,orientationImage: imageOrientation}]}                     
+  //       }       
+  //     }else return data
+
+  //   }))
+
+
+
   }
 
 

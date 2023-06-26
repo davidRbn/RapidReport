@@ -98,16 +98,6 @@ export const dataIntervention =
 
  },
 {
-    
-
- section : 'defaut',
- titre: "Localisation fuite/defaut ",
- description:"Les defauts ....",
- image:[],
-
-
-},
-{
    
     section : 'miseEnPression',
     titre: "Mise en pression",
@@ -165,7 +155,17 @@ export const dataIntervention =
     titre: " Autre ",
     description:"",
     image:[],
- }
+ },
+ {
+    
+
+    section : 'defaut',
+    titre: "Localisation fuite/defaut ",
+    description:"Les defauts ....",
+    image:[],
+   
+   
+   }
 
 ]
 
