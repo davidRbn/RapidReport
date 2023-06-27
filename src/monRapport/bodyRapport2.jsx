@@ -134,23 +134,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
 
                     }))
 
-  //   setDataInter((prevState) => prevState.map((data, indexx) =>{
-                     
-  //     if (indexx === indexData){
-  //       if(data.section === "miseEnPression"){
-
-  //         return {...data, image: [...data.image,{url : url,epreuve : "",finale : "", file : newImage,orientationImage: imageOrientation}]}
-
-  //       }else{
-  //     return {...data, image:  [...data.image,{url : url,legende: "",file : newImage,orientationImage: imageOrientation}]}                     
-  //       }       
-  //     }else return data
-
-  //   }))
-
-
-
-  }
+                  }  
 
 
 
@@ -361,7 +345,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
             </label>
             <label>
               <div> Description : </div>
-              <textarea name='description' type="textarea" maxLength={730} value={data.description} onChange={e => handleChangeInfoInter(e.target.value, index, e.target.name)} />
+              <textarea name='description' type="textarea" maxLength={data.section === "conclusion" || data.section === "investigations" || data.section === "constatations" ? 100000 : 730} value={data.description} onChange={e => handleChangeInfoInter(e.target.value, index, e.target.name)} />
             </label>
           </div>
           <div>

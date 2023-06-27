@@ -167,16 +167,41 @@ e.preventDefault()
  }else{
 
   if (containFile === 0){
-
-    test()
+  addNumberPhotos()
+  test()
  setDataLoading(false)
 
 }else{
 
+  addNumberPhotos()
  handleUploadStorageImage()
  setDataLoading(false)
 
 }}}
+
+const addNumberPhotos = () => {
+
+let counter = 0
+
+  setDataInter((prevState) => prevState.map((data) =>{
+                     
+    if (data.image.length > 0){
+
+      const updatedImages = data.image.map((image) => {
+        counter++;
+        return { ...image, numberPhoto: counter };
+      });
+    
+      return { ...data, image: updatedImages };
+    
+    }else return data
+
+  }))
+
+
+
+
+}
 
 
 
@@ -189,7 +214,7 @@ const getRapport = async () => {
     setDataInter(res.data().dataInter)
     setDataLoading(true)
 
-  // console.log(res.data())
+  console.log(res.data())
   setDataSend(false)
   setContainFile(0)
 }

@@ -278,7 +278,7 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
 
 
 
-console.log(dataInterPdf);
+// console.log(dataInterPdf);
 
 return (
 
