@@ -40,8 +40,18 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
 
               }else {
 
+                if((length === 9 || length === 10) && (index === 6 || index === 7)){
+
+                  return [styles.blocImageLegPetit,styles.blocImagePetitSecondPage9and10]
+
+                }else if((length === 11 || length === 12) && (index === 6 || index === 7)){ 
+
+                  return [styles.blocImageLegPetit,styles.blocImagePetitSecondPage11and12]
+              
+              }else {
+
                 return styles.blocImageLegPetit
-              }
+                }}
   }
 
   const getContainerImage = (length) => {
@@ -156,18 +166,27 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
 
         
     },
+    blocImagePetitSecondPage9and10:{
 
+      marginTop:'100px',
+      marginBottom:'70px'
+
+    },
+    blocImagePetitSecondPage11and12:{
+
+      marginTop:'50px'
+    },
     blocImageMoyen:{
 
       width:"280px",
       maxHeight:'300px',
       minHeight:'280px',
-      margin:"5px auto",
+      margin:"4px auto",
       padding:"2px",
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent:'center',
+      justifyContent:'space-between',
       textAlign: 'center',
       border:`2px solid ${globalColor.titleColor}`,
       borderRadius:'5%'
@@ -251,7 +270,12 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
 
 
     },
-    
+    photoNumber:{
+
+      color:`${globalColor.titleColor}`,
+      fontSize:'12px'
+
+    },
     imageRapport:{
 
       objectFit:'contain',
@@ -278,14 +302,14 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
 
 
 
-// console.log(dataInterPdf);
+console.log(dataInterPdf);
 
 return (
 
   
     <View>
       {/* {indexData === 0?<Text style={styles.titleInvestigations}>Détail des investigations : </Text>:<Text></Text>} */}
-       <Text style={styles.titleDataInter}>{dataInterPdf.section === 'constatations' ? `${dataInterPdf.titre} et TH` : dataInterPdf.titre } </Text>        
+       <Text style={styles.titleDataInter}>{dataInterPdf.section === 'constatations' ? `${dataInterPdf.titre}` : dataInterPdf.titre } </Text>        
 
 
 <View>
@@ -305,7 +329,7 @@ return (
             // <View debug wrap={false} key={index} style={(index > 3) ? styles.firstBlocImage2: styles.firstBlocImage}>
                  <View  key={index} style={getBlockImageLegStyle(dataInterPdf.image.length,index)}>
                  
-                 {/* <Text style={styles.photoNumber}>{counter.current}</Text> */}
+                <Text style={styles.photoNumber}>PHOTO N°{image.numberPhoto}</Text>
                  <View wrap={false} style={image.orientationImage === 6 && styles.blocImageLegPortrait}>
                      <Image style={image.orientationImage === 6 ? styles.imageRapportPortrait : styles.imageRapport} source={{uri : image.url,method: "GET"}}/>
                   </View>

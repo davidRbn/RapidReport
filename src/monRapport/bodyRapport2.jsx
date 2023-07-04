@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { getStorage, ref } from "firebase/storage";
 import './bodyRapport.css'
 // import { dataIntervention } from "./dataIntervention";
 // import Resizer from 'react-image-file-resizer'
-import EXIF from "exif-js";
+import{ EXIF} from "exif-js";
 import ModalDeleteImage from "./modalDeleteImage/ModalDeleteImage";
 
 
@@ -20,7 +20,9 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
   const [indexRapport,setIndexRapport] = useState()
   const [infoImage,setInfoImage] = useState()
   const [urlImage,setUrlImage] = useState()
- 
+  const [pictureAddOrDelete,setPictureAddOrDelete] = useState(false)
+
+
 
 
 
@@ -35,24 +37,28 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
 
         let orientation = EXIF.getTag(this, 'Orientation')
 
-       console.log(orientation)
+      //  console.log(orientation)
              
        if(orientation === undefined){
         orientation = 0 
        }
 
       //  const modifiedFile = new File([newImage], newImage.name, { type: newImage.type });
+
+      // let deleteExifData = newImage
+      // delete deleteExifData['exifdata']
        
-// console.log(newImage)
+console.log(newImage)
 
-      console.log(orientation)
-
-      handleUpload(index,newImage,orientation)
+   handleUpload(index,newImage,orientation)
 
 
+      // console.log(orientation)
+  //     let dataImage = {...image,url : res[0],fileName: path}
+  //     delete dataImage['file']  
+  //  return dataImage
 
-
-        
+       
       })
 
 
@@ -86,14 +92,52 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
 
       // )
       // handleUpload(index,newImage)
-    }
 
+    }
 
   }
 
 
 
+  const addNumberPhotos = () => {
+
+
+  let counter = 0;
+  
+    
+    const newArrayNumberPhoto = dataInter.map((data) => {
+        if (data.image.length > 0 && data.section !== 'vueGlobale') {
+          const updatedImages = data.image.map((image) => {
+            counter++
+           let total = counter
+          //  console.log(total)
+            return { ...image, numberPhoto: `${total}` };
+          });
+          // console.log(updatedImages);
+          return { ...data, image: updatedImages };
+        } else {
+          return data;
+        }
+      })
+
+      setDataInter(newArrayNumberPhoto)
+    
+  
+    counter = 0
+    setPictureAddOrDelete(false)
+    console.log('counter')
+  };
+
+  useEffect(() => {
+
+    pictureAddOrDelete && addNumberPhotos()
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[pictureAddOrDelete])
+
+
   const handleUpload = async (indexData,newImage,imageOrientation) => {
+
 
     setContainFile((prevState) => prevState + 1)
    
@@ -133,6 +177,9 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
                       }else return data
 
                     }))
+
+                    // addNumberPhotos()
+                    setPictureAddOrDelete(true)
 
                   }  
 
@@ -224,6 +271,8 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
    )
    setDataInter(newDataInterImage)
    setDeleteImage(false)
+  //  addNumberPhotos()
+  setPictureAddOrDelete(true)
   }
 
   const openModalImageDelete = (e) => {
@@ -237,6 +286,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
 
   // dataInter.map(e => console.log(e.image))
   // console.log(dataInter)
+  // console.log(pictureAddOrDelete)
   // console.log(url)
 //   console.log(urlLoaded)
   // console.log(legende)
@@ -253,7 +303,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
       
 
       {
-        if (data.section === "vueGlobale"){
+if (data.section === "vueGlobale"){
          return (
           <div key={index} className="separation">
          <div >
@@ -301,8 +351,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
         </div>
          )   
           
-
-        }else if (data.section === 'moyenTechnique'){
+}else if (data.section === 'moyenTechnique'){
          
           
           return (
@@ -332,7 +381,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
                )
              
         
-      }else{
+}else{
 
          return (
          <div key={index} className="separation">
@@ -375,6 +424,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
                                                                         setUrlImage(image.url)
                                                                         
                                                                                                }}>Supprimer</button>
+                               <p>Photo N° {image.numberPhoto}</p>                                                                
                   {deleteImage && <ModalDeleteImage openModalImageDelete={openModalImageDelete} deletedImage={deletedImage} index={indexRapport} imageUrl={urlImage} image={infoImage} setDeleteImage={setDeleteImage}/>}
                     
                     <div className="blocImageRapportBody">

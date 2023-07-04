@@ -12,11 +12,11 @@ const FooterPdf = () => {
         sectionFooter:{
 
             width:'100%',
-            height:'50px',
+            height:'30px',
             position :'absolute',
             bottom:'1px',
             textAlign:'center',
-            marginTop:'20px',
+            marginTop:'10px',
             
         },
         textFooter:{

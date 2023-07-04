@@ -56,7 +56,7 @@ const [indexConstatation,setIndexConstatation] = useState(0)
           backgroundColor:'#E7ECE8',
 
           // backgroundColor: '#FFFFFF',
-          paddingBottom:'60px',
+          // paddingBottom:'60px',
           // height:'100%'
         },
         section: {
@@ -111,7 +111,7 @@ const [indexConstatation,setIndexConstatation] = useState(0)
   <Page wrap key={indexData} size="A4" style={styles.page}>  
           <HeaderPdf2 dataInfoPdf={dataInfoPdf}/>
             <BodyInter indexDataPdf={indexData} setIndexConstatation={setIndexConstatation} indexConstatation={indexConstatation} indexData={indexData} dataInterPdf={dataInter}/>
-          <FooterPdf/>
+          {/* <FooterPdf/> */}
    </Page>
        
     
