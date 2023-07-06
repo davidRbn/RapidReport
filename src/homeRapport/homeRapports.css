@@ -25,22 +25,29 @@
 
     cursor: pointer;
     min-width:250px;
-    min-height: 20px;
+    height: 60px;
     margin: 5px;
     background-color: white;
     border-radius: 10px;
-    border: solid 1px red;
+    border-bottom: solid 5px red;
+    border-top: solid 3px white;
+    border-left:solid 3px white ;
+    border-right: solid 3px white;
+
 }
 
 .list-rapports-interFini{
 
     cursor: pointer;
     min-width:250px;
-    min-height: 20px;
+    height: 60px;
     margin: 5px;
     background-color: white;
     border-radius: 10px;
-    border: solid 1px green;
+    border-bottom: solid 5px green;
+    border-top: solid 3px white;
+    border-left:solid 3px white ;
+    border-right: solid 3px white;
 
 }
 
@@ -48,6 +55,8 @@
 
 display: flex;
 flex-direction: row;
+align-items: center;
+justify-content: center;
 
 }
 
@@ -55,4 +64,9 @@ flex-direction: row;
 
     color: red;
     cursor: pointer;
+    margin-left: 5px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 20%;
+    border: 2px solid #048B9A;
 }

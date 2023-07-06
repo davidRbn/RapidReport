@@ -19,7 +19,7 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
   //   return photoCounter
   // };
 
-  const getBlockImageLegStyle = (length,index) => {
+  const getBlockImageLegStyle = (length,index,bigPicture) => {
     
 
               // return (length > 1 && length < 5) || length === 4 || length === 7 || length === 8 ? styles.blocImageMoyen : length === 1 ? styles.blocImageGrand : styles.blocImageLegPetit
@@ -29,7 +29,7 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
                 if((length === 7 || length === 8) && (index === 4 || index === 5)){
 
                   return [styles.blocImageMoyen,styles.blocImageMoyenSecondPage]
-                }else {
+                } else {
 
                   return styles.blocImageMoyen
                 }
@@ -38,7 +38,7 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
 
                   return styles.blocImageGrand 
 
-              }else {
+              } else {
 
                 if((length === 9 || length === 10) && (index === 6 || index === 7)){
 
@@ -186,7 +186,7 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent:'space-between',
+      justifyContent:'space-around',
       textAlign: 'center',
       border:`2px solid ${globalColor.titleColor}`,
       borderRadius:'5%'
@@ -194,7 +194,7 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
     },
     blocImageMoyenSecondPage:{
 
-      marginTop:"80px",
+      marginTop:"110px",
       marginBottom:'50px'
 
     },
@@ -208,7 +208,22 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent:'center',
+      justifyContent:'space-around',
+      textAlign: 'center',
+      border:`2px solid ${globalColor.titleColor}`,
+      borderRadius:'5%',
+
+    },
+    blocBigPicture:{
+      width:"450px",
+      maxHeight:'430px',
+      minHeight:'420px',
+      margin:"5px auto",
+      padding:"2px",
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent:'space-around',
       textAlign: 'center',
       border:`2px solid ${globalColor.titleColor}`,
       borderRadius:'5%',
@@ -302,7 +317,7 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
 
 
 
-console.log(dataInterPdf);
+// console.log(dataInterPdf);
 
 return (
 
@@ -327,7 +342,7 @@ return (
           
 
             // <View debug wrap={false} key={index} style={(index > 3) ? styles.firstBlocImage2: styles.firstBlocImage}>
-                 <View  key={index} style={getBlockImageLegStyle(dataInterPdf.image.length,index)}>
+                 <View key={index} style={getBlockImageLegStyle(dataInterPdf.image.length,index,image.bigPicture)}>
                  
                 <Text style={styles.photoNumber}>PHOTO N°{image.numberPhoto}</Text>
                  <View wrap={false} style={image.orientationImage === 6 && styles.blocImageLegPortrait}>

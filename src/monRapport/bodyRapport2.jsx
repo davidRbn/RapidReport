@@ -193,20 +193,20 @@ console.log(newImage)
     
     const newDataInterImage = dataInter.map((data, i) => {
        if(name === 'epreuve' && index === i){
-        const neww = data.image.map((image, i) => i === indexImage ? { ...image, epreuve : e } : { ...image })
+        const neww = data.image.map((image, i) => i === indexImage ? { ...image, [name] : e } : { ...image })
         return { ...data, image: neww }
          
        }else if (name === 'finale' && index === i){
-        const neww = data.image.map((image, i) => i === indexImage ? { ...image, finale : e } : { ...image })
+        const neww = data.image.map((image, i) => i === indexImage ? { ...image, [name] : e } : { ...image })
         return { ...data, image: neww }
         
        }else if (name === 'reseau' && index === i){
-        const neww = data.image.map((image, i) => i === indexImage ? { ...image, reseau : e } : { ...image })
+        const neww = data.image.map((image, i) => i === indexImage ? { ...image, [name] : e } : { ...image })
         return { ...data, image: neww }
         
        }
       else if (index === i) {
-        const neww = data.image.map((image, i) => i === indexImage ? { ...image, legende: e } : { ...image })
+        const neww = data.image.map((image, i) => i === indexImage ? { ...image, [name] : e  } : { ...image })
         return { ...data, image: neww }
       }
       else { return data }
@@ -285,7 +285,7 @@ console.log(newImage)
 
 
   // dataInter.map(e => console.log(e.image))
-  // console.log(dataInter)
+  console.log(dataInter)
   // console.log(pictureAddOrDelete)
   // console.log(url)
 //   console.log(urlLoaded)
@@ -453,9 +453,18 @@ if (data.section === "vueGlobale"){
                      : 
                      <div key={index}>
 
-                     <textarea className="inputInfoImage" type='text' maxLength={95} value={image.legende} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage)} />
-                          
+                     <textarea className="inputInfoImage" name='legende' type='text' maxLength={95} value={image.legende} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage,e.target.name)} />
+
+                   {/* <div>     
+                     <label className="labelMoyenTechnique">
+                     Grande image :  
+                 <input className="checkBoxGrandeImage" type="checkbox"  checked={image.bigPicture ? image.bigPicture : false } onChange={() => handleChangeInfoImage(image.bigPicture ? !image.bigPicture : true,index, indexImage,'bigPicture')}/>
+                 
+                    </label>
+                    </div>   */}
                      </div>
+
+                     
                      
                     }                          
                     </div>
