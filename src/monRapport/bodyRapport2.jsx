@@ -140,7 +140,6 @@ console.log(newImage)
   
     counter = 0
     setPictureAddOrDelete(false)
-    console.log('counter')
   };
 
   useEffect(() => {
@@ -301,14 +300,88 @@ console.log(newImage)
   }
 
 
+  const moveImageUp = (e,index,indexImage,image) => {
+
+e.preventDefault()
+
+    let imageMove = image.slice(indexImage,indexImage + 1)
+    let imageRemplaced = image.slice(indexImage - 1,indexImage)
+
+
+    const newData = dataInter.map((data,currentIndex) => {
+
+       if(currentIndex  === index){
+
+          const newDataImage = data.image.map((image,currentIndexImage) => {
+
+                if(currentIndexImage === indexImage){
+
+                  return  imageRemplaced[0]
+
+                }else if(currentIndexImage === indexImage - 1){
+
+                  return imageMove[0]
+                }else return image
+          })
+
+        return {...data,image : newDataImage}
+
+       }else return data 
+
+    })
+
+setDataInter(newData)
+setPictureAddOrDelete(true)
+
+ }
+
+
+
+
+ const moveImageDown = (e,index,indexImage,image) => {
+
+  e.preventDefault()
+  
+      let imageMove = image.slice(indexImage,indexImage + 1)
+      let imageRemplaced = image.slice(indexImage + 1,indexImage + 2)
+  
+  
+      const newData = dataInter.map((data,currentIndex) => {
+  
+         if(currentIndex  === index){
+  
+            const newDataImage = data.image.map((image,currentIndexImage) => {
+  
+                  if(currentIndexImage === indexImage){
+  
+                    return  imageRemplaced[0]
+  
+                  }else if(currentIndexImage === indexImage + 1){
+  
+                    return imageMove[0]
+                  }else return image
+            })
+  
+          return {...data,image : newDataImage}
+  
+         }else return data 
+  
+      })
+  
+  setDataInter(newData)
+  setPictureAddOrDelete(true)
+
+   }
+
+
   // dataInter.map(e => console.log(e.image))
-  console.log(dataInter)
+  // console.log(dataInter)
   // console.log(pictureAddOrDelete)
   // console.log(url)
 //   console.log(urlLoaded)
   // console.log(legende)
   // console.log(url)
-  console.log(containFile)
+  // console.log(containFile)
  
 
   return (
@@ -352,7 +425,7 @@ if (data.section === "vueGlobale"){
                                                                         setInfoImage(image)
                                                                         setUrlImage(image.url)
                                                                         
-                                                                                               }}>Supprimer</button>
+                                                                                               }}>X</button>
                   {deleteImage && <ModalDeleteImage openModalImageDelete={openModalImageDelete} deletedImage={deletedImage} index={indexRapport} imageUrl={urlImage} image={infoImage} setDeleteImage={setDeleteImage}/>}
                   <div className="blocImageRapportBody">
                       <img  className="imageRapportBody" src={image.url} alt="" /> 
@@ -440,14 +513,21 @@ if (data.section === "vueGlobale"){
                                                                         setInfoImage(image)
                                                                         setUrlImage(image.url)
                                                                         
-                                                                                               }}>Supprimer</button>
+                                                                                               }}>X</button>
                                <p>Photo N° {image.numberPhoto}</p>                                                                
                   {deleteImage && <ModalDeleteImage openModalImageDelete={openModalImageDelete} deletedImage={deletedImage} index={indexRapport} imageUrl={urlImage} image={infoImage} setDeleteImage={setDeleteImage}/>}
                     
                     <div className="blocImageRapportBody">
                       <img  className="imageRapportBody" src={image.url} alt="" /> 
-                      </div> 
                       
+                      </div> 
+                             <div>
+                                 { indexImage === 0 || data.image.length === 1 ? '' :  <button className="btnChangePlaceImage-up" onClick={(e) => moveImageUp(e,index,indexImage,data.image)}>{`<`}</button>}
+                                 
+                                 { indexImage === data.image.length - 1 || data.image.length === 1 ? '' : <button className="btnChangePlaceImage-down" onClick={(e) => moveImageDown(e,index,indexImage,data.image)}>{`>`}</button>}
+                              
+                              </div>                                                                      
+
                      {data.section === "miseEnPression" ? 
                      <div className="section-misePression" key={index} >
                          <p>Réseau d'alimention d'eau {image.reseau}</p>
