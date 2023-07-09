@@ -73,7 +73,7 @@ const MonRapport = () => {
     
     if (image.file ) {
 
-   const path = `${image.file.name}`;
+   const path = `${image.imageName}`;
    // console.log(storageRef)
    const imageRef = ref(storageRef, `${infoInter.informationIntervention.reference}/${path}`)
 

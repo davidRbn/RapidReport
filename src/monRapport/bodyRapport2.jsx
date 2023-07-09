@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import './bodyRapport.css'
 // import { dataIntervention } from "./dataIntervention";
 // import Resizer from 'react-image-file-resizer'
-import{ EXIF} from "exif-js";
+import Resizer from "react-image-file-resizer";
+// import{ EXIF} from "exif-js";
 import ModalDeleteImage from "./modalDeleteImage/ModalDeleteImage";
 
 
@@ -32,16 +33,30 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
     // console.log(e.target)
     for (let i = 0; i < e.target.files.length; i++) {
       const newImage = e.target.files[i];
+      const imageName = newImage.name
 
-    EXIF.getData(newImage,function () {
+    // EXIF.getData(newImage,function () {
 
-        let orientation = EXIF.getTag(this, 'Orientation')
+        // let orientation = EXIF.getTag(this, 'Orientation')
 
-      //  console.log(orientation)
-             
-       if(orientation === undefined){
-        orientation = 0 
-       }
+           let orientation = 0  
+      //  if(orientation === undefined){
+      //   orientation = 0 
+      //  }
+
+        Resizer.imageFileResizer(
+        newImage,
+        600,
+        600,
+        "JPEG",
+        100,
+        0,
+        (uri) => {
+           handleUpload(index,uri,orientation,imageName)         
+        },
+       "blob"
+
+      )
 
       //  const modifiedFile = new File([newImage], newImage.name, { type: newImage.type });
 
@@ -50,7 +65,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
        
 console.log(newImage)
 
-   handleUpload(index,newImage,orientation)
+  //  handleUpload(index,newImage,orientation)
 
 
       // console.log(orientation)
@@ -59,7 +74,7 @@ console.log(newImage)
   //  return dataImage
 
        
-      })
+      // })
 
 
         // Resizer.imageFileResizer(
@@ -136,13 +151,13 @@ console.log(newImage)
   },[pictureAddOrDelete])
 
 
-  const handleUpload = async (indexData,newImage,imageOrientation) => {
+  const handleUpload = async (indexData,newImage,imageOrientation,imageName) => {
 
 
     setContainFile((prevState) => prevState + 1)
    
 
-    console.log(newImage)
+    // console.log(newImage)
 
 
 
@@ -169,10 +184,10 @@ console.log(newImage)
                       if (indexx === indexData){
                         if(data.section === "miseEnPression"){
 
-                          return {...data, image: [...data.image,{url : url,epreuve : "",finale : "", file : newImage,orientationImage: imageOrientation}]}
+                          return {...data, image: [...data.image,{url : url,epreuve : "",finale : "", file : newImage,orientationImage: imageOrientation,imageName:imageName}]}
 
                         }else{
-                      return {...data, image:  [...data.image,{url : url,legende: "",file : newImage,orientationImage: imageOrientation}]}                     
+                      return {...data, image:  [...data.image,{url : url,legende: "",file : newImage,orientationImage: imageOrientation,imageName:imageName}]}                     
                         }       
                       }else return data
 
@@ -256,8 +271,10 @@ console.log(newImage)
 
     e.preventDefault()
 
+    
 
-    image.file instanceof File && setContainFile(prevState => prevState - 1)
+
+    image.file instanceof Blob && setContainFile(prevState => prevState - 1)
 
      
     const newDataInterImage = dataInter.map((data, i) => {
@@ -291,7 +308,7 @@ console.log(newImage)
 //   console.log(urlLoaded)
   // console.log(legende)
   // console.log(url)
-  // console.log(indexData)
+  console.log(containFile)
  
 
   return (
