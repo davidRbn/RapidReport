@@ -36,7 +36,12 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
 
               }else if (length === 1){
 
-                  return styles.blocImageGrand 
+                if(bigPicture){
+
+                  return [styles.blocImageGrand,styles.blocBigPicture]
+
+
+                }else return styles.blocImageGrand 
 
               } else {
 
@@ -215,18 +220,10 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
 
     },
     blocBigPicture:{
-      width:"450px",
-      maxHeight:'430px',
-      minHeight:'420px',
-      margin:"5px auto",
-      padding:"2px",
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent:'space-around',
-      textAlign: 'center',
-      border:`2px solid ${globalColor.titleColor}`,
-      borderRadius:'5%',
+      width:"580px",
+      maxHeight:'600px',
+      minHeight:'420px',   
+      marginTop:'50px'
 
     },
     blocImageLegPortrait:{

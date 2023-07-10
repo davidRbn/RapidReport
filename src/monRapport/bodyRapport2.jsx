@@ -552,13 +552,13 @@ if (data.section === "vueGlobale"){
 
                      <textarea className="inputInfoImage" name='legende' type='text' maxLength={95} value={image.legende} onChange={e => handleChangeInfoImage(e.target.value, index, indexImage,e.target.name)} />
 
-                   {/* <div>     
+                  { data.image.length === 1 && <div>     
                      <label className="labelMoyenTechnique">
                      Grande image :  
                  <input className="checkBoxGrandeImage" type="checkbox"  checked={image.bigPicture ? image.bigPicture : false } onChange={() => handleChangeInfoImage(image.bigPicture ? !image.bigPicture : true,index, indexImage,'bigPicture')}/>
                  
                     </label>
-                    </div>   */}
+                    </div> } 
                      </div>
 
                      
