@@ -397,7 +397,7 @@ if (data.section === "vueGlobale"){
          return (
           <div key={index} className="separation">
          <div >
-            <h3>{data.titre}</h3>
+            <h3 className="title-des">{data.titre}</h3>
            <div>
             <label>Choisir image</label>
             <input accept="image/*" type="file" title='Choisir une image' onChange={e => handleChange(e,index)}/> 

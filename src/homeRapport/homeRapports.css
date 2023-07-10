@@ -62,11 +62,11 @@ justify-content: center;
 
 .bloc-rapports p {
 
-    color: red;
+    color: white;
     cursor: pointer;
     margin-left: 5px;
-    background-color: white;
+    background-color: #E11818;
     padding: 10px;
     border-radius: 20%;
-    border: 2px solid #048B9A;
+    border: 2px solid #E11818;
 }
