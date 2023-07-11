@@ -6,6 +6,7 @@ import './bodyRapport.css'
 import Resizer from "react-image-file-resizer";
 // import{ EXIF} from "exif-js";
 import ModalDeleteImage from "./modalDeleteImage/ModalDeleteImage";
+import { deleteObject, getStorage, ref } from "firebase/storage";
 
 
 
@@ -13,7 +14,7 @@ import ModalDeleteImage from "./modalDeleteImage/ModalDeleteImage";
 
 
 
-const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile}) => {
+const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInter}) => {
 
   // const storage = getStorage();
   // const storageRef = ref(storage);
@@ -266,29 +267,65 @@ console.log(newImage)
 
   }
 
-  const deletedImage = (indexData,url,e,image) => {
+
+const mapForDeletedImage = (indexData,url) => {
+
+
+  const newDataInterImage = dataInter.map((data, i) => {
+    if (indexData === i) {
+     const neww = data.image.filter((im,ind) => im.url !== url )
+     return { ...data, image: neww }
+   }
+   else { return data }
+ }
+
+ )
+ setDataInter(newDataInterImage)
+ setDeleteImage(false)
+//  addNumberPhotos()
+setPictureAddOrDelete(true)
+
+}
+
+
+
+  const deletedImage = (indexData,url,e,image,infoInter) => {
 
     e.preventDefault()
 
-    
+    const storage = getStorage()
+
+    const refRapport = infoInter.informationIntervention.reference
+
+    if(image.file instanceof Blob){
+
+      setContainFile(prevState => prevState - 1)
+
+      mapForDeletedImage(indexData,url)
+
+    }else{
 
 
-    image.file instanceof Blob && setContainFile(prevState => prevState - 1)
+      const desertRef = ref(storage, `${refRapport}/${image.fileName}`);
 
-     
-    const newDataInterImage = dataInter.map((data, i) => {
-      if (indexData === i) {
-       const neww = data.image.filter((im,ind) => im.url !== url )
-       return { ...data, image: neww }
-     }
-     else { return data }
-   }
+      deleteObject(desertRef).then(() => {
+  
+          console.log('image supprimé');
 
-   )
-   setDataInter(newDataInterImage)
-   setDeleteImage(false)
-  //  addNumberPhotos()
-  setPictureAddOrDelete(true)
+      mapForDeletedImage(indexData,url)
+
+  
+      }).catch((error) => {
+  
+          console.log(error)
+  
+      })
+
+         }
+
+    // image.file instanceof Blob && setContainFile(prevState => prevState - 1)
+
+
   }
 
   const openModalImageDelete = (e) => {
@@ -375,7 +412,7 @@ setPictureAddOrDelete(true)
 
 
   // dataInter.map(e => console.log(e.image))
-  // console.log(dataInter)
+  console.log(dataInter)
   // console.log(pictureAddOrDelete)
   // console.log(url)
 //   console.log(urlLoaded)
@@ -515,7 +552,7 @@ if (data.section === "vueGlobale"){
                                                                         
                                                                                                }}>X</button>
                                <p>Photo N° {image.numberPhoto}</p>                                                                
-                  {deleteImage && <ModalDeleteImage openModalImageDelete={openModalImageDelete} deletedImage={deletedImage} index={indexRapport} imageUrl={urlImage} image={infoImage} setDeleteImage={setDeleteImage}/>}
+                  {deleteImage && <ModalDeleteImage openModalImageDelete={openModalImageDelete} infoInter={infoInter} deletedImage={deletedImage} index={indexRapport} imageUrl={urlImage} image={infoImage} setDeleteImage={setDeleteImage}/>}
                     
                     <div className="blocImageRapportBody">
                       <img  className="imageRapportBody" src={image.url} alt="" /> 

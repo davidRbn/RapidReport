@@ -324,7 +324,7 @@ return(
                  
                     </label>
            </div>
-        <BodyRapport2 dataInter={dataInter} setDataInter={setDataInter} setContainFile={setContainFile} containFile={containFile}/>
+        <BodyRapport2 infoInter={infoInter} dataInter={dataInter} setDataInter={setDataInter} setContainFile={setContainFile} containFile={containFile}/>
 
 
 
