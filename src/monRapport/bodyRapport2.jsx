@@ -316,7 +316,8 @@ setPictureAddOrDelete(true)
 
   
       }).catch((error) => {
-  
+
+      mapForDeletedImage(indexData,url)
           console.log(error)
   
       })
