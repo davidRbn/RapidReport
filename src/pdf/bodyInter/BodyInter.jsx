@@ -93,6 +93,14 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
       minHeight:'90px'
 
     },
+
+    arrosageTerrasse:{
+
+      maxHeight:'270px',
+      textAlign:'none'
+
+    },
+
     containerAllImage:
     
     {
@@ -220,8 +228,8 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
 
     },
     blocBigPicture:{
-      width:"580px",
-      maxHeight:'600px',
+      width:"550px",
+      maxHeight:'550px',
       minHeight:'420px',   
       marginTop:'50px'
 
@@ -325,9 +333,13 @@ return (
 
 
 <View>
+
+  {
+    dataInterPdf.section !== 'arrosageTerrasse' &&
     
     <Text style={styles.descriptionDataInter}>{dataInterPdf.section === "constatations" ? "" : dataInterPdf.description}</Text>
 
+   }
     <View style={getContainerImage(dataInterPdf.image.length)}>
 
     {dataInterPdf.image.map((image,index) => {
@@ -369,8 +381,17 @@ return (
 
 </View>
 
+
+
                
       </View> 
+
+      {
+    dataInterPdf.section === 'arrosageTerrasse' &&
+    
+    <Text debug style={[styles.descriptionDataInter,styles.arrosageTerrasse]}>{dataInterPdf.description}</Text>
+
+   }
       
 
     </View>

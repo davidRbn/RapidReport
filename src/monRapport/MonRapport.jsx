@@ -1,4 +1,4 @@
-import { PDFDownloadLink} from "@react-pdf/renderer";
+import { PDFDownloadLink, PDFViewer} from "@react-pdf/renderer";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
@@ -234,8 +234,9 @@ const test = async () => {
     setInfoInter({...infoInter,uid : user.uid})
     
     
-    const res = docIsCreated ? await RapportDataService.updateRapport(idRapport,data) : await RapportDataService.addRapports(data)
-   !docIsCreated && setIdRapport(res.id)
+    docIsCreated ? await RapportDataService.updateRapport(idRapport,data).then(() => console.log('ca fonctionne')).catch((error) => console.log(error)) 
+    
+                 : await RapportDataService.addRapports(data).then((res) => setIdRapport(res.id)).catch((error) => console.log(error))
     setDataSend(true)
     console.log('envoyé')
     setDataLoading(true)
@@ -335,17 +336,17 @@ return(
     </div>
     {refIsNull && <ModalRef setRefIsNull={setRefIsNull}/>}
   
- <div className="link-pdf">
+ {/* <div className="link-pdf">
      <PDFDownloadLink document={<Rapport idRapport={idRapport} dataLoading={setDataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf} />} fileName={`${infoInter.informationIntervention.client} ${infoInter.informationIntervention.reference} ${infoInter.informationIntervention.dateIntervention}`}>
       {({ blob, url, loading, error }) =>(
         loading ? 'Chargement du document' : 'Telecharger document!')
 
      }
     </PDFDownloadLink>
-    </div> 
+    </div>  */}
     
 
- {/* { <PDFViewer><Rapport idRapport={idRapport} dataLoading={setDataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf} /></PDFViewer>  }  */}
+ { <PDFViewer><Rapport idRapport={idRapport} dataLoading={setDataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf} /></PDFViewer>  } 
     
     
     {!dataLoading && <Loader/> }

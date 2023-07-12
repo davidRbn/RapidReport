@@ -96,73 +96,82 @@ export const dataIntervention =
     description : '',
     image : []
 
- },
-{
+//  },
+// {
    
-    section : 'miseEnPression',
-    titre: "Mise en pression",
-    description:"Nous réalison une mise en pression du réseau d'alimentation en ayant préalablement fermé la vanne d'arrivée d'eau générale.",
-    image:[]
+//     section : 'miseEnPression',
+//     titre: "Mise en pression",
+//     description:"Nous réalison une mise en pression du réseau d'alimentation en ayant préalablement fermé la vanne d'arrivée d'eau générale.",
+//     image:[]
      
 
-},
-
-{
+// },
+// {
     
 
-    section : 'colorant',
-    titre: "Colorant et arrosages ciblés ",
-    description:"Nous réalisons des tests au colorant dans les différents elements sanitaires.",
-    image:[],
+//     section : 'arrosageTerrasse',
+//     titre: "Arrosage terrasse ",
+//     description:"",
+//     image:[],
 
 
-},
+// },
 
- {
-
-    section : 'fumee',
-    titre: " Mise en oeuvre machine à fumée ",
-    description:"Nous mettons en oeuvre la fumée dans les évacuations. ",
-    image:[],
-
-},
-
-{
+// {
     
-    section : 'gazTraceur',
-    titre: " Mise en pression avec gaz traceur ",
-    description:"Nous mettons en pression le réseau d'alimentation d'eau avec le gaz traceur et recherchons une éventuel résurgence de celui-ci dans le logement.",
-    image:[],
-},
+//     section : 'colorant',
+//     titre: "Colorant et arrosages ciblés ",
+//     description:"",
+//     image:[],
 
- {
 
-    section : 'passagecamera',
-    titre: " Mise en oeuvre caméra ",
-    description:"Nous réalisons un passage caméra ....",
-    image:[],
- },
- {
+// },
 
-    section : 'autre',
-    titre: " Autre ",
-    description:"",
-    image:[],
- },
- {
+//  {
 
-    section : 'autre',
-    titre: " Autre ",
-    description:"",
-    image:[],
- },
- {
+//     section : 'fumee',
+//     titre: " Mise en oeuvre machine à fumée ",
+//     description:"",
+//     image:[],
+
+// },
+
+// {
+    
+//     section : 'gazTraceur',
+//     titre: " Mise en pression avec gaz traceur ",
+//     description:"",
+//     image:[],
+// },
+
+//  {
+
+//     section : 'passagecamera',
+//     titre: " Mise en oeuvre caméra ",
+//     description:"",
+//     image:[],
+//  },
+//  {
+
+//     section : 'autre',
+//     titre: " Autre ",
+//     description:"",
+//     image:[],
+//  },
+//  {
+
+//     section : 'autre',
+//     titre: " Autre ",
+//     description:"",
+//     image:[],
+//  },
+//  {
     
 
-    section : 'defaut',
-    titre: "Localisation fuite/defaut ",
-    description:"Les defauts ....",
-    image:[],
+//     section : 'defaut',
+//     titre: "Localisation fuite/defaut ",
+//     description:"",
+//     image:[],
    
    
    }

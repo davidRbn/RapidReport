@@ -23,7 +23,18 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInt
   const [infoImage,setInfoImage] = useState()
   const [urlImage,setUrlImage] = useState()
   const [pictureAddOrDelete,setPictureAddOrDelete] = useState(false)
+  const selectSectionInter = [
 
+    {label: 'miseEnPression', value : 'Mise en pression'},
+    {label:'arrosageTerrasse' ,value: 'Arrosage terrasse'},
+    {label:'colorant' ,value: 'Mise en charge avec colorant' },
+    {label:'fumee' ,value: 'Mise en oeuvre machine a fumée' },
+    {label: 'gazTraceur' ,value: 'Mise en oeuvre gaz traceur' },
+    {label:'passagecamera ',value: 'Mise en oeuvre caméra' },
+    {label: 'autre' ,value: 'Autre' }
+                                ]
+  
+   const [valeurSelectionnee, setValeurSelectionnee] = useState('miseEnPression');
 
 
 
@@ -411,10 +422,58 @@ setPictureAddOrDelete(true)
 
    }
 
+   const handleSelectionSection = (e) => {
+
+setValeurSelectionnee(e.target.value)
+
+   }
+
+   const selectInterSection = (e) => {
+
+         
+    e.preventDefault()
+
+
+        let title = ''
+
+ switch(valeurSelectionnee){
+      case 'miseEnPression' : 
+          title = 'Mise en pression'
+       break;
+       case 'arrosageTerrasse' : 
+            title = "Arrosage terrasse"
+       break;
+       case 'colorant' : 
+              title = 'Mise en charge avec colorant'     
+       break;
+       case 'fumee' : 
+              title = 'Mise en oeuvre machine a fumée'     
+       break;
+       case 'gazTraceur' : 
+       title = 'Mise en oeuvre gaz traceur'  
+        break;
+        case 'passagecamera' : 
+       title = 'Mise en oeuvre caméra'  
+        break;
+       default : title = 'autre'
+
+ }
+
+       const newSection = {
+
+          section : valeurSelectionnee,
+          titre : title,
+          description : '',
+          image : []
+        }
+
+        setDataInter([...dataInter,newSection])
+   }
+
 
   // dataInter.map(e => console.log(e.image))
   console.log(dataInter)
-  // console.log(pictureAddOrDelete)
+  console.log(valeurSelectionnee)
   // console.log(url)
 //   console.log(urlLoaded)
   // console.log(legende)
@@ -522,7 +581,7 @@ if (data.section === "vueGlobale"){
             </label>
             <label>
               <div> Description : </div>
-              <textarea name='description' type="textarea" maxLength={data.section === "conclusion" || data.section === "investigations" || data.section === "constatations" ? 100000 : 730} value={data.description} onChange={e => handleChangeInfoInter(e.target.value, index, e.target.name)} />
+              <textarea name='description' type="textarea" maxLength={data.section === "conclusion" || data.section === "investigations" || data.section === "constatations" ? 100000 : data.section === 'arrosageTerrasse' ? 2090 : 730} value={data.description} onChange={e => handleChangeInfoInter(e.target.value, index, e.target.name)} />
             </label>
           </div>
           <div>
@@ -613,11 +672,32 @@ if (data.section === "vueGlobale"){
          
         </div>)
           
-        }
-        
-         
-        
-              })}
+        }        
+        })}
+        <div className="sectionSelectInter">
+
+         <label>
+              Selectionner une section : 
+              <select onChange={handleSelectionSection}>
+                    { selectSectionInter.map((select,indexSelect) => (
+
+                        <option key={indexSelect} value={select.label}>{select.value}</option>
+                         
+                        
+                  
+
+                    ))
+
+
+                    }
+
+             
+
+              </select>
+
+          </label>
+          <button onClick={(e) => selectInterSection(e)}> Ajouter section</button>
+         </div>   
 
     </>
   )
