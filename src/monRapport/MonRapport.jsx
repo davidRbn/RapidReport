@@ -1,4 +1,4 @@
-import { PDFDownloadLink, PDFViewer} from "@react-pdf/renderer";
+import { PDFDownloadLink} from "@react-pdf/renderer";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
@@ -336,17 +336,17 @@ return(
     </div>
     {refIsNull && <ModalRef setRefIsNull={setRefIsNull}/>}
   
- {/* <div className="link-pdf">
+ <div className="link-pdf">
      <PDFDownloadLink document={<Rapport idRapport={idRapport} dataLoading={setDataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf} />} fileName={`${infoInter.informationIntervention.client} ${infoInter.informationIntervention.reference} ${infoInter.informationIntervention.dateIntervention}`}>
       {({ blob, url, loading, error }) =>(
         loading ? 'Chargement du document' : 'Telecharger document!')
 
      }
     </PDFDownloadLink>
-    </div>  */}
+    </div> 
     
 
- { <PDFViewer><Rapport idRapport={idRapport} dataLoading={setDataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf} /></PDFViewer>  } 
+ {/* { <PDFViewer><Rapport idRapport={idRapport} dataLoading={setDataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf} /></PDFViewer>  }  */}
     
     
     {!dataLoading && <Loader/> }
