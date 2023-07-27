@@ -159,7 +159,7 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
     blocImageLegPetit : {
 
         width:"220px",
-        maxHeight:'300px',
+        maxHeight:'220px',
         minHeight:'200px',
         margin:"5px auto",
         padding:"2px",
@@ -192,7 +192,7 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
     blocImageMoyen:{
 
       width:"280px",
-      maxHeight:'300px',
+      maxHeight:'290px',
       minHeight:'280px',
       margin:"4px auto",
       padding:"2px",
@@ -214,7 +214,7 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
     blocImageGrand:{
 
       width:"350px",
-      maxHeight:'400px',
+      maxHeight:'360px',
       minHeight:'350px',
       margin:"5px auto",
       padding:"2px",
@@ -229,7 +229,7 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
     },
     blocBigPicture:{
       width:"550px",
-      maxHeight:'550px',
+      maxHeight:'480px',
       minHeight:'420px',   
       marginTop:'50px'
 
@@ -389,7 +389,7 @@ return (
       {
     dataInterPdf.section === 'arrosageTerrasse' &&
     
-    <Text debug style={[styles.descriptionDataInter,styles.arrosageTerrasse]}>{dataInterPdf.description}</Text>
+    <Text style={[styles.descriptionDataInter,styles.arrosageTerrasse]}>{dataInterPdf.description}</Text>
 
    }
       

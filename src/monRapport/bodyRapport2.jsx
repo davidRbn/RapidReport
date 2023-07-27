@@ -7,6 +7,7 @@ import Resizer from "react-image-file-resizer";
 // import{ EXIF} from "exif-js";
 import ModalDeleteImage from "./modalDeleteImage/ModalDeleteImage";
 import { deleteObject, getStorage, ref } from "firebase/storage";
+// import EXIF from "exif-js";
 
 
 
@@ -30,7 +31,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInt
     {label:'colorant' ,value: 'Mise en charge avec colorant' },
     {label:'fumee' ,value: 'Mise en oeuvre machine a fumée' },
     {label: 'gazTraceur' ,value: 'Mise en oeuvre gaz traceur' },
-    {label:'passagecamera ',value: 'Mise en oeuvre caméra' },
+    {label:'passagecamera',value: 'Mise en oeuvre caméra' },
     {label: 'autre' ,value: 'Autre' }
                                 ]
   
@@ -46,15 +47,21 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInt
     for (let i = 0; i < e.target.files.length; i++) {
       const newImage = e.target.files[i];
       const imageName = newImage.name
+      let orientation = 0
+
+      console.log(newImage);
 
     // EXIF.getData(newImage,function () {
 
-        // let orientation = EXIF.getTag(this, 'Orientation')
+    //     orientation = EXIF.getTag(this, 'Orientation')
+    //     console.log(orientation);
 
-           let orientation = 0  
-      //  if(orientation === undefined){
-      //   orientation = 0 
-      //  }
+    //       //  let orientation = 0  
+    //    if(orientation === undefined){
+    //     orientation = 0 
+    //    }
+    //   return orientation
+    //   })
 
         Resizer.imageFileResizer(
         newImage,
@@ -75,7 +82,6 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInt
       // let deleteExifData = newImage
       // delete deleteExifData['exifdata']
        
-console.log(newImage)
 
   //  handleUpload(index,newImage,orientation)
 
@@ -163,6 +169,8 @@ console.log(newImage)
 
 
   const handleUpload = async (indexData,newImage,imageOrientation,imageName) => {
+
+console.log(imageOrientation)
 
 
     setContainFile((prevState) => prevState + 1)
@@ -472,8 +480,8 @@ setValeurSelectionnee(e.target.value)
 
 
   // dataInter.map(e => console.log(e.image))
-  console.log(dataInter)
-  console.log(valeurSelectionnee)
+  // console.log(dataInter)
+  // console.log(valeurSelectionnee)
   // console.log(url)
 //   console.log(urlLoaded)
   // console.log(legende)

@@ -1,0 +1,23 @@
+.container-modalUpload{
+
+        width: 100%;
+        height: 50px;
+        background-color: white;
+        border: 2px solid grey;
+        position: fixed;
+        top: 0;
+        left: 0;
+        text-align: center;
+
+}
+
+.textUpload {
+
+ color: green;
+
+}
+
+.textError{
+
+    color: red;
+}

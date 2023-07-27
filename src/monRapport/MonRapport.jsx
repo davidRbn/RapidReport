@@ -12,7 +12,7 @@ import './monRapport.css'
 import { useLocation } from "react-router-dom";
 import ModalRef from "./ModalRef";
 import Loader from "../loader/Loader";
-
+import ModalUploadData from "../modalUploadData/ModalUploadData";
 
 
 
@@ -28,6 +28,9 @@ const MonRapport = () => {
     const [dataSend,setDataSend] = useState(false)
     const [docIsCreated,setDocIsCreated] = useState(location.state.docIsCreated)
     const [dataInterPdf,setDataInterPdf] = useState([])
+    const [infoUploadData, setInfoUploadData] = useState('')
+    const [uploadSuccess, setUploadSuccess] = useState(false)
+    const [openModalUpload,setOpenModalUpload] = useState(false)
     const storage = getStorage();
     const storageRef = ref(storage);
     const [urlFirebaseLoaded,setUrlFirebaseLoaded] = useState(false)    
@@ -234,14 +237,76 @@ const test = async () => {
     setInfoInter({...infoInter,uid : user.uid})
     
     
-    docIsCreated ? await RapportDataService.updateRapport(idRapport,data).then(() => console.log('ca fonctionne')).catch((error) => console.log(error)) 
+    docIsCreated ? await RapportDataService.updateRapport(idRapport,data).then(() =>{
+      
+      
+      setDataSend(true)
+      console.log('envoyé')
+      setDataLoading(true)
+     setDocIsCreated(true)
+     setUrlFirebaseLoaded(false)
+     setInfoUploadData('Le rapport a été enregistré avec succès')
+     setUploadSuccess(true)
+     setOpenModalUpload(true)
+
+
+     setTimeout(() => {
+
+      setOpenModalUpload(false)
+
+     },3000)
+
     
-                 : await RapportDataService.addRapports(data).then((res) => setIdRapport(res.id)).catch((error) => console.log(error))
-    setDataSend(true)
-    console.log('envoyé')
-    setDataLoading(true)
-   setDocIsCreated(true)
-   setUrlFirebaseLoaded(false)
+    }).catch((error) => {
+      
+      setDataLoading(true)
+      setUploadSuccess(false)     
+     setInfoUploadData('Une erreur est survenue lors du telechargement du rapport')
+     setOpenModalUpload(true)
+     setTimeout(() => {
+
+      setOpenModalUpload(false)
+
+     },3000)
+      
+      console.log(error)}) 
+    
+                 : await RapportDataService.addRapports(data).then((res) => {
+                  
+                  
+                  setIdRapport(res.id)
+                  setDataSend(true)
+                  console.log('envoyé')
+                  setDataLoading(true)
+                 setDocIsCreated(true)
+                 setUrlFirebaseLoaded(false)
+     setInfoUploadData('Le rapport a été enregistré avec succès')
+
+     setUploadSuccess(true)
+     setOpenModalUpload(true)
+
+
+     setTimeout(() => {
+
+      setOpenModalUpload(false)
+
+     },3000)
+
+                
+              
+        }).catch((error) =>{
+
+     setDataLoading(true)
+     setUploadSuccess(false)     
+     setInfoUploadData('Une erreur est survenue lors du telechargement du rapport')
+     setOpenModalUpload(true)
+     setTimeout(() => {
+
+      setOpenModalUpload(false)
+
+     },3000)
+          console.log(error)})
+   
 
 }
 
@@ -350,6 +415,7 @@ return(
     
     
     {!dataLoading && <Loader/> }
+   {openModalUpload && <ModalUploadData uploadSuccess={uploadSuccess} infoUploadData={infoUploadData}/>}
     
     </div>
 )

@@ -40,7 +40,7 @@ const PageTwoPdf = ({dataInterPdf,dataInfoPdf}) => {
 
             maxWidth:"380px",
             minWidth:'350px',
-            maxHeight:"300px",
+            maxHeight:"290px",
             minHeight:'270px',
             margin:"5px auto",
             padding:"5px",
