@@ -12,8 +12,7 @@ import ModalDelete from "../modalDelete/ModalDelete";
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import Loader from "../loader/Loader";
 // import {saveAs} from "file-saver";
-
-
+import imageMaison from '../image/imageMaison.jpg'
 
 
 
@@ -143,10 +142,17 @@ const deleteReport = async (e,idDoc,refRapport,dataInterDelete) => {
 
 // }
 
+// console.log(rapports)
+
+console.log(rapports.map(data => data.dataInter.filter(dataInter => dataInter.section === 'vueGlobale').map(img => img.image.length > 0 ? console.log(img.image[0].url) :console.log(''))))
+
+
 
 return (
 
-<>
+<div>
+    <p>MAJ : 1</p>
+    
 <div>
     <h1 className="title-home-rapports">Mes Rapports</h1>
         </div>
@@ -157,15 +163,39 @@ return (
     return (
         <div  key={key}>
 <div className="bloc-rapports">
-                <button className={data.infoInter.informationIntervention.rapportFini ?'list-rapports-interFini': 'list-rapports'} 
+                <div className={data.infoInter.informationIntervention.rapportFini ?'list-rapports-interFini': 'list-rapports'} 
                         onClick={e =>  accessMyReport(e,data.idDoc)}>
-                            {data.infoInter.informationIntervention.client} {data.infoInter.informationIntervention.reference} {data.infoInter.informationIntervention.dateIntervention}
-                </button>
-                    <p onClick={e => {e.preventDefault() 
+
+<div className="bloc-mage-infoInter-home">
+{data.dataInter.filter(dataInter => dataInter.section === 'vueGlobale').map(img => img.image.length > 0 ? 
+    
+   
+    <div>
+    
+            <img className="image-homeRapport" src={img.image[0].url} alt='vue immeuble'/>
+    </div>
+
+    
+    
+    :<img className="image-homeRapport" src={imageMaison} alt='vue immeuble'/>)}
+                       
+
+         
+                     <div className="text-infoInter-home"> 
+                        
+                    <p>{data.infoInter.informationIntervention.client} {data.infoInter.informationIntervention.reference} {data.infoInter.informationIntervention.dateIntervention}</p>
+
+                    </div>
+
+                   
+</div>                        
+                </div>
+                <p className="btn-delete-home" onClick={e => {e.preventDefault() 
                                       setIdDocument(data.idDoc)
                                       setRefRapport(data.infoInter.informationIntervention.reference)
                                       setDataInterDelete(data)
                                       setModalIsOpen(true)}}>X</p>
+                   
                     {/* <button onClick={e =>{   
                                              setDataInterDelete(data)
                                              downloadImages(e)}}>Telecharger images</button>                   */}
@@ -179,8 +209,7 @@ return (
 
   
     </div>
-
-</>
+</div>
 
 )
 
