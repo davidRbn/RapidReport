@@ -151,7 +151,7 @@ console.log(rapports.map(data => data.dataInter.filter(dataInter => dataInter.se
 return (
 
 <div>
-    <p>MAJ : 1</p>
+    <p>MAJ : 1.1</p>
     
 <div>
     <h1 className="title-home-rapports">Mes Rapports</h1>
