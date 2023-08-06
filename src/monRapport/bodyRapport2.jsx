@@ -491,7 +491,7 @@ setValeurSelectionnee(e.target.value)
 
   return (
     <>
-      <div><h2>Mon intervention : </h2></div>
+      <div><h2 className="title-intervention">Mon intervention</h2></div>
 
 
       {dataInter.map((data, index) =>
@@ -584,12 +584,12 @@ if (data.section === "vueGlobale"){
           <div className="s-titre-des">
             <label className="titre-des">
               Titre :
-              <input disabled={data.section === 'miseEnPression' || data.section === "conclusion"? true : false} name='titre' type="text" value={data.titre} onChange={e => handleChangeInfoInter(e.target.value, index, e.target.name)} />
+              <input className="input-title" disabled={data.section === 'miseEnPression' || data.section === "conclusion"? true : false} name='titre' type="text" value={data.titre} onChange={e => handleChangeInfoInter(e.target.value, index, e.target.name)} />
               
             </label>
             <label>
               <div> Description : </div>
-              <textarea name='description' type="textarea" maxLength={data.section === "conclusion" || data.section === "investigations" || data.section === "constatations" ? 100000 : data.section === 'arrosageTerrasse' ? 2090 : 730} value={data.description} onChange={e => handleChangeInfoInter(e.target.value, index, e.target.name)} />
+              <textarea className="texttarea-description" name='description' type="textarea" maxLength={data.section === "conclusion" || data.section === "investigations" || data.section === "constatations" ? 100000 : data.section === 'arrosageTerrasse' ? 2090 : 730} value={data.description} onChange={e => handleChangeInfoInter(e.target.value, index, e.target.name)} />
             </label>
           </div>
           <div>
@@ -704,7 +704,7 @@ if (data.section === "vueGlobale"){
               </select>
 
           </label>
-          <button onClick={(e) => selectInterSection(e)}> Ajouter section</button>
+          <button className="btn-select-inter" onClick={(e) => selectInterSection(e)}> Ajouter section</button>
          </div>   
 
     </>

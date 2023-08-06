@@ -1,3 +1,13 @@
+.title-intervention{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    color: #048B9A;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+
+}
+
 .sectionInfoImage p {
 
     font-size: 14px;
@@ -15,6 +25,7 @@
    margin-bottom: 20px;
    border-radius: 10px;
    padding-bottom: 20px;
+   box-shadow: 8px 8px 8px grey;
 }
 
 .blocMoyenTech{
@@ -107,6 +118,8 @@ display: flex;
    background-color: #048B9A;
    padding: 5px 7px;
    margin-bottom: 5px;
+   color: white;
+   font-weight: bold;
 
 }
 
@@ -116,9 +129,25 @@ display: flex;
    margin-right: 10px;
    padding: 5px 7px;
    margin-bottom: 5px;
+   color: white;
+   font-weight: bold;
 
-  
 
+
+}
+
+.input-title{
+
+border: 1px solid black;
+border-radius: 10px;
+margin-left: 10px;
+}
+
+.texttarea-description{
+
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 10px;
 
 }
 
@@ -161,7 +190,21 @@ height: 50px;
 }
 
 .sectionSelectInter{
+    padding: 10px;
     margin: 20px auto;
     text-align: center;
+    background-color: white;
+    box-shadow: 8px 8px 8px grey;
+    border-radius: 20px;
     
+}
+
+.btn-select-inter{
+
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: #048B9A;
+    border: 1px solid #048B9A;
+    color: white;
 }

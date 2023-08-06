@@ -361,11 +361,11 @@ return(
             <input type="text" name="situation" value={infoInter.informationIntervention.situation} onChange={e => handleChangeInfoInter(e.target.value,e.target.name)}/>
         </label> */}
         <label>
-            Lieu de l'intervention : 
+            Lieu intervention : 
             <input type="text" name="lieuIntervention" value={infoInter.informationIntervention.lieuIntervention} onChange={e => handleChangeInfoInter(e.target.value,e.target.name)}/>
         </label>
         <label>
-            Date de l'intervention : 
+            Date intervention : 
             <input type="date" name="dateIntervention" value={infoInter.informationIntervention.dateIntervention} onChange={e => handleChangeInfoInter(e.target.value,e.target.name)}/>
         </label>
         <label>

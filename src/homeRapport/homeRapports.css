@@ -7,6 +7,8 @@
 .btn-create-rapport{
     cursor: pointer;
     border: none;
+    color: white;
+    font-weight: bold;
     background-color: #048B9A;
     border-radius: 10px;
     margin-bottom: 20px;
