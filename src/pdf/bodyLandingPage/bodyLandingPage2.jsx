@@ -140,6 +140,11 @@ return (
                  <View  style={stylesLandingPage.elementArray}><Text style={stylesLandingPage.titleElement}>ADRESSE D'INTERVENTION</Text></View>
                 <View  style={stylesLandingPage.blocBodyArray}><Text style={stylesLandingPage.bodyArray}>{dataInfoPdf.lieuIntervention}</Text></View>
         </View>
+
+         <View style={stylesLandingPage.firstBlocArray2}>
+            <View  style={stylesLandingPage.elementArray}><Text style={stylesLandingPage.titleElement}>VOS REFERENCES</Text></View>
+                     <View  style={stylesLandingPage.blocBodyArray}><Text style={stylesLandingPage.bodyArray}>{dataInfoPdf.vosReference}</Text></View>
+         </View>
         </View>
        
         {/* <View style={stylesLandingPage.firstBlocArray}>
@@ -160,10 +165,19 @@ return (
          </View>
 
 
+        <View>
+            <View  style={stylesLandingPage.elementArray}><Text style={stylesLandingPage.titleElement}>NOS REFERENCES</Text></View>
+            <View  style={stylesLandingPage.blocBodyArray}><Text style={stylesLandingPage.bodyArray}>{dataInfoPdf.reference}</Text></View>
+         </View>
+       
+
 
         </View>
+
         
+
     </View>
+
 
     <View style={stylesLandingPage.sectionIntervenant}>
 

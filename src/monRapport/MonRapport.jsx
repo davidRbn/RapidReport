@@ -42,6 +42,7 @@ const MonRapport = () => {
         informationIntervention : {
              client : "",
              reference: "",
+             vosReference:"",
              copro: "",
              franchise: "",
              contact : "",
@@ -344,10 +345,10 @@ return(
             Nom copro : 
             <input type="text" name="copro" value={infoInter.informationIntervention.copro} onChange={e => handleChangeInfoInter(e.target.value,e.target.name) }/>
         </label>
-        {/* <label>
-            Franchise : 
-            <input type="text" name="franchise" value={infoInter.informationIntervention.franchise} onChange={e => handleChangeInfoInter(e.target.value,e.target.name) }/>
-        </label> */}
+        <label>
+            Référence client : 
+            <input type="text" name="vosReference" value={infoInter.informationIntervention.vosReference} onChange={e => handleChangeInfoInter(e.target.value,e.target.name) }/>
+        </label>
         {/* <label>
             Contact : 
             <input type="text" name="contact" value={infoInter.informationIntervention.contact} onChange={e => handleChangeInfoInter(e.target.value,e.target.name)}/>

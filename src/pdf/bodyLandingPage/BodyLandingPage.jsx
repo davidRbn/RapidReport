@@ -1,8 +1,8 @@
 import { StyleSheet, View,Text } from "@react-pdf/renderer";
 import React from "react";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import globalColor from "../globalStyles/globalStyles";
-import RapportDataService from "../../rapportDataService/RapportDataService"
+// import RapportDataService from "../../rapportDataService/RapportDataService"
 
 
 

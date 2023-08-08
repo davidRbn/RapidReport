@@ -480,7 +480,7 @@ setValeurSelectionnee(e.target.value)
 
 
   // dataInter.map(e => console.log(e.image))
-  // console.log(dataInter)
+  // console.log(dataInter[0])
   // console.log(valeurSelectionnee)
   // console.log(url)
 //   console.log(urlLoaded)
