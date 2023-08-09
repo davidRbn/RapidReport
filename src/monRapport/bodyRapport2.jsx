@@ -398,6 +398,7 @@ setPictureAddOrDelete(true)
  const moveImageDown = (e,index,indexImage,image) => {
 
   e.preventDefault()
+
   
       let imageMove = image.slice(indexImage,indexImage + 1)
       let imageRemplaced = image.slice(indexImage + 1,indexImage + 2)
@@ -427,6 +428,59 @@ setPictureAddOrDelete(true)
   
   setDataInter(newData)
   setPictureAddOrDelete(true)
+
+   }
+
+ 
+   const sectionMoveUp = (e,index,data) => {
+
+    e.preventDefault()
+
+
+    let dataMove = dataInter.slice(index,index + 1)
+    let dataRemplaced = dataInter.slice(index - 1,index)
+
+    const newData = dataInter.map((interData,currentIndex) => {
+
+        if(index === currentIndex){
+
+          return dataRemplaced[0]
+
+        }else if (currentIndex === index - 1){
+
+         return dataMove[0]
+
+        }else return interData
+
+
+    } )
+      setDataInter(newData)
+
+   }
+
+   const sectionMoveDown = (e,index,data) => {
+
+    e.preventDefault()
+
+
+    let dataMove = dataInter.slice(index,index + 1)
+    let dataRemplaced = dataInter.slice(index + 1,index + 2)
+
+    const newData = dataInter.map((interData,currentIndex) => {
+
+        if(index === currentIndex){
+
+          return dataRemplaced[0]
+
+        }else if (currentIndex === index + 1){
+
+         return dataMove[0]
+
+        }else return interData
+
+
+    } )
+      setDataInter(newData)
 
    }
 
@@ -480,7 +534,7 @@ setValeurSelectionnee(e.target.value)
 
 
   // dataInter.map(e => console.log(e.image))
-  // console.log(dataInter[0])
+  // console.log(dataInter)
   // console.log(valeurSelectionnee)
   // console.log(url)
 //   console.log(urlLoaded)
@@ -581,6 +635,15 @@ if (data.section === "vueGlobale"){
          return (
          <div key={index} className="separation">
               <h3 className="title-des">{data.titre}</h3>
+
+              <div className="bloc-btn-ChangePlaceSection">
+
+              { index < 5 || index === 5 ? '' :  <button className="btnChangePlaceSection-up" onClick={(e) => sectionMoveUp(e,index,data)}>{`<`}</button>}
+                                 
+              { index === dataInter.length - 1 || index < 5  ? '' : <button className="btnChangePlaceSection-down" onClick={(e) => sectionMoveDown(e,index,data)}>{`>`}</button>}
+             
+               </div>
+
           <div className="s-titre-des">
             <label className="titre-des">
               Titre :
