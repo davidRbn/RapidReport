@@ -1,6 +1,7 @@
 import React from "react";
-import { StyleSheet, View,Text, Image } from "@react-pdf/renderer";
+import { StyleSheet, View,Text, Image,Font } from "@react-pdf/renderer";
 import globalColor from "../globalStyles/globalStyles";
+import sourceFont from "../font/helvetica/Helvetica.ttf"
 
 
 
@@ -18,6 +19,8 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
 
   //   return photoCounter
   // };
+
+  Font.register({ family: 'Helvetica', src: sourceFont });
 
   const getBlockImageLegStyle = (length,index,bigPicture) => {
     
@@ -72,6 +75,7 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
         color:`${globalColor.titleColor}`,
         textAlign:'center',
         padding:'2px',
+        fontFamily:'Helvetica'
         // borderBottom:'1px solid black'
 
     },
@@ -90,7 +94,8 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
       lineHeight:`${globalColor.lineHeigth}`,
       textAlign:'center',
       maxHeight:'92px',
-      minHeight:'90px'
+      minHeight:'90px',
+      fontFamily:'Helvetica'
 
     },
 
@@ -261,7 +266,8 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
       textAlign:'center',
       fontSize:`${globalColor.textSize}`,
       margin:'5px 0 0 0',
-      maxHeight:'30px'
+      maxHeight:'30px',
+      fontFamily:'Helvetica'
       // transform:'translateY(10%)'
       // position:'relative',
       // top:'5%',
@@ -277,7 +283,7 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
       margin:'5px 0 0 0',
       // transform:'translateY(10%)'
       // top:'5%'
-    
+      
 
     },
   
@@ -287,13 +293,15 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
       fontSize:`${globalColor.textSize}`,
       // margin:'5px 0'
       margin:'5px 0 0 0',
+      fontFamily:'Helvetica'
 
 
     },
     photoNumber:{
 
       color:`${globalColor.titleColor}`,
-      fontSize:'12px'
+      fontSize:'12px',
+      fontFamily:'Helvetica'
 
     },
     imageRapport:{

@@ -1,10 +1,13 @@
-import { StyleSheet, View,Text, Image } from "@react-pdf/renderer";
+import { StyleSheet, View,Text, Image, Font } from "@react-pdf/renderer";
 import React from "react";
 import globalColor from "../globalStyles/globalStyles";
 import imageAdeau from "../images/A.d.Eau expertise2.png"
+import sourceFont from "../font/helvetica/Helvetica.ttf"
 
 
 const BodyLandingPage2 = ({idRapport,dataLoading,dataSend,dataInfoPdf,dataInterPdf}) => {
+
+  Font.register({ family: 'Helvetica', src: sourceFont });
 
 
     const stylesLandingPage = StyleSheet.create({
@@ -68,7 +71,8 @@ const BodyLandingPage2 = ({idRapport,dataLoading,dataSend,dataInfoPdf,dataInterP
             fontSize:'12px',
             textAlign:'center',
            color:`${globalColor.titleColor}`,
-           fontWeight:'bolder'
+           fontWeight:'bolder',
+           fontFamily:'Helvetica'
             
          },
          blocBodyArray:{
@@ -87,7 +91,8 @@ const BodyLandingPage2 = ({idRapport,dataLoading,dataSend,dataInfoPdf,dataInterP
             fontSize:'10px',
             textAlign:'center',
             color:'black',
-            opacity:'1'
+            opacity:'1',
+            fontFamily:'Helvetica'
          },
 
          firstBlocArray2:{

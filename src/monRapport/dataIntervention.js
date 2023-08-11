@@ -45,6 +45,10 @@ export const dataIntervention =
             materielUtilise : 'Colorant',
             isUse : true,
             concluant : false        },
+            {
+            materielUtilise : 'Mise en charge',
+            isUse : true,
+            concluant : false        },
         {
             materielUtilise : 'Arrosage ciblé',
             isUse : false,

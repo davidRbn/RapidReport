@@ -151,7 +151,7 @@ const deleteReport = async (e,idDoc,refRapport,dataInterDelete) => {
 return (
 
 <div>
-    <p>MAJ : 1.3</p>
+    <p>MAJ : 1.4</p>
     
 <div>
     <h1 className="title-home-rapports">Mes Rapports</h1>

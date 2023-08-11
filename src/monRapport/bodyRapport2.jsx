@@ -7,6 +7,7 @@ import Resizer from "react-image-file-resizer";
 // import{ EXIF} from "exif-js";
 import ModalDeleteImage from "./modalDeleteImage/ModalDeleteImage";
 import { deleteObject, getStorage, ref } from "firebase/storage";
+import ZoomImage from "./zoomImage/ZoomImage";
 // import EXIF from "exif-js";
 
 
@@ -24,6 +25,9 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInt
   const [infoImage,setInfoImage] = useState()
   const [urlImage,setUrlImage] = useState()
   const [pictureAddOrDelete,setPictureAddOrDelete] = useState(false)
+  const [zoomImage,setZoomImage] = useState(false)
+  const [indexImageZoom,setIndexImageZoom] = useState('')
+  const [sectionIndexZoom,setSectionIndexZoom] = useState('')
   const selectSectionInter = [
 
     {label: 'miseEnPression', value : 'Mise en pression'},
@@ -686,8 +690,17 @@ if (data.section === "vueGlobale"){
                   {deleteImage && <ModalDeleteImage openModalImageDelete={openModalImageDelete} infoInter={infoInter} deletedImage={deletedImage} index={indexRapport} imageUrl={urlImage} image={infoImage} setDeleteImage={setDeleteImage}/>}
                     
                     <div className="blocImageRapportBody">
-                      <img  className="imageRapportBody" src={image.url} alt="" /> 
+                      <img  className="imageRapportBody" onClick={(e) => {
+                          e.preventDefault()
+                          setZoomImage(true)
+                          setIndexImageZoom(indexImage)
+                          setSectionIndexZoom(index)
+
+                      }} src={image.url} alt="" /> 
                       
+         {zoomImage && indexImage === indexImageZoom && index === sectionIndexZoom && <ZoomImage urlImageZoom={image.url} urlZoom={indexImageZoom} setZoomImage={setZoomImage} />}
+                     
+
                       </div> 
                              <div>
                                  { indexImage === 0 || data.image.length === 1 ? '' :  <button className="btnChangePlaceImage-up" onClick={(e) => moveImageUp(e,index,indexImage,data.image)}>{`<`}</button>}
@@ -769,6 +782,7 @@ if (data.section === "vueGlobale"){
           </label>
           <button className="btn-select-inter" onClick={(e) => selectInterSection(e)}> Ajouter section</button>
          </div>   
+
 
     </>
   )

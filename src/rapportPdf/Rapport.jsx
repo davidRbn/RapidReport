@@ -7,6 +7,7 @@ import HeaderPdf2 from '../pdf/header/HeaderPdf2';
 import BodyLandingPage2 from '../pdf/bodyLandingPage/bodyLandingPage2';
 import PageTwoPdf from '../pdf/PageTwoPdf';
 import PageThreePdf from '../pdf/pageThreePdf/pageThreePdf';
+import PageCounter from '../pdf/pageCounter/PageCounter';
 
 
 
@@ -15,7 +16,6 @@ const Rapport = ({idRapport,dataLoading,dataSend,dataInfoPdf,dataInterPdf}) => {
 // const [numberPhoto,setNumberPhoto] = useState(0)
 // const [dataTest, setDataTest] = useState(dataIntervention)
 const [indexConstatation,setIndexConstatation] = useState(0)
-
 
 
 // const changeNumberPhoto = (indexData,indexImage) => {
@@ -54,6 +54,7 @@ const [indexConstatation,setIndexConstatation] = useState(0)
         },
         page: {
           backgroundColor:'#E7ECE8',
+          position:'relative'
 
           // backgroundColor: '#FFFFFF',
           // paddingBottom:'60px',
@@ -76,20 +77,22 @@ const [indexConstatation,setIndexConstatation] = useState(0)
       //   setCounter(totalImages);
       // }, [dataInterPdf]);
 
-
+     
 
     return(
         <Document style={styles.document}>
         <Page size="A4" style={styles.page}>
             {/* <HeaderPdf2 dataInfoPdf={dataInfoPdf}/> */}
-            <BodyLandingPage2 idRapport={idRapport} dataLoading={dataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf}/>
+            <BodyLandingPage2 idRapport={idRapport} dataLoading={dataLoading} dataSend={dataSend} dataInfoPdf={dataInfoPdf} dataInterPdf={dataInterPdf}/>     
             <FooterPdf/>
+        <PageCounter/>
         </Page>
 
 <Page size="A4" style={styles.page}>
     <HeaderPdf2/>
           <PageTwoPdf dataInfoPdf={dataInfoPdf}  dataInterPdf={dataInterPdf} />
     <FooterPdf/>
+    <PageCounter/>
 
 </Page>
 
@@ -97,6 +100,7 @@ const [indexConstatation,setIndexConstatation] = useState(0)
     <HeaderPdf2/>
           <PageThreePdf dataInfoPdf={dataInfoPdf}  dataInterPdf={dataInterPdf} />
     <FooterPdf/>
+    <PageCounter/>
 
 </Page>
 
@@ -112,6 +116,7 @@ const [indexConstatation,setIndexConstatation] = useState(0)
           <HeaderPdf2 dataInfoPdf={dataInfoPdf}/>
             <BodyInter indexDataPdf={indexData} setIndexConstatation={setIndexConstatation} indexConstatation={indexConstatation} indexData={indexData} dataInterPdf={dataInter}/>
           {/* <FooterPdf/> */}
+        <PageCounter/>
    </Page>
        
     

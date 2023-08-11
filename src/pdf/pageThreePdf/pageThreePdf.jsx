@@ -1,11 +1,15 @@
-import { StyleSheet, Text, View } from "@react-pdf/renderer";
+import { StyleSheet, Text, View,Font } from "@react-pdf/renderer";
 import React from "react";
 import globalColor from "../globalStyles/globalStyles";
+import sourceFont from "../font/helvetica/Helvetica.ttf"
+
 
 
 
 
 const PageThreePdf = ({dataInterPdf}) => {
+
+  Font.register({ family: 'Helvetica', src: sourceFont });
 
 
     const stylesPageThreePdf = StyleSheet.create({
@@ -63,7 +67,7 @@ const PageThreePdf = ({dataInterPdf}) => {
             padding:'2px 5px',
             borderBottom: `2px solid ${globalColor.titleColor}`,
             borderRight: `2px solid ${globalColor.titleColor}`,
-
+            fontFamily:'Helvetica'
             
 
           },
@@ -87,7 +91,8 @@ const PageThreePdf = ({dataInterPdf}) => {
         titleDataInter:{
             color:`${globalColor.titleColor}`,
             margin:'20px',
-            textAlign:'center'
+            textAlign:'center',
+            fontFamily:'Helvetica'
     
         },
         description : {
@@ -95,7 +100,7 @@ const PageThreePdf = ({dataInterPdf}) => {
             margin: '5px 20px',
             fontSize:`${globalColor.textSize}`,
             lineHeight:`${globalColor.lineHeigth}`,
-            
+            fontFamily:'Helvetica'
         }
     
     
