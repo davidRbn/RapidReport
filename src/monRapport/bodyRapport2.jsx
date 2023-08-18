@@ -59,18 +59,16 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInt
       let imageWidth = 0
       let imageHeight = 0
 
-    const reader = new FileReader();
-    reader.onload = (event) => {
+   const reader = new FileReader();
+    reader.onload = async (event) => {
       const img = new Image();
-      img.src = event.target.result;
+      img.src = await event.target.result;
 
-      img.onload = () => {
+      
+
+        img.onload = () => {
          imageWidth = img.width;
          imageHeight = img.height;
-
-        console.log(`Image Name: ${imageName}`);
-        console.log(`Image Width: ${imageWidth}`);
-        console.log(`Image Height: ${imageHeight}`);
 
         // Vous pouvez utiliser les valeurs de largeur et de hauteur comme vous le souhaitez
       };

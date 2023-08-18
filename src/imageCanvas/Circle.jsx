@@ -3,14 +3,14 @@ import { Circle, Transformer } from "react-konva";
 
 
 
-const CircleCanvas = ({ shapeProps, isSelected, onSelect, onChange,shapeRef }) => {
+const CircleCanvas = ({ shapeProps, isSelected, onSelect, onChange,circleRef }) => {
     // const shapeRef = React.useRef();
     const trRef = React.useRef();
   
     React.useEffect(() => {
       if (isSelected) {
         // we need to attach transformer manually
-        trRef.current.nodes([shapeRef.current]);
+        trRef.current.nodes([circleRef.current]);
         trRef.current.getLayer().batchDraw();
       }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -22,7 +22,7 @@ const CircleCanvas = ({ shapeProps, isSelected, onSelect, onChange,shapeRef }) =
         strokeWidth={10}
           onClick={onSelect}
           onTap={onSelect}
-          ref={shapeRef}
+          ref={circleRef}
           {...shapeProps}
           draggable
           onDragEnd={(e) => {
@@ -37,7 +37,7 @@ const CircleCanvas = ({ shapeProps, isSelected, onSelect, onChange,shapeRef }) =
             // and NOT its width or height
             // but in the store we have only width and height
             // to match the data better we will reset scale on transform end
-            const node = shapeRef.current;
+            const node = circleRef.current;
             const scaleX = node.scaleX();
             const scaleY = node.scaleY();
   

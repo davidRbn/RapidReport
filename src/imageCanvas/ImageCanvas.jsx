@@ -13,8 +13,10 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
 
     const stageRef = React.useRef(null);
     const imageref = React.useRef(null)
-    const shapeRef = React.useRef();
+    const shapeRef = React.useRef(null);
+    const circleRef = React.useRef(null)
 
+    // console.log(imageWidth,imageHeight);
 
     const initialRectangles = [
         {
@@ -50,7 +52,7 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
     const [im] = useImage(urlImageZoom,'Anonymous')
 
     let imageAspectRatio = im && (imageHeight < imageWidth) ? imageWidth / imageHeight : im && (imageHeight > imageWidth) ? imageHeight / imageWidth : 1;
-    let screenHeight = window.innerHeight * 0.80
+    let screenHeight = window.innerHeight * 0.50
 
     let screenWidth = (window.innerWidth) > 700 && (imageHeight < imageWidth) ? window.innerWidth * 0.60  : window.innerWidth <= 700 && imageHeight < imageWidth ? window.innerWidth * 0.95 : screenHeight / imageAspectRatio
     let stageWidth = screenWidth;
@@ -83,6 +85,7 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
 
        selectRect && rectangles.forEach(rect => {
         
+        console.log('rec');
             shapeRef.current.x(rect.x * scaleFactorX)
             shapeRef.current.y( rect.y * scaleFactorY)
             shapeRef.current.width(rect.width * scaleFactorX)
@@ -93,10 +96,11 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
 
        selectCircle && circle.forEach(rect => {
         
-            shapeRef.current.x(rect.x * scaleFactorX)
-            shapeRef.current.y( rect.y * scaleFactorY)
-            shapeRef.current.width(rect.width * scaleFactorX)
-            shapeRef.current.height(rect.height * scaleFactorY)
+        console.log('cir');
+            circleRef.current.x(rect.x * scaleFactorX)
+            circleRef.current.y( rect.y * scaleFactorY)
+            circleRef.current.width(rect.width * scaleFactorX)
+            circleRef.current.height(rect.height * scaleFactorY)
 
 
         });
@@ -250,7 +254,7 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
           circle.map((rect, i) => {
             return (
               <CircleCanvas
-                shapeRef={shapeRef}
+              circleRef={circleRef}
                 key={i}
                 shapeProps={rect}
                 isSelected={rect.id === selectedId}
