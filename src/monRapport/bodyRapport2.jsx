@@ -7,9 +7,11 @@ import Resizer from "react-image-file-resizer";
 // import{ EXIF} from "exif-js";
 import ModalDeleteImage from "./modalDeleteImage/ModalDeleteImage";
 import { deleteObject, getStorage, ref } from "firebase/storage";
-import ZoomImage from "./zoomImage/ZoomImage";
+// import ZoomImage from "./zoomImage/ZoomImage";
+import ImageCanvas from "../imageCanvas/ImageCanvas";
 // import EXIF from "exif-js";
-
+// import imageCompression from 'browser-image-compression';
+import Loader from "../loader/Loader";
 
 
 
@@ -28,6 +30,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInt
   const [zoomImage,setZoomImage] = useState(false)
   const [indexImageZoom,setIndexImageZoom] = useState('')
   const [sectionIndexZoom,setSectionIndexZoom] = useState('')
+  const [canvasImageLoaded,setCanvasImageLoaded] = useState(false)
   const selectSectionInter = [
 
     {label: 'miseEnPression', value : 'Mise en pression'},
@@ -45,7 +48,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInt
 
 
 
-  const handleChange = (e,index) => {
+  const handleChange = async (e,index) => {
   
     // console.log(e.target)
     for (let i = 0; i < e.target.files.length; i++) {
@@ -53,7 +56,29 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInt
       const imageName = newImage.name
       let orientation = 0
 
-      console.log(newImage);
+      let imageWidth = 0
+      let imageHeight = 0
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = new Image();
+      img.src = event.target.result;
+
+      img.onload = () => {
+         imageWidth = img.width;
+         imageHeight = img.height;
+
+        console.log(`Image Name: ${imageName}`);
+        console.log(`Image Width: ${imageWidth}`);
+        console.log(`Image Height: ${imageHeight}`);
+
+        // Vous pouvez utiliser les valeurs de largeur et de hauteur comme vous le souhaitez
+      };
+    };
+
+    reader.readAsDataURL(newImage);
+  
+
 
     // EXIF.getData(newImage,function () {
 
@@ -69,17 +94,31 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInt
 
         Resizer.imageFileResizer(
         newImage,
-        600,
-        600,
+        1000,
+        1000,
         "JPEG",
         100,
         0,
         (uri) => {
-           handleUpload(index,uri,orientation,imageName)         
+           handleUpload(index,uri,orientation,imageName,imageWidth,imageHeight)         
         },
        "blob"
 
       )
+
+
+
+      // const options = {
+      //   maxSizeMB: 0.7,
+      //   maxWidthOrHeight: 1920
+      // }
+      // try {
+      //   const compressedFile = await imageCompression(newImage, options);
+      //   handleUpload(index,compressedFile,orientation,imageName,imageWidth,imageHeight)  
+      //   console.log(compressedFile.size/1024/1024);
+      // } catch (error) {
+      //   console.log(error);
+      // }
 
       //  const modifiedFile = new File([newImage], newImage.name, { type: newImage.type });
 
@@ -97,38 +136,6 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInt
 
        
       // })
-
-
-        // Resizer.imageFileResizer(
-        //   newImage,
-        //   300,
-        //   300,
-        //   "JPEG",
-        //   70,
-        //   0,
-        //   (uri) => {
-         
-
-        //   },
-        //   "base64"
-        // );
-      
-
-      
-      // Compress.imageFileResizer(
-      //   newImage,
-      //   480,
-      //   480,
-      //   "JPEG",
-      //   70,
-      //   0,
-      //   (uri) => {
-      //      handleUpload(index,uri,newImage)         
-      //   },
-      //  "blob"
-
-      // )
-      // handleUpload(index,newImage)
 
     }
 
@@ -172,7 +179,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInt
   },[pictureAddOrDelete])
 
 
-  const handleUpload = async (indexData,newImage,imageOrientation,imageName) => {
+  const handleUpload = async (indexData,newImage,imageOrientation,imageName,imageWidth,imageHeight) => {
 
 console.log(imageOrientation)
 
@@ -207,10 +214,10 @@ console.log(imageOrientation)
                       if (indexx === indexData){
                         if(data.section === "miseEnPression"){
 
-                          return {...data, image: [...data.image,{url : url,epreuve : "",finale : "", file : newImage,orientationImage: imageOrientation,imageName:imageName}]}
+                          return {...data, image: [...data.image,{url : url,epreuve : "",finale : "", file : newImage,orientationImage: imageOrientation,imageName:imageName,imageWidth:imageWidth,imageHeight:imageHeight}]}
 
                         }else{
-                      return {...data, image:  [...data.image,{url : url,legende: "",file : newImage,orientationImage: imageOrientation,imageName:imageName}]}                     
+                      return {...data, image:  [...data.image,{url : url,legende: "",file : newImage,orientationImage: imageOrientation,imageName:imageName,imageWidth:imageWidth,imageHeight:imageHeight}]}                     
                         }       
                       }else return data
 
@@ -549,6 +556,8 @@ setValeurSelectionnee(e.target.value)
 
   return (
     <>
+
+    {/* <ImageCanvas/> */}
       <div><h2 className="title-intervention">Mon intervention</h2></div>
 
 
@@ -589,7 +598,7 @@ if (data.section === "vueGlobale"){
                                                                         setUrlImage(image.url)
                                                                         
                                                                                                }}>X</button>
-                  {deleteImage && <ModalDeleteImage openModalImageDelete={openModalImageDelete} deletedImage={deletedImage} index={indexRapport} imageUrl={urlImage} image={infoImage} setDeleteImage={setDeleteImage}/>}
+                  {deleteImage && <ModalDeleteImage infoInter={infoInter} openModalImageDelete={openModalImageDelete} deletedImage={deletedImage} index={indexRapport} imageUrl={urlImage} image={infoImage} setDeleteImage={setDeleteImage}/>}
                   <div className="blocImageRapportBody">
                       <img  className="imageRapportBody" src={image.url} alt="" /> 
                       </div> 
@@ -698,7 +707,7 @@ if (data.section === "vueGlobale"){
 
                       }} src={image.url} alt="" /> 
                       
-         {zoomImage && indexImage === indexImageZoom && index === sectionIndexZoom && <ZoomImage urlImageZoom={image.url} urlZoom={indexImageZoom} setZoomImage={setZoomImage} />}
+         {zoomImage && indexImage === indexImageZoom && index === sectionIndexZoom && <ImageCanvas setCanvasImageLoaded={setCanvasImageLoaded} setContainFile={setContainFile} dataInter={dataInter} setDataInter={setDataInter} index={index} indexImage={indexImage} urlImageZoom={image.url} imageWidth={image.imageWidth} imageHeight={image.imageHeight} urlZoom={indexImageZoom} setZoomImage={setZoomImage} />}
                      
 
                       </div> 
@@ -783,7 +792,7 @@ if (data.section === "vueGlobale"){
           <button className="btn-select-inter" onClick={(e) => selectInterSection(e)}> Ajouter section</button>
          </div>   
 
-
+     {canvasImageLoaded && <Loader/>}
     </>
   )
 }
