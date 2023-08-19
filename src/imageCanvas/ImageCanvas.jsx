@@ -16,12 +16,13 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
     const shapeRef = React.useRef(null);
     const circleRef = React.useRef(null)
 
-    // console.log(imageWidth,imageHeight);
+
+    console.log(imageWidth,imageHeight);
 
     const initialRectangles = [
         {
           x: 10,
-          y: 10,
+          y: 10,    
           width: 100,
           height: 100,
           stroke: 'red',
@@ -51,18 +52,32 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
 
     const [im] = useImage(urlImageZoom,'Anonymous')
 
-    let imageAspectRatio = im && (imageHeight < imageWidth) ? imageWidth / imageHeight : im && (imageHeight > imageWidth) ? imageHeight / imageWidth : 1;
+
+
+
+    // let imageAspectRatio = urlImageZoom && (imageHeight < imageWidth) ? imageWidth / imageHeight : urlImageZoom && (imageHeight > imageWidth) ? imageHeight / imageWidth : 1;
+    // let screenHeight = window.innerHeight * 0.50
+
+    // let screenWidth = (window.innerWidth) > 700 && (imageHeight < imageWidth) ? window.innerWidth * 0.60  : window.innerWidth <= 700 && imageHeight < imageWidth ? window.innerWidth * 0.95 : screenHeight / imageAspectRatio
+    //  stageWidth = screenWidth;
+
+    //  stageHeight = imageWidth > imageHeight ? stageWidth / imageAspectRatio : screenHeight
+
+    //  setCalculDimensionFinish(true)
+
+
+
+
+    let imageAspectRatio = urlImageZoom && (imageHeight < imageWidth) ? imageWidth / imageHeight : urlImageZoom && (imageHeight > imageWidth) ? imageHeight / imageWidth : 1;
     let screenHeight = window.innerHeight * 0.50
 
     let screenWidth = (window.innerWidth) > 700 && (imageHeight < imageWidth) ? window.innerWidth * 0.60  : window.innerWidth <= 700 && imageHeight < imageWidth ? window.innerWidth * 0.95 : screenHeight / imageAspectRatio
-    let stageWidth = screenWidth;
+     let stageWidth = screenWidth;
 
-    let stageHeight = imageWidth > imageHeight ? stageWidth / imageAspectRatio : screenHeight
+     let stageHeight = imageWidth > imageHeight ? stageWidth / imageAspectRatio : screenHeight
 
-
-    
    
-
+console.log(stageHeight);
     const handleExport = async (e) => {
         e.preventDefault()
 
@@ -184,7 +199,6 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
       }
     };
   
-   console.log(rectangles);
     // const screenWidth = window.innerWidth > 700 && window.innerWidth < 1200 ? 500 : window.innerWidth
     // const screenWidth = window.innerWidth * 0.95
     // const stageWidth = screenWidth;
@@ -192,7 +206,10 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
     // const stageHeight = stageWidth / imageAspectRatio;
 
     return (
+
+    
         <div className="image-zoom" > 
+   
        <Fragment>
         <button  className="btn-canvas" onClick={(e) =>{
             e.preventDefault()
@@ -273,7 +290,8 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
 
         </Layer>
       </Stage>
-      </Fragment> 
+      </Fragment>
+   
       <button className="btn-canvas-registrer" onClick={(e) => handleExport(e)}>Enregistrer Image</button>
       </div>
     );
