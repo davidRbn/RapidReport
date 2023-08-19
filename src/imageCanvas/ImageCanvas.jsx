@@ -150,7 +150,7 @@ console.log(stageHeight);
             blobImageCanvas,
             1000,
             1000,
-            "JPEG",
+            "PNG",
             100,
             0,
             (uri) => {

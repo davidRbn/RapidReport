@@ -45,101 +45,160 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInt
    const [valeurSelectionnee, setValeurSelectionnee] = useState('miseEnPression');
 
 
-
-
-
-  const handleChange = async (e,index) => {
-  
-    // console.log(e.target)
+   const handleChange = async (e, index) => {
     for (let i = 0; i < e.target.files.length; i++) {
       const newImage = e.target.files[i];
-      const imageName = newImage.name
-      let orientation = 0
-
-      let imageWidth = 0
-      let imageHeight = 0
-
-   const reader =await new FileReader();
-    reader.onload =  (event) => {
+      const imageName = newImage.name;
+      let orientation = 0;
+      let imageWidth = 0;
+      let imageHeight = 0;
+  
+      // Lecture de l'image pour obtenir la largeur et la hauteur
       const img = new Image();
-      img.src = event.target.result;
+      img.src = URL.createObjectURL(newImage);
+  
+      await new Promise((resolve) => {
+        img.onload = () => {
+          imageWidth = img.width;
+          imageHeight = img.height;
+          resolve();
+        };
+      });
+  
+      // Redimensionnement de l'image
+      const resizedImage = await new Promise((resolve) => {
+        Resizer.imageFileResizer(
+          newImage,
+          1000,
+          1000,
+          "JPEG",
+          100,
+          0,
+          (uri) => {
+            resolve(uri);
+          },
+          "blob"
+        );
+      });
+  
+      // Appel à la fonction de téléchargement avec les données obtenues
+      await handleUpload(index, resizedImage, orientation, imageName, imageWidth, imageHeight);
+    }
+  };
+  
+
+
+//   const handleChange = async (e,index) => {
+  
+//     // console.log(e.target)
+//     for (let i = 0; i < e.target.files.length; i++) {
+//       const newImage = e.target.files[i];
+//       const imageName = newImage.name
+//       let orientation = 0
+
+//       let imageWidth = 0
+//       let imageHeight = 0
+
+// console.log(i,index);
+//    const reader = new FileReader();
+//     reader.onload =  (event) => {
+//       const img = new Image();
+//       img.src = event.target.result;
 
       
 
-        img.onload = () => {
-         imageWidth = img.width;
-         imageHeight = img.height;
+//         img.onload = () => {
+//          imageWidth = img.width;
+//          imageHeight = img.height;
 
+//     console.log(i,index);
 
+//         // Vous pouvez utiliser les valeurs de largeur et de hauteur comme vous le souhaitez
+//       };
+//     };
 
-        // Vous pouvez utiliser les valeurs de largeur et de hauteur comme vous le souhaitez
-      };
-    };
-
-    reader.readAsDataURL(newImage);
+//     reader.readAsDataURL(newImage);
   
+//     console.log(i,index);
 
 
-    // EXIF.getData(newImage,function () {
+//     // EXIF.getData(newImage,function () {
 
-    //     orientation = EXIF.getTag(this, 'Orientation')
-    //     console.log(orientation);
+//     //     orientation = EXIF.getTag(this, 'Orientation')
+//     //     console.log(orientation);
 
-    //       //  let orientation = 0  
-    //    if(orientation === undefined){
-    //     orientation = 0 
-    //    }
-    //   return orientation
-    //   })
+//     //       //  let orientation = 0  
+//     //    if(orientation === undefined){
+//     //     orientation = 0 
+//     //    }
+//     //   return orientation
+//     //   })
 
-        Resizer.imageFileResizer(
-        newImage,
-        1000,
-        1000,
-        "JPEG",
-        100,
-        0,
-        (uri) => {
-           handleUpload(index,uri,orientation,imageName,imageWidth,imageHeight)         
-        },
-       "blob"
+//       //  await Resizer.imageFileResizer(
+//       //   newImage,
+//       //   1000,
+//       //   1000,
+//       //   "JPEG",
+//       //   100,
+//       //   0,
+//       //   (uri) => {
+                
+//       //   },
+//       //  "blob"
 
-      )
+//       // )
+
+//   new Promise((resolve) => {
+//     Resizer.imageFileResizer(
+//       newImage,
+//       1000,
+//       1000,
+//       "JPEG",
+//       100,
+//       0,
+//       (uri) => {
+//         resolve(handleUpload(index,uri,orientation,imageName,imageWidth,imageHeight));
+//     console.log(i,index);
+
+//       },
+//       "blob"
+//     );
+//   });
 
 
 
-      // const options = {
-      //   maxSizeMB: 0.7,
-      //   maxWidthOrHeight: 1920
-      // }
-      // try {
-      //   const compressedFile = await imageCompression(newImage, options);
-      //   handleUpload(index,compressedFile,orientation,imageName,imageWidth,imageHeight)  
-      //   console.log(compressedFile.size/1024/1024);
-      // } catch (error) {
-      //   console.log(error);
-      // }
+//       // const options = {
+//       //   maxSizeMB: 0.7,
+//       //   maxWidthOrHeight: 1920
+//       // }
+//       // try {
+//       //   const compressedFile = await imageCompression(newImage, options);
+//       //   handleUpload(index,compressedFile,orientation,imageName,imageWidth,imageHeight)  
+//       //   console.log(compressedFile.size/1024/1024);
+//       // } catch (error) {
+//       //   console.log(error);
+//       // }
 
-      //  const modifiedFile = new File([newImage], newImage.name, { type: newImage.type });
+//       //  const modifiedFile = new File([newImage], newImage.name, { type: newImage.type });
 
-      // let deleteExifData = newImage
-      // delete deleteExifData['exifdata']
+//       // let deleteExifData = newImage
+//       // delete deleteExifData['exifdata']
        
 
-  //  handleUpload(index,newImage,orientation)
+//   //  handleUpload(index,newImage,orientation)
 
 
-      // console.log(orientation)
-  //     let dataImage = {...image,url : res[0],fileName: path}
-  //     delete dataImage['file']  
-  //  return dataImage
+//       // console.log(orientation)
+//   //     let dataImage = {...image,url : res[0],fileName: path}
+//   //     delete dataImage['file']  
+//   //  return dataImage
 
        
-      // })
+//       // })
 
-    }
+//     }
 
-  }
+//   }
 
 
 
