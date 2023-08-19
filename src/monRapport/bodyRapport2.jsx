@@ -60,9 +60,9 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInt
       let imageHeight = 0
 
    const reader =await new FileReader();
-    reader.onload = async (event) => {
+    reader.onload =  (event) => {
       const img = new Image();
-      img.src = await event.target.result;
+      img.src = event.target.result;
 
       
 
