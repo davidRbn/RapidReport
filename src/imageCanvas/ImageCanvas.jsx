@@ -71,7 +71,7 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
     let imageAspectRatio = urlImageZoom && (imageHeight < imageWidth) ? imageWidth / imageHeight : urlImageZoom && (imageHeight > imageWidth) ? imageHeight / imageWidth : 1;
     let screenHeight = window.innerHeight * 0.50
 
-    let screenWidth = (window.innerWidth) > 700 && (imageHeight < imageWidth) ? window.innerWidth * 0.60  : window.innerWidth <= 700 && imageHeight < imageWidth ? window.innerWidth * 0.95 : screenHeight / imageAspectRatio
+    let screenWidth = (window.innerWidth) > 700 && (imageHeight < imageWidth) ? window.innerWidth * 0.50  : window.innerWidth <= 700 && imageHeight < imageWidth ? window.innerWidth * 0.95 : screenHeight / imageAspectRatio
      let stageWidth = screenWidth;
 
      let stageHeight = imageWidth > imageHeight ? stageWidth / imageAspectRatio : screenHeight
@@ -148,10 +148,10 @@ console.log(stageHeight);
 
         Resizer.imageFileResizer(
             blobImageCanvas,
-            1000,
-            1000,
+            800,
+            800,
             "PNG",
-            100,
+            80,
             0,
             (uri) => {
                handleUploadImage(uri,index,indexImage)

@@ -260,6 +260,10 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
       
 
     },
+    blocLegendeImage:{
+      minHeight:'26px'
+
+    },
 
     legendeImage:{
 
@@ -267,7 +271,7 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
       fontSize:`${globalColor.textSize}`,
       margin:'5px 0 0 0',
       maxHeight:'30px',
-      fontFamily:'Helvetica'
+      fontFamily:'Helvetica',
       // transform:'translateY(10%)'
       // position:'relative',
       // top:'5%',
@@ -359,7 +363,7 @@ return (
           
 
             // <View debug wrap={false} key={index} style={(index > 3) ? styles.firstBlocImage2: styles.firstBlocImage}>
-                 <View key={index} style={getBlockImageLegStyle(dataInterPdf.image.length,index,image.bigPicture)}>
+                 <View   key={index} style={getBlockImageLegStyle(dataInterPdf.image.length,index,image.bigPicture)}>
                  
                 <Text style={styles.photoNumber}>PHOTO N°{image.numberPhoto}</Text>
                  <View wrap={false} style={image.orientationImage === 6 && styles.blocImageLegPortrait}>
@@ -374,8 +378,9 @@ return (
                      <Text style={styles.legendeImage}>Pression finale : {image.finale}</Text>        
                     </View>
                     :
+                    <View style={styles.blocLegendeImage}>
                    <Text style={image.orientationImage === 6 ? styles.legendeImagePortrait:styles.legendeImage}>{image.legende}</Text>
-                    
+                   </View>
                     }
                    
               </View>

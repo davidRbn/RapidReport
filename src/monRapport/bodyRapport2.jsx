@@ -72,7 +72,7 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInt
           1000,
           1000,
           "JPEG",
-          100,
+          90,
           0,
           (uri) => {
             resolve(uri);
