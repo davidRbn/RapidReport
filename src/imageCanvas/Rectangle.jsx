@@ -18,7 +18,6 @@ const Rectangle = ({ shapeProps, isSelected, onSelect, onChange,shapeRef }) => {
     return (
       <React.Fragment>
         <Rect
-        strokeWidth={10}
           onClick={onSelect}
           onTap={onSelect}
           ref={shapeRef}

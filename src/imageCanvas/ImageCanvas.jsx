@@ -6,6 +6,7 @@ import './imageCanvas.css'
 import CircleCanvas from "./Circle";
 // import imageCompression from 'browser-image-compression';
 import Resizer from "react-image-file-resizer";
+import ArrowCanvas from "./ArrowCanvas";
 
 
 
@@ -15,6 +16,18 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
     const imageref = React.useRef(null)
     const shapeRef = React.useRef(null);
     const circleRef = React.useRef(null)
+    const arrowRef = React.useRef(null)
+
+    const [im] = useImage(urlImageZoom,'Anonymous')
+
+
+    let imageAspectRatio = urlImageZoom && (imageHeight < imageWidth) ? imageWidth / imageHeight : urlImageZoom && (imageHeight > imageWidth) ? imageHeight / imageWidth : 1;
+    let screenHeight = window.innerHeight * 0.50
+
+    let screenWidth = (window.innerWidth) > 700 && (imageHeight < imageWidth) ? window.innerWidth * 0.50  : window.innerWidth <= 700 && imageHeight < imageWidth ? window.innerWidth * 0.95 : screenHeight / imageAspectRatio
+     let stageWidth = screenWidth;
+
+     let stageHeight = imageWidth > imageHeight ? stageWidth / imageAspectRatio : screenHeight
 
 
     console.log(imageWidth,imageHeight);
@@ -25,6 +38,7 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
           y: 10,    
           width: 100,
           height: 100,
+          strokeWidth:5,
           stroke: 'red',
           id: 'rect1',
         }
@@ -36,21 +50,38 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
           y: 100,
           width: 100,
           height: 100,
+          strokeWidth:5,
           stroke: 'red',
           id: 'circle1',
         }
       ];
 
+      const initialArrow = [
+        {
+            x: 100,
+            y: 100,
+            pointerLength: 40,
+            pointerWidth: 40,
+            points: [0, 0, stageWidth / 3, stageHeight/ 3],
+            fill: 'red',
+            stroke: 'red',
+            strokeWidth: 5,
+            id:'arrow1'
+        }
+      ];
+
     const [rectangles, setRectangles] = React.useState(initialRectangles);
     const [circle, setCircle] = React.useState(initialCircle);
+    const [arrow,setArrow] = React.useState(initialArrow)
 
     const [selectedId, selectShape] = React.useState(null);
     const [selectRect,setSelectRect] = useState(false)
     const [selectCircle,setSelectCircle] = useState(false)
+    const [selectArrow,setSelectArrow] = useState(false)
 
 
 
-    const [im] = useImage(urlImageZoom,'Anonymous')
+
 
 
 
@@ -68,13 +99,7 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
 
 
 
-    let imageAspectRatio = urlImageZoom && (imageHeight < imageWidth) ? imageWidth / imageHeight : urlImageZoom && (imageHeight > imageWidth) ? imageHeight / imageWidth : 1;
-    let screenHeight = window.innerHeight * 0.50
-
-    let screenWidth = (window.innerWidth) > 700 && (imageHeight < imageWidth) ? window.innerWidth * 0.50  : window.innerWidth <= 700 && imageHeight < imageWidth ? window.innerWidth * 0.95 : screenHeight / imageAspectRatio
-     let stageWidth = screenWidth;
-
-     let stageHeight = imageWidth > imageHeight ? stageWidth / imageAspectRatio : screenHeight
+    
 
    
 console.log(stageHeight);
@@ -100,25 +125,40 @@ console.log(stageHeight);
 
        selectRect && rectangles.forEach(rect => {
         
-        console.log('rec');
             shapeRef.current.x(rect.x * scaleFactorX)
             shapeRef.current.y( rect.y * scaleFactorY)
             shapeRef.current.width(rect.width * scaleFactorX)
             shapeRef.current.height(rect.height * scaleFactorY)
+            shapeRef.current.strokeWidth(rect.strokeWidth * 5)
 
 
         });
 
        selectCircle && circle.forEach(rect => {
         
-        console.log('cir');
             circleRef.current.x(rect.x * scaleFactorX)
             circleRef.current.y( rect.y * scaleFactorY)
             circleRef.current.width(rect.width * scaleFactorX)
             circleRef.current.height(rect.height * scaleFactorY)
+            circleRef.current.strokeWidth(rect.strokeWidth * 5)
+
 
 
         });
+
+        selectArrow && arrow.forEach(arr => {
+
+        
+              arrowRef.current.x(arr.x * scaleFactorX)
+              arrowRef.current.y( arr.y * scaleFactorY)
+              arrowRef.current.points([0,0,arr.points[2] * scaleFactorX,arr.points[3] * scaleFactorY])
+              arrowRef.current.strokeWidth(arr.strokeWidth * 5)
+
+              // circleRef.current.width(arr.width * scaleFactorX)
+              // circleRef.current.height(arr.height * scaleFactorY)
+  
+  
+          });
     
         const uri = stageRef.current.toDataURL();
 
@@ -219,6 +259,10 @@ console.log(stageHeight);
             e.preventDefault()
             setSelectCircle(!selectCircle)
         } }>Cercle</button>
+         <button className="btn-canvas" onClick={(e) =>{
+            e.preventDefault()
+            setSelectArrow(!selectArrow)
+        } }>Fleche</button>
        
         <button className="btn-close-canvas" onClick={(e) => {
             e.preventDefault()
@@ -286,7 +330,28 @@ console.log(stageHeight);
               />
             );
           })}
-
+             {selectArrow &&
+             
+             arrow.map((arr, i) => {
+            return (
+              <ArrowCanvas
+              arrowRef={arrowRef}
+                key={i}
+                shapeProps={arr}
+                isSelected={arr.id === selectedId}
+                onSelect={() => {
+                    selectShape(arr.id);
+                  }}
+                  onChange={(newAttrs) => {
+                    const arrows = arrow.slice();
+                    arrows[i] = newAttrs;
+                    setArrow(arrows);
+                  }}
+               
+              />
+            );
+          })}
+     
 
         </Layer>
       </Stage>

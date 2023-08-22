@@ -19,7 +19,6 @@ const CircleCanvas = ({ shapeProps, isSelected, onSelect, onChange,circleRef }) 
     return (
       <React.Fragment>
         <Circle
-        strokeWidth={10}
           onClick={onSelect}
           onTap={onSelect}
           ref={circleRef}
