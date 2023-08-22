@@ -85,7 +85,7 @@ const PageThreePdf = ({dataInterPdf}) => {
           },
           blocOrigineDesordre:{
 
-            marginTop:"40px"
+            marginTop:"20px"
 
           },
         titleDataInter:{
@@ -97,10 +97,11 @@ const PageThreePdf = ({dataInterPdf}) => {
         },
         description : {
 
-            margin: '5px 20px',
+            margin: '25px 20px',
             fontSize:`${globalColor.textSize}`,
             lineHeight:`${globalColor.lineHeigth}`,
-            fontFamily:'Helvetica'
+            fontFamily:'Helvetica',
+            textAlign:'center'
         }
     
     

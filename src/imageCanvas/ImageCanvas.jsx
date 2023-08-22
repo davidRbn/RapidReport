@@ -62,7 +62,7 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
             y: 100,
             pointerLength: 40,
             pointerWidth: 40,
-            points: [0, 0, stageWidth / 3, stageHeight/ 3],
+            points: [0, 0, 200, 200],
             fill: 'red',
             stroke: 'red',
             strokeWidth: 5,

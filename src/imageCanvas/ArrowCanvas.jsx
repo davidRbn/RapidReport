@@ -52,7 +52,7 @@ return (
           x: node.x(),
           y: node.y(),
           // set minimal value
-          points: [0,0,Math.max(node.width() * scaleX), Math.max(node.height() * scaleY)],
+          points: [0,0,Math.max(shapeProps.points[2] * scaleX), Math.max(shapeProps.points[3] * scaleY)],
         //   pointerHeight: Math.max(node.height() * scaleY),
         });
       }}
