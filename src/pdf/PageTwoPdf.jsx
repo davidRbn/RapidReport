@@ -142,7 +142,9 @@ const PageTwoPdf = ({dataInterPdf,dataInfoPdf}) => {
             color:`${globalColor.titleColor}`,
             margin:'10px',
             textAlign:'center',
-            fontFamily:'Helvetica'
+            fontFamily:'Helvetica',
+        textDecoration:'underline'
+
     
         },
         description : {

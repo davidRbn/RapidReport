@@ -92,7 +92,9 @@ const PageThreePdf = ({dataInterPdf}) => {
             color:`${globalColor.titleColor}`,
             margin:'20px',
             textAlign:'center',
-            fontFamily:'Helvetica'
+            fontFamily:'Helvetica',
+        textDecoration:'underline'
+
     
         },
         description : {

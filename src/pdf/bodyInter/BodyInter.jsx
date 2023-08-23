@@ -75,7 +75,8 @@ const BodyInter = ({dataInterPdf,indexDataPdf,indexData,indexConstatation,setInd
         color:`${globalColor.titleColor}`,
         textAlign:'center',
         padding:'2px',
-        fontFamily:'Helvetica'
+        fontFamily:'Helvetica',
+        textDecoration:'underline'
         // borderBottom:'1px solid black'
 
     },
@@ -342,9 +343,7 @@ return (
     <View>
       {/* {indexData === 0?<Text style={styles.titleInvestigations}>Détail des investigations : </Text>:<Text></Text>} */}
        <Text style={styles.titleDataInter}>{dataInterPdf.section === 'constatations' ? `${dataInterPdf.titre}` : dataInterPdf.titre } </Text>        
-
-
-<View>
+     <View>
 
   {
     dataInterPdf.section !== 'arrosageTerrasse' &&
