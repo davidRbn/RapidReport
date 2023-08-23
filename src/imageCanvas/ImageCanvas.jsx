@@ -30,8 +30,6 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
      let stageHeight = imageWidth > imageHeight ? stageWidth / imageAspectRatio : screenHeight
 
 
-    console.log(imageWidth,imageHeight);
-
     const initialRectangles = [
         {
           x: 10,
@@ -60,9 +58,9 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
         {
             x: 100,
             y: 100,
-            pointerLength: 40,
-            pointerWidth: 40,
-            points: [0, 0, 200, 200],
+            pointerLength: 10,
+            pointerWidth: 10,
+            points: [0, 0, 150, 150],
             fill: 'red',
             stroke: 'red',
             strokeWidth: 5,
@@ -102,12 +100,11 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
     
 
    
-console.log(stageHeight);
     const handleExport = async (e) => {
         e.preventDefault()
 
-        setZoomImage(false)
         setCanvasImageLoaded(true)
+        setZoomImage(false)
 
         stageRef.current.width(imageWidth);
         stageRef.current.height(imageHeight);
@@ -153,7 +150,8 @@ console.log(stageHeight);
               arrowRef.current.y( arr.y * scaleFactorY)
               arrowRef.current.points([0,0,arr.points[2] * scaleFactorX,arr.points[3] * scaleFactorY])
               arrowRef.current.strokeWidth(arr.strokeWidth * 5)
-
+              arrowRef.current.pointerLength(arr.pointerLength * 8)
+              arrowRef.current.pointerWidth(arr.pointerWidth * 8)
               // circleRef.current.width(arr.width * scaleFactorX)
               // circleRef.current.height(arr.height * scaleFactorY)
   
