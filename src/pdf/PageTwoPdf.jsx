@@ -152,7 +152,8 @@ const PageTwoPdf = ({dataInterPdf,dataInfoPdf}) => {
             margin: '5px 20px',
             fontSize:`${globalColor.textSize}`,
             lineHeight:`${globalColor.lineHeigth}`,
-            fontFamily:'Helvetica'
+            fontFamily:'Helvetica',
+            textAlign:'start'
             
         }
     

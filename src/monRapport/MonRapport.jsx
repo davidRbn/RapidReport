@@ -1,5 +1,5 @@
 import { PDFDownloadLink} from "@react-pdf/renderer";
-import React, { useEffect } from "react";
+import React, { useEffect,memo } from "react";
 import { useState } from "react";
 import { useContext } from "react";
 import AuthContext from "../authContext/AuthContext";
@@ -61,6 +61,7 @@ const MonRapport = () => {
     const [dataInfoPdf,setDataInfoPdf] = useState(infoInter.informationIntervention) //retirer infoInter.info... et remetre {}
 
   const [dataInter, setDataInter] = useState(dataIntervention)
+
 
 
   const handleUploadStorageImage = async () => {
@@ -321,6 +322,7 @@ urlFirebaseLoaded && test()
 
 
 
+
 // console.log(infoInter);
 // console.log(dataInterPdf);
 return(
@@ -426,4 +428,4 @@ return(
 
 }
 
-export default MonRapport
+export default memo(MonRapport)

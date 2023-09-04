@@ -103,7 +103,7 @@ const PageThreePdf = ({dataInterPdf}) => {
             fontSize:`${globalColor.textSize}`,
             lineHeight:`${globalColor.lineHeigth}`,
             fontFamily:'Helvetica',
-            textAlign:'center'
+            textAlign:'start'
         }
     
     

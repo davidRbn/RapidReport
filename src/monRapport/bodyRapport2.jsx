@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 // import { getStorage, ref } from "firebase/storage";
 import './bodyRapport.css'
 // import { dataIntervention } from "./dataIntervention";
@@ -856,4 +856,4 @@ if (data.section === "vueGlobale"){
   )
 }
 
-export default BodyRapport2
+export default memo(BodyRapport2)
