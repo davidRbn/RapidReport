@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{memo} from 'react'
 import { Page, Document, StyleSheet} from '@react-pdf/renderer';
 import FooterPdf from '../pdf/footer/FooterPdf';
 import BodyInter from '../pdf/bodyInter/BodyInter';
@@ -127,4 +127,4 @@ const [indexConstatation,setIndexConstatation] = useState(0)
     )
 }
 
-export default Rapport
+export default memo(Rapport)
