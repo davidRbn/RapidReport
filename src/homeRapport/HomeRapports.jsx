@@ -159,7 +159,14 @@ return (
             <div ><button className="btn-create-rapport" onClick={e => { navigate('mon-rapport',{state:{docIsCreated:false,idDoc:''}})}}>Creer un nouveau rapport</button>
     </div>
     <div  className="all-rapports">
-    {rapports.map((data,key) => {
+    {[...rapports].sort((a, b) => {
+        // Convertissez les dates en objets Date pour la comparaison
+        const dateA = new Date(a.infoInter.informationIntervention.dateIntervention);
+        const dateB = new Date(b.infoInter.informationIntervention.dateIntervention);
+
+        // Triez par ordre croissant (le plus ancien en premier)
+        return dateB - dateA;
+    }).map((data,key) => {
     return (
         <div  key={key}>
 <div className="bloc-rapports">
