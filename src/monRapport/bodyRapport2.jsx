@@ -525,6 +525,7 @@ setPictureAddOrDelete(true)
 
     } )
       setDataInter(newData)
+      setPictureAddOrDelete(true)
 
    }
 
@@ -551,6 +552,7 @@ setPictureAddOrDelete(true)
 
     } )
       setDataInter(newData)
+      setPictureAddOrDelete(true)
 
    }
 
