@@ -162,7 +162,7 @@ return (
      */}
          {data.moyenTechnique.map((moyen,indexMoyen) => 
             
-            
+            moyen.materielUtilise.length !== 0 &&
             <View key={indexMoyen} style={stylesPageThreePdf.ligneArray } >
 
                  <Text style={stylesPageThreePdf.textAlignMoyen1}>{moyen.materielUtilise}</Text>

@@ -28,6 +28,10 @@ export const dataIntervention =
    titre : 'Moyens technique utilisés',
    image:[],
    moyenTechnique : [
+    {
+        materielUtilise : '',
+        isUse : true,
+        concluant : false        },
         {
             materielUtilise : 'Testeur d\'humidité',
             isUse : true,
@@ -76,6 +80,11 @@ export const dataIntervention =
         },
         {
             materielUtilise : 'Electro-acoustique',
+            isUse : false,
+            concluant : false
+        },
+         {
+            materielUtilise : 'Traçage réseau',
             isUse : false,
             concluant : false
         },

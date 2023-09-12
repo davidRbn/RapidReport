@@ -35,10 +35,6 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInt
 
     {label: 'miseEnPression', value : 'Mise en pression'},
     {label:'arrosageTerrasse' ,value: 'Arrosage terrasse'},
-    {label:'colorant' ,value: 'Mise en charge avec colorant' },
-    {label:'fumee' ,value: 'Mise en oeuvre machine a fumée' },
-    {label: 'gazTraceur' ,value: 'Mise en oeuvre gaz traceur' },
-    {label:'passagecamera',value: 'Mise en oeuvre caméra' },
     {label: 'autre' ,value: 'Autre' }
                                 ]
   
@@ -577,20 +573,7 @@ setValeurSelectionnee(e.target.value)
        case 'arrosageTerrasse' : 
             title = "Arrosage terrasse"
        break;
-       case 'colorant' : 
-              title = 'Mise en charge avec colorant'     
-       break;
-       case 'fumee' : 
-              title = 'Mise en oeuvre machine a fumée'     
-       break;
-       case 'gazTraceur' : 
-       title = 'Mise en oeuvre gaz traceur'  
-        break;
-        case 'passagecamera' : 
-       title = 'Mise en oeuvre caméra'  
-        break;
        default : title = 'autre'
-
  }
 
        const newSection = {
@@ -682,7 +665,9 @@ if (data.section === "vueGlobale"){
             
             { data.moyenTechnique.map((moyen,indexMoyen) =>(
 
-             <div className="blocMoyenTech" key={indexMoyen}>
+moyen.materielUtilise.length !== 0 &&
+          
+            <div className="blocMoyenTech" key={indexMoyen}>
                   <p className="moyenTech">{moyen.materielUtilise}  :</p>
                 <label className="labelMoyenTechnique">
                   
@@ -719,8 +704,28 @@ if (data.section === "vueGlobale"){
                </div>
 
           <div className="s-titre-des">
+ 
             <label className="titre-des">
               Titre :
+
+              { data.section === "constatations" || data.section === "conclusion" || data.section === "investigations" || data.section === "miseEnPression" ?
+
+""
+:
+
+<select onChange={e => handleChangeInfoInter(e.target.value,index,"titre")}>
+         {dataInter.filter(data => data.section === "moyenTechnique").map((moyen) => (
+
+          
+           moyen.moyenTechnique.map((materiel,indexMateriel) => (
+
+
+              <option key={indexMateriel} value={materiel.materielUtilise}>{materiel.materielUtilise}</option>
+
+           ))      
+                
+         ))}
+   </select>}
               <input className="input-title" disabled={data.section === 'miseEnPression' || data.section === "conclusion"? true : false} name='titre' type="text" value={data.titre} onChange={e => handleChangeInfoInter(e.target.value, index, e.target.name)} />
               
             </label>
@@ -836,17 +841,8 @@ if (data.section === "vueGlobale"){
                     { selectSectionInter.map((select,indexSelect) => (
 
                         <option key={indexSelect} value={select.label}>{select.value}</option>
-                         
-                        
-                  
-
-                    ))
-
-
-                    }
-
-             
-
+                           
+                    ))}
               </select>
 
           </label>
