@@ -42,8 +42,13 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInt
 
 
    const handleChange = async (e, index) => {
+
+const fileArray =  Array.from(e.target.files)
+
+const reverseFile = fileArray.reverse()
+
     for (let i = 0; i < e.target.files.length; i++) {
-      const newImage = e.target.files[i];
+      const newImage = reverseFile[i];
       const imageName = newImage.name;
       let orientation = 0;
       let imageWidth = 0;
@@ -417,7 +422,7 @@ setPictureAddOrDelete(true)
   const openModalImageDelete = (e) => {
   
           e.preventDefault()
-          console.log(deleteImage)
+          // console.log(deleteImage)
           setDeleteImage(true)
 
   }
