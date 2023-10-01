@@ -209,7 +209,7 @@ const getDate = (date) => {
 return (
 
 <div>
-    <p>MAJ : 1.7</p>
+    <p>MAJ : 1.8</p>
     
 <div>
     <h1 className="title-home-rapports">Mes Rapports</h1>

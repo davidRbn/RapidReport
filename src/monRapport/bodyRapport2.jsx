@@ -33,12 +33,12 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInt
   const [canvasImageLoaded,setCanvasImageLoaded] = useState(false)
   const selectSectionInter = [
 
+    {label: 'autre' ,value: 'Autre' },
     {label: 'miseEnPression', value : 'Mise en pression'},
-    {label:'arrosageTerrasse' ,value: 'Arrosage terrasse'},
-    {label: 'autre' ,value: 'Autre' }
+    {label:'arrosageTerrasse' ,value: 'Arrosage terrasse'}
                                 ]
   
-   const [valeurSelectionnee, setValeurSelectionnee] = useState('miseEnPression');
+   const [valeurSelectionnee, setValeurSelectionnee] = useState('autre');
 
 
    const handleChange = async (e, index) => {
@@ -739,10 +739,10 @@ moyen.materielUtilise.length !== 0 &&
               <textarea className="texttarea-description" name='description' type="textarea" maxLength={data.section === "conclusion" || data.section === "investigations" || data.section === "constatations" ? 100000 : data.section === 'arrosageTerrasse' ? 2090 : 730} value={data.description} onChange={e => handleChangeInfoInter(e.target.value, index, e.target.name)} />
             </label>
           </div>
-          <div>
+       { (data.section !== "conclusion" && data.section !== "investigations") && <div>
              <label>Choisir image</label>
             <input accept="image/*" type="file" title='Choisir une image' onChange={e => handleChange(e,index)} multiple />
-            </div>
+            </div>}
             <div>
                   {/* <label>Prendre photo</label>
                     <input accept="image/*" type="file" title='Prendre une photo' capture onChange={e => handleChange(e,index)} /> */}

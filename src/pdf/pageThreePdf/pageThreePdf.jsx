@@ -104,6 +104,13 @@ const PageThreePdf = ({dataInterPdf}) => {
             lineHeight:`${globalColor.lineHeigth}`,
             fontFamily:'Helvetica',
             textAlign:'start'
+        },
+        descriptionMoyenTech:{
+             margin: '25px 20px',
+            fontSize:`${globalColor.textSize}`,
+            lineHeight:`${globalColor.lineHeigth}`,
+            fontFamily:'Helvetica',
+            textAlign:'center'
         }
     
     
@@ -149,7 +156,7 @@ return (
     
     <View>
         {/* <Text style={stylesPageThreePdf.titleDataInter}>Investigations : </Text> */}
-          <Text  style={stylesPageThreePdf.description}>Lors de notre intervention, nous avons mis en œuvre les moyens techniques suivants :</Text>
+          <Text  style={stylesPageThreePdf.descriptionMoyenTech}>Lors de notre intervention, nous avons mis en œuvre les moyens techniques suivants :</Text>
     </View>
 
      <View  style={stylesPageThreePdf.blocArray}>
