@@ -10,7 +10,7 @@ import ArrowCanvas from "./ArrowCanvas";
 
 
 
-const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,dataInter,setContainFile,imageWidth,imageHeight,setCanvasImageLoaded}) => {
+const ImageCanvas = ({setZoomImage,zoomImage,urlImageZoom,index,indexImage,setDataInter,dataInter,setContainFile,imageWidth,imageHeight,setCanvasImageLoaded}) => {
 
     const stageRef = React.useRef(null);
     const imageref = React.useRef(null)
@@ -19,7 +19,6 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
     const arrowRef = React.useRef(null)
 
     const [im] = useImage(urlImageZoom,'Anonymous')
-
 
     let imageAspectRatio = urlImageZoom && (imageHeight < imageWidth) ? imageWidth / imageHeight : urlImageZoom && (imageHeight > imageWidth) ? imageHeight / imageWidth : 1;
     let screenHeight = window.innerHeight * 0.50
@@ -76,7 +75,7 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
     const [selectRect,setSelectRect] = useState(false)
     const [selectCircle,setSelectCircle] = useState(false)
     const [selectArrow,setSelectArrow] = useState(false)
-
+ 
 
 
 
@@ -97,12 +96,11 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
 
 
 
-    
-
    
     const handleExport = async (e) => {
         e.preventDefault()
 
+        console.log('image canvas')
         setCanvasImageLoaded(true)
         setZoomImage(false)
 
@@ -207,6 +205,7 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
         // downloadURI(uri, 'stage.png');
       };
 
+
       const handleUploadImage = (blob,index,indexImage) => {
 
         let url =   URL.createObjectURL(blob)
@@ -247,7 +246,7 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
 
     
         <div className="image-zoom" > 
-   
+
        <Fragment>
         <button  className="btn-canvas" onClick={(e) =>{
             e.preventDefault()
@@ -355,7 +354,7 @@ const ImageCanvas = ({setZoomImage,urlImageZoom,index,indexImage,setDataInter,da
       </Stage>
       </Fragment>
    
-      <button className="btn-canvas-registrer" onClick={(e) => handleExport(e)}>Enregistrer Image</button>
+      <button className="btn-canvas-registrer" onClick={(e) => {handleExport(e)}}>Enregistrer Image</button>
       </div>
     );
 

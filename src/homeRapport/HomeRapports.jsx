@@ -151,7 +151,7 @@ const getDate = (date) => {
 
     const theDate = new Date(date)
 
-    console.log(theDate);
+    // console.log(theDate);
 
     const dateYear = theDate.getFullYear()
     const dateDay = theDate.getDate()

@@ -778,7 +778,7 @@ moyen.materielUtilise.length !== 0 &&
 
                       }} src={image.url} alt="" /> 
                       
-         {zoomImage && indexImage === indexImageZoom && index === sectionIndexZoom && <ImageCanvas setCanvasImageLoaded={setCanvasImageLoaded} setContainFile={setContainFile} dataInter={dataInter} setDataInter={setDataInter} index={index} indexImage={indexImage} urlImageZoom={image.url} imageWidth={image.imageWidth} imageHeight={image.imageHeight} urlZoom={indexImageZoom} setZoomImage={setZoomImage} />}
+         {zoomImage && indexImage === indexImageZoom && index === sectionIndexZoom && <ImageCanvas setCanvasImageLoaded={setCanvasImageLoaded} setContainFile={setContainFile} dataInter={dataInter} setDataInter={setDataInter} index={index} indexImage={indexImage} urlImageZoom={image.url} imageWidth={image.imageWidth} imageHeight={image.imageHeight} urlZoom={indexImageZoom} setZoomImage={setZoomImage} zoomImage={zoomImage} />}
                      
 
                       </div> 
