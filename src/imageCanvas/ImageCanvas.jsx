@@ -62,7 +62,7 @@ const ImageCanvas = ({setZoomImage,zoomImage,urlImageZoom,index,indexImage,setDa
             points: [0, 0, 150, 150],
             fill: 'red',
             stroke: 'red',
-            strokeWidth: 5,
+            strokeWidth: 15,
             id:'arrow1'
         }
       ];
@@ -147,7 +147,7 @@ const ImageCanvas = ({setZoomImage,zoomImage,urlImageZoom,index,indexImage,setDa
               arrowRef.current.x(arr.x * scaleFactorX)
               arrowRef.current.y( arr.y * scaleFactorY)
               arrowRef.current.points([0,0,arr.points[2] * scaleFactorX,arr.points[3] * scaleFactorY])
-              arrowRef.current.strokeWidth(arr.strokeWidth * 5)
+              arrowRef.current.strokeWidth(arr.strokeWidth * 2)
               arrowRef.current.pointerLength(arr.pointerLength * 8)
               arrowRef.current.pointerWidth(arr.pointerWidth * 8)
               // circleRef.current.width(arr.width * scaleFactorX)

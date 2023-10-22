@@ -45,15 +45,15 @@ const BodyRapport2 = ({dataInter,setDataInter,setContainFile,containFile,infoInt
 
 const fileArray =  Array.from(e.target.files)
 
+
 const reverseFile = fileArray.reverse()
 
     for (let i = 0; i < e.target.files.length; i++) {
       const newImage = reverseFile[i];
-      const imageName = newImage.name;
+      const imageName = `${newImage.name}${index}${i}`;
       let orientation = 0;
       let imageWidth = 0;
       let imageHeight = 0;
-  
       // Lecture de l'image pour obtenir la largeur et la hauteur
       const img = new Image();
       img.src = URL.createObjectURL(newImage);
