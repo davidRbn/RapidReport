@@ -1,0 +1,99 @@
+@import "../pdf/globalStyles//globalStylesSass.scss";
+
+.blocCreateRapport {
+  background-color: $backGroundColor;
+}
+
+.sectionCreateRapport {
+  display: flex;
+  flex-direction: column;
+  margin: 0 3%;
+}
+
+.titleMonRapport {
+  margin-top: 0;
+  padding-top: 10px;
+  text-align: center;
+  color: $titleColor;
+  border-bottom: 2px solid $secondaryColor;
+  padding-bottom: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.section-info-inter {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $border;
+  background-color: $secondaryColor;
+  width: 350px;
+  margin: auto;
+  padding: 1em;
+  border-radius: 10px;
+}
+
+.section-info-inter input {
+  width: 200px;
+  height: 25px;
+  margin-left: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.section-info-inter label {
+  margin-bottom: 5px;
+}
+
+.buttonRegistrer {
+  color: black;
+  font-weight: bold;
+  position: fixed;
+  border-radius: 10px;
+  bottom: 3%;
+  right: 3%;
+  background-color: $btnColor;
+  height: 40px;
+  width: 120px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.link-pdf {
+  height: 40px;
+  width: 200px;
+  margin-bottom: 40px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  /* border: 2px solid black; */
+  background-color: white;
+  // box-shadow: 8px 8px 8px grey;
+  border-radius: 20px;
+  margin-left: 2.5%;
+}
+
+.link-pdf a {
+  color: black;
+  font-weight: bold;
+  margin: auto;
+  font-size: 1em;
+}
+
+@media screen and (max-width: 770px) {
+  .buttonRegistrer {
+    position: fixed;
+    display: block;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    border-radius: 0;
+    right: 0;
+    margin-top: 10px;
+  }
+  .blocCreateRapport {
+    margin-bottom: 60px;
+  }
+}

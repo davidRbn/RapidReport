@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Image, Layer, Stage } from "react-konva";
 import Rectangle from "./Rectangle";
 import useImage from "use-image";
-import './imageCanvas.css'
+import './imageCanvas.scss'
 import CircleCanvas from "./Circle";
 // import imageCompression from 'browser-image-compression';
 import Resizer from "react-image-file-resizer";
@@ -76,26 +76,6 @@ const ImageCanvas = ({setZoomImage,zoomImage,urlImageZoom,index,indexImage,setDa
     const [selectCircle,setSelectCircle] = useState(false)
     const [selectArrow,setSelectArrow] = useState(false)
  
-
-
-
-
-
-
-
-    // let imageAspectRatio = urlImageZoom && (imageHeight < imageWidth) ? imageWidth / imageHeight : urlImageZoom && (imageHeight > imageWidth) ? imageHeight / imageWidth : 1;
-    // let screenHeight = window.innerHeight * 0.50
-
-    // let screenWidth = (window.innerWidth) > 700 && (imageHeight < imageWidth) ? window.innerWidth * 0.60  : window.innerWidth <= 700 && imageHeight < imageWidth ? window.innerWidth * 0.95 : screenHeight / imageAspectRatio
-    //  stageWidth = screenWidth;
-
-    //  stageHeight = imageWidth > imageHeight ? stageWidth / imageAspectRatio : screenHeight
-
-    //  setCalculDimensionFinish(true)
-
-
-
-
    
     const handleExport = async (e) => {
         e.preventDefault()
@@ -113,9 +93,6 @@ const ImageCanvas = ({setZoomImage,zoomImage,urlImageZoom,index,indexImage,setDa
 
         const scaleFactorX = imageWidth / stageWidth;
         const scaleFactorY = imageHeight / stageHeight;
-
-     
-
 
 
        selectRect && rectangles.forEach(rect => {
@@ -150,9 +127,6 @@ const ImageCanvas = ({setZoomImage,zoomImage,urlImageZoom,index,indexImage,setDa
               arrowRef.current.strokeWidth(arr.strokeWidth * 2)
               arrowRef.current.pointerLength(arr.pointerLength * 8)
               arrowRef.current.pointerWidth(arr.pointerWidth * 8)
-              // circleRef.current.width(arr.width * scaleFactorX)
-              // circleRef.current.height(arr.height * scaleFactorY)
-  
   
           });
     
@@ -160,27 +134,6 @@ const ImageCanvas = ({setZoomImage,zoomImage,urlImageZoom,index,indexImage,setDa
 
         const response = await fetch(uri);
         const blobImageCanvas = await response.blob();
-
-        // const options = {
-        //     maxSizeMB: 0.7,
-        //     maxWidthOrHeight: 1920,
-        //     useWebWorker: true,
-        //     fileType:'image/png',
-        //     onprogress:(e) => console.log(e)
-        //   }
-        //   try {
-             
-           
-
-        //     const compressedFile = await imageCompression(blobImageCanvas, options);
-        //     console.log(compressedFile);
-          
-        //     handleUploadImage(compressedFile,index,indexImage)
-
-        //   } catch (error) {
-        //     console.log(error);
-        //   }
-
 
         Resizer.imageFileResizer(
             blobImageCanvas,
@@ -235,12 +188,6 @@ const ImageCanvas = ({setZoomImage,zoomImage,urlImageZoom,index,indexImage,setDa
         selectShape(null);
       }
     };
-  
-    // const screenWidth = window.innerWidth > 700 && window.innerWidth < 1200 ? 500 : window.innerWidth
-    // const screenWidth = window.innerWidth * 0.95
-    // const stageWidth = screenWidth;
-    // const imageAspectRatio = im ? imageWidth / imageHeight : 1;
-    // const stageHeight = stageWidth / imageAspectRatio;
 
     return (
 

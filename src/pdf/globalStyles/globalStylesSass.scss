@@ -1,0 +1,30 @@
+//  $titleColor: rgb(4, 139, 154);
+//   $secondaryColor: white;
+//   $backGroundColor: rgb(231, 236, 232);
+//   $titleColor: rgb(4, 139, 154);
+//   $btnColor: rgb(4, 139, 154);
+//   $border: rgb(4, 139, 154);
+//   $textColor: hsl(0 0% 63.9%);
+
+$titleColor: rgb(255, 255, 255);
+$secondaryColor: hsl(240 17.1% 9%);
+$backGroundColor: hsl(240 33.1% 5%);
+$textColor: hsl(0 0% 63.9%);
+$btnColor: hsl(193deg 98% 70%);
+$border: hsl(0 0% 14.9%);
+
+p,
+label {
+  color: $textColor;
+}
+
+input,
+textarea,
+select {
+  background-color: $backGroundColor;
+  color: $textColor;
+}
+
+button{
+  cursor: pointer;
+}

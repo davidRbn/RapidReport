@@ -21,7 +21,6 @@ return (
  e.preventDefault()
  setZoomImage(false)
 
-
 }}/> */}
 <ImageCanvas urlImageZoom={urlImageZoom} setZoomImage={setZoomImage}/>
 

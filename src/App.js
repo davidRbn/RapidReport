@@ -3,6 +3,7 @@ import app from './firebase/Firebase.jsx'
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import Auth from './authentification/Auth';
 
+
 const db = getFirestore(app)
 
 async function getUser(db) {

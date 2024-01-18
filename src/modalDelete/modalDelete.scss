@@ -1,0 +1,22 @@
+@import "../pdf/globalStyles//globalStylesSass.scss";
+
+.modal-delete {
+  position: fixed;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $secondaryColor;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid $border;
+}
+
+.btn-modalDelete {
+  width: 6em;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  font-size: 0.875em;
+}

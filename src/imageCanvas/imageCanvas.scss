@@ -1,3 +1,6 @@
+@import "../pdf/globalStyles//globalStylesSass.scss";
+
+
 .image-zoom{
 
     position: fixed;
@@ -23,20 +26,28 @@ background-color: black;
     color: red;
     border: 1px solid red;
     padding: 5px;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: .875em;
   }
 
 .btn-canvas{
 
     background-color: white;
-    border: 1px solid #048B9A;
-    margin-bottom: 5px;
+    border: none;
+    margin: 5px 10px;
     padding: 5px;
+    border-radius: 5px;
+    font-size: .875em;
+
 }
 
 .btn-canvas-registrer{
     position: absolute;
     right: 0;
-    background-color: white;
-    border: 1px solid #048B9A;
+    background-color: $btnColor;
+    border: none;
     padding: 5px;
+    border-radius: 5px;
+    font-size: .875em;
 }
