@@ -7,6 +7,7 @@ import Loader from "../loader/Loader";
 import imageMaison from "../image/imageMaison.jpg";
 import { UseGetRapport } from "./getRapport";
 import { getDate } from "./dateConfig";
+import Header from "../Header/Header";
 
 const HomeRapports = () => {
   const navigate = useNavigate();
@@ -34,9 +35,7 @@ const HomeRapports = () => {
 
   return (
     <div>
-      <div>
-        <h1 className="title-home-rapports">Mes Rapports</h1>
-      </div>
+     <Header/>
       <div>
         <button
           className="btn-create-rapport"

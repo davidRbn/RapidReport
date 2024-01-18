@@ -1,0 +1,20 @@
+@import '../pdf/globalStyles//globalStylesSass.scss';
+
+.btn-signOut{
+
+  width: 50px;
+  height: 50px;
+  background-color: $secondaryColor;
+  border: none;
+  border-radius: 10px;
+  border: 1px solid $border;
+  
+}
+
+.icon-signOut{
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-image:url('../image/logout.png') ;
+  background-size: cover;
+}

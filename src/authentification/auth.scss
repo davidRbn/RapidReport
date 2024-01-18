@@ -1,0 +1,41 @@
+@import "../pdf/globalStyles/globalStylesSass.scss";
+
+.sectionAuth {
+  height: 100vh;
+  display: flex; /* contexte sur le parent */
+  flex-direction: column; /* direction d'affichage verticale */
+  justify-content: center;
+  text-align: center;
+}
+
+.auth {
+  height: 300px;
+  width: 250px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $border;
+  border-radius: 10px;
+  justify-content: center;
+}
+
+.form-auth {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.input-auth {
+  border: 1px solid $border;
+}
+
+.submit-auth {
+  width: 100px;
+  border: 1px solid $border;
+  background-color: $titleColor;
+  font-size: 0.875em;
+  color: black;
+  padding: 0.5em;
+  border-radius: 5px;
+  cursor: pointer;
+}
