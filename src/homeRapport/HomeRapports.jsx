@@ -8,6 +8,7 @@ import imageMaison from "../image/imageMaison.jpg";
 import { UseGetRapport } from "./getRapport";
 import { getDate } from "./dateConfig";
 import Header from "../Header/Header";
+import SignOut from "../SignOut/SignOut";
 
 const HomeRapports = () => {
   const navigate = useNavigate();
@@ -35,7 +36,9 @@ const HomeRapports = () => {
 
   return (
     <div>
-     <Header/>
+      <Header variant={"H2"} rigthChildren={<SignOut />}>
+        Mes rapports
+      </Header>
       <div>
         <button
           className="btn-create-rapport"

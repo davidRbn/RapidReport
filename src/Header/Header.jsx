@@ -1,17 +1,27 @@
-import SignOut from "../SignOut/SignOut"
-import './Header.scss'
+import "./Header.scss";
 
-const Header= () => {
+const Header = ({ children, rigthChildren, variant = "" }) => {
+  const TitleTag =
+    variant === "H2"
+      ? "h2"
+      : variant === "H3"
+      ? "h3"
+      : variant === "H1"
+      ? "h1"
+      : "p";
 
-
-
-  return (<>
-  
-  <div style={{position:'relative'}}>
-        <h1 className="title-home-rapports">Mes Rapports</h1>
-        <div className="s-signOut"><SignOut/></div>
+  return (
+    <>
+      <div style={{ position: "relative" }}>
+        <TitleTag
+          className={`title-home-rapports title-home-rapports-${variant}`}
+        >
+          {children}
+        </TitleTag>
+        <div className="s-signOut">{rigthChildren}</div>
       </div>
-  </>)
-}
+    </>
+  );
+};
 
-export default Header 
+export default Header;

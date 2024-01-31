@@ -1,7 +1,7 @@
 @import "../pdf/globalStyles/globalStylesSass.scss";
 
 .sectionAuth {
-  height: 100vh;
+  height: calc(80vh - 60px);
   display: flex; /* contexte sur le parent */
   flex-direction: column; /* direction d'affichage verticale */
   justify-content: center;

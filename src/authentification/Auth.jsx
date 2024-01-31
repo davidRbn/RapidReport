@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import AuthContext from "../authContext/AuthContext";
 import { Navigate } from "react-router-dom";
+import Header from "../Header/Header";
 
 const Auth = () => {
   const { user } = useContext(AuthContext);
@@ -35,36 +36,43 @@ const Auth = () => {
   };
 
   return (
-    <div className="sectionAuth">
-      <div className="auth">
-        <h2>Connexion</h2>
-        {error ? <p>{error}</p> : null}
-        {user && <Navigate to="/mes-rapports" replace={true} />}
-        <form className="form-auth" onSubmit={handleSubmit}>
-          <div>
-            <input
-              className="input-auth"
-              type="text"
-              name="email"
-              value={email}
-              placeholder="Your Email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div>
-            <input
-              className="input-auth"
-              type="password"
-              name="password"
-              value={password}
-              placeholder="Your Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div>
-            <input className="submit-auth" type="submit" value="Se connecter" />
-          </div>
-        </form>
+    <div style={{ position: "fixed", width: "100%" }}>
+      <Header variant={"H1"}>RapidReport</Header>
+      <div className="sectionAuth">
+        <div className="auth">
+          <h2>Connexion</h2>
+          {error ? <p>{error}</p> : null}
+          {user && <Navigate to="/mes-rapports" replace={true} />}
+          <form className="form-auth" onSubmit={handleSubmit}>
+            <div>
+              <input
+                className="input-auth"
+                type="text"
+                name="email"
+                value={email}
+                placeholder="Your Email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div>
+              <input
+                className="input-auth"
+                type="password"
+                name="password"
+                value={password}
+                placeholder="Your Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div>
+              <input
+                className="submit-auth"
+                type="submit"
+                value="Se connecter"
+              />
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

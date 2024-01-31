@@ -1,5 +1,26 @@
-.s-signOut{
+@import "../pdf/globalStyles/globalStylesSass.scss";
+
+.s-signOut {
   position: absolute;
   right: 10px;
   top: 0;
+}
+
+.title-home-rapports {
+  text-align: center;
+  height: 60px;
+  // color: $titleColor;
+}
+
+.title-home-rapports-H1 {
+  background: linear-gradient(to right, white 40%, $btnColor 60%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 3rem;
+}
+
+.title-home-rapports-H2 {
+  color: white;
+  font-size: 2rem;
 }
