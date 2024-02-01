@@ -21,15 +21,17 @@ export const UseGetRapport = () => {
   };
 
   const getInfoUser = async () => {
-    const userDoc = await query(
-      collection(db, "Utilisateurs"),
-      where("uid", "==", user.uid)
-    );
-    const userInfo = await getDocs(userDoc);
-    const dataUser = userInfo.docs.map((doc) => ({ user, ...doc.data() }));
-    const allAccessReport = dataUser[0].allAccessReport;
+    if (user) {
+      const userDoc = await query(
+        collection(db, "Utilisateurs"),
+        where("uid", "==", user.uid)
+      );
+      const userInfo = await getDocs(userDoc);
+      const dataUser = userInfo.docs.map((doc) => ({ user, ...doc.data() }));
+      const allAccessReport = dataUser[0].allAccessReport;
 
-    getRapports(allAccessReport);
+      getRapports(allAccessReport);
+    }
   };
 
   useEffect(() => {

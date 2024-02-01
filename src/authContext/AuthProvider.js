@@ -1,29 +1,34 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useState, useEffect } from 'react';
-import AuthContext from './AuthContext'
+import { useState, useEffect } from "react";
+import AuthContext from "./AuthContext";
+import { useNavigate } from "react-router-dom";
 
-
-
-const auth = getAuth()
+const auth = getAuth();
 
 export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState({});
+  const [loadingData, setLoadingData] = useState(true);
+  const navigate = useNavigate();
 
-const [user, setUser] = useState();
-const [loadingData,setLoadingData] = useState(true)
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        setLoadingData(false);
+        setUser(null);
+      } else {
+        navigate("mes-rapports");
+        setUser(user);
+        setLoadingData(false);
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
+  const value = { user, setUser };
 
- useEffect(() => {
- onAuthStateChanged(auth,(user) => {
- setUser(user)
-setLoadingData(false)
- })
-// getInfoUser()
-
- }, []);
-
-
- 
- return (
- <AuthContext.Provider value={{ user }}>{!loadingData && children}</AuthContext.Provider>
- );
- };
+  return (
+    <AuthContext.Provider value={value}>
+      {!loadingData && children}
+    </AuthContext.Provider>
+  );
+};
