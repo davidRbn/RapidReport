@@ -54,15 +54,12 @@ const HomeRapports = () => {
       <div className="all-rapports">
         {[...rapports]
           .sort((a, b) => {
-            // Convertissez les dates en objets Date pour la comparaison
             const dateA = new Date(
               a.infoInter.informationIntervention.dateIntervention
             );
             const dateB = new Date(
               b.infoInter.informationIntervention.dateIntervention
             );
-
-            // Triez par ordre croissant (le plus ancien en premier)
             return dateB - dateA;
           })
           .map((data, key) => {
@@ -105,10 +102,7 @@ const HomeRapports = () => {
                       <div className="text-infoInter-home">
                         <p>{data.infoInter.informationIntervention.client}</p>
                         <p>
-                          {" "}
-                          {
-                            data.infoInter.informationIntervention.reference
-                          }{" "}
+                          {data.infoInter.informationIntervention.reference}
                         </p>
                         <p>
                           {getDate(
