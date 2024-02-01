@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
         setLoadingData(false);
         setUser(null);
       } else {
-        navigate("mes-rapports");
+        navigate("my-reports");
         setUser(user);
         setLoadingData(false);
       }

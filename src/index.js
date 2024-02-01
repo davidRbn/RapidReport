@@ -8,6 +8,7 @@ import HomeRapports from "./homeRapport/HomeRapports";
 import MonRapport from "./monRapport/MonRapport";
 import { createRoot } from "react-dom/client";
 import "./pdf/globalStyles/globalStylesSass.scss";
+import PrivateRoute from "./privateRoute/PrivateRoute";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -18,8 +19,22 @@ root.render(
       <AuthProvider>
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="mes-rapports" element={<HomeRapports />} />
-          <Route path="mes-rapports/mon-rapport" element={<MonRapport />} />
+          <Route
+            path="my-reports"
+            element={
+              <PrivateRoute>
+                <HomeRapports />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="my-reports/report"
+            element={
+              <PrivateRoute>
+                <MonRapport />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </AuthProvider>
     </HashRouter>

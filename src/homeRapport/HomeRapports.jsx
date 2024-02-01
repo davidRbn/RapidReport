@@ -21,7 +21,7 @@ const HomeRapports = () => {
   const accessMyReport = (e, idDoc) => {
     e.preventDefault();
 
-    navigate("mon-rapport", {
+    navigate("report", {
       state: {
         idDoc,
         docIsCreated: true,
@@ -43,7 +43,7 @@ const HomeRapports = () => {
         <button
           className="btn-create-rapport"
           onClick={(e) => {
-            navigate("mon-rapport", {
+            navigate("report", {
               state: { docIsCreated: false, idDoc: "" },
             });
           }}

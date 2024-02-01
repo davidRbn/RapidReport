@@ -11,17 +11,19 @@ const Auth = () => {
   const { setUser } = useContext(AuthContext);
 
   const [email, setEmail] = useState("davidruben14@gmail.com");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState(process.env.REACT_APP_MDP);
   const [error, setError] = useState("");
   const auth = getAuth();
   const navigate = useNavigate();
+
+  console.log(process.env.REACT_APP_MDP);
 
   const signIn = async (email, password) => {
     try {
       await signInWithEmailAndPassword(auth, email, password).then((res) => {
         const user = res.user;
         setUser(user);
-        navigate("mes-rapports");
+        navigate("my-reports");
       });
 
       // console.log(user)
@@ -46,7 +48,7 @@ const Auth = () => {
         <div className="auth">
           <h2>Connexion</h2>
           {error ? <p>{error}</p> : null}
-          {/* {user && <Navigate to="/mes-rapports" replace={true} />} */}
+          {/* {user && <Navigate to="/my-reports" replace={true} />} */}
           <form className="form-auth" onSubmit={handleSubmit}>
             <div>
               <input
