@@ -1,25 +1,23 @@
-import './App.css';
-import app from './firebase/Firebase.jsx'
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-import Auth from './authentification/Auth';
+import "./App.css";
+import app from "./firebase/Firebase.jsx";
+import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import Router from "./router/Router.jsx";
 
-
-const db = getFirestore(app)
+const db = getFirestore(app);
 
 async function getUser(db) {
-  const user = collection(db, 'Utilisateurs')
-  const getdocUser = await getDocs(user)
+  const user = collection(db, "Utilisateurs");
+  const getdocUser = await getDocs(user);
   // const userList = getdocUser.docs.map(doc=>doc.data())
-  return getdocUser
+  return getdocUser;
 }
 
-getUser(db)
+getUser(db);
 
 function App() {
   return (
     <>
-     <Auth/>
-{/* <PDFViewer><Rapport/></PDFViewer>  */}
+      <Router />
     </>
   );
 }
